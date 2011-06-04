@@ -1,0 +1,183 @@
+%PDF-1.3
+%клмн
+4 0 obj
+<< /Type /Info
+/Producer (FOP 0.20.5) >>
+endobj
+5 0 obj
+<< /Length 1462 /Filter [ /ASCII85Decode /FlateDecode ]
+ >>
+stream
+Gatm<gQ(#H&:O:Sn8T7X'T'CcAs9f?dBmTR\#'\A9\XA0d1IZDqtCuaaO,^AK,+i>0sp)51S!E_ka281mFET5ZYZp3D=$Cl]!9A&it*1/*"k2GJS/2)&<VB9rd=S@`l]65pLj%5g&D-Q5&k9!5B?>4cjFTmF4t!R1O2@dk)6-ua\dkp[bm!*(PT:^LpYH1;'cstb=<o.Orp(@9,31U-ST\^1L>)!Hr:rlOmtf,P^JFV<./$3=9?h>L0.u7]o'*NW"<@%k#c2C\<c,mQ<)F;AF`u`rh$fgA5[*!(MQnlNEaJ^P:6#/_Q0WC;)!a5YX6]LL:0KN8QdoH/k"p?k7D&RH#]FqB^(3eG32?<SQ?V[oO3)M_B8NAYFCQ9I/\t=BN'h<5^XJQ&THpO[3NkkO]ok_D+/nEmUWg&A+QuJ]ZW*.neDLl?j?^CbeQ;O!FEfLkFFn4*!!hb@E"0ZaAng6mVh)u'Ka;<U?:+3&Bt3pcN?EdhKH6ThK-'/XK%&'if<)Sp,i`W$VsW2aG[Q$6NtA/b69G:!S?P2-&Z@$"Dph<95'7A:!mj]l+lik:.:JVV[JbL*-,$;\[^U1;CkIh]^jmG>(HonrO*U,`1rE*4&RSi'YXW7+hu?<=Z)afO`nkK]TB9rhAO8M!?cb<-dOS9%!o<3&o=Qq0<fe&oJ#.gN$W&?;EkPs@CpjXXd,0oHC\(6qoWQsl:"Y_.@$L@SJ=(iMP?LMk[\ck1ODPB<g<Vl;A:WT:R7K=nYbIER2tT-7?CcX),FJQdi#fk5)Ami4*"K?W37^6Ced)[i:7WBb9]2?>>\kg$^3,%Lq6cT//aqIZK:Y#>UV9:6q;))K%^VRMaih4H/r(A'GNS@[7K+jQLFJued5S3Ni?2:Sr);WcolI@_D"%g)B(X7Qi17W>3bcl.HT;]b'.^F[Jf4Oj+m$ibO]qUYM0H2l2-?*T`]sIXZVcY*eN[Cd:b9(9aM_1GF`aaiD(P*k_@HLN=[S#aq^oSfAnH(jL!]cW2#j<cR72k:%2E27>\+L23Vm@pqbmY-Fg!"l;+/UC!='P6rk:X;S-e-n6uGF*W&g<4>[0G&/=R/kadel[.-3E*$Ut>^o%p_9:ZY]a]5K7mr2oADJBjKL+HRWRmVj-#S1OT]+VDaL<:7qrKP)4Y.5Z+$_C`bCsb;u*$Uh<5U2?-7g(>D,ktI)@WL]Z,P6:]oJ#^*LD&HGg#DgZ4+nO<jr/I1rkQC#g,4[uHf3I=X?9DA)?l8+B44E]&4c')F,4K:!B1881F"<]aqO#VP$ena`W[Qr9rnrO!63@JKYe92Jd7MMN_&BG1;3/r>:LHnM]T@I6(PVJetakh@7iJ5D,HpiN1;s"[p'3s%mTJM2"Z1Nj*`"1RSRDE!l]S?\A":,HtfL%(q!;.qMr"_D9(AqJ"Z"aGLn+Zp.h-XHW$T'Xf./Q^AmhC=f.1E>9]P.<o2I@L&MNp$nj"~>
+endstream
+endobj
+6 0 obj
+<< /Type /Page
+/Parent 1 0 R
+/MediaBox [ 0 0 612 792 ]
+/Resources 3 0 R
+/Contents 5 0 R
+/Annots 7 0 R
+>>
+endobj
+7 0 obj
+[
+8 0 R
+9 0 R
+10 0 R
+11 0 R
+12 0 R
+13 0 R
+14 0 R
+]
+endobj
+8 0 obj
+<< /Type /Annot
+/Subtype /Link
+/Rect [ 277.656 538.2 367.656 526.2 ]
+/C [ 0 0 0 ]
+/Border [ 0 0 0 ]
+/A << /URI (single_node_setup.html)
+/S /URI >>
+/H /I
+>>
+endobj
+9 0 obj
+<< /Type /Annot
+/Subtype /Link
+/Rect [ 392.64 525.0 457.644 513.0 ]
+/C [ 0 0 0 ]
+/Border [ 0 0 0 ]
+/A << /URI (cluster_setup.html)
+/S /URI >>
+/H /I
+>>
+endobj
+10 0 obj
+<< /Type /Annot
+/Subtype /Link
+/Rect [ 413.304 477.4 471.288 465.4 ]
+/C [ 0 0 0 ]
+/Border [ 0 0 0 ]
+/A << /URI (http://hadoop.apache.org/mapreduce/docs/current/index.html)
+/S /URI >>
+/H /I
+>>
+endobj
+11 0 obj
+<< /Type /Annot
+/Subtype /Link
+/Rect [ 90.0 464.2 163.992 452.2 ]
+/C [ 0 0 0 ]
+/Border [ 0 0 0 ]
+/A << /URI (http://hadoop.apache.org/mapreduce/docs/current/index.html)
+/S /URI >>
+/H /I
+>>
+endobj
+12 0 obj
+<< /Type /Annot
+/Subtype /Link
+/Rect [ 90.0 451.0 197.664 439.0 ]
+/C [ 0 0 0 ]
+/Border [ 0 0 0 ]
+/A << /URI (http://hadoop.apache.org/hdfs/docs/current/index.html)
+/S /URI >>
+/H /I
+>>
+endobj
+13 0 obj
+<< /Type /Annot
+/Subtype /Link
+/Rect [ 318.96 429.8 471.972 417.8 ]
+/C [ 0 0 0 ]
+/Border [ 0 0 0 ]
+/A << /URI (http://hadoop.apache.org/common/mailing_lists.html)
+/S /URI >>
+/H /I
+>>
+endobj
+14 0 obj
+<< /Type /Annot
+/Subtype /Link
+/Rect [ 107.664 416.6 213.66 404.6 ]
+/C [ 0 0 0 ]
+/Border [ 0 0 0 ]
+/A << /URI (http://mail-archives.apache.org/mod_mbox/hadoop-common-commits/)
+/S /URI >>
+/H /I
+>>
+endobj
+15 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F3
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding >>
+endobj
+16 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F5
+/BaseFont /Times-Roman
+/Encoding /WinAnsiEncoding >>
+endobj
+17 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F1
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding >>
+endobj
+18 0 obj
+<< /Type /Font
+/Subtype /Type1
+/Name /F2
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding >>
+endobj
+1 0 obj
+<< /Type /Pages
+/Count 1
+/Kids [6 0 R ] >>
+endobj
+2 0 obj
+<< /Type /Catalog
+/Pages 1 0 R
+ >>
+endobj
+3 0 obj
+<< 
+/Font << /F3 15 0 R /F5 16 0 R /F1 17 0 R /F2 18 0 R >> 
+/ProcSet [ /PDF /ImageC /Text ] >> 
+endobj
+xref
+0 19
+0000000000 65535 f 
+0000003619 00000 n 
+0000003677 00000 n 
+0000003727 00000 n 
+0000000015 00000 n 
+0000000071 00000 n 
+0000001625 00000 n 
+0000001745 00000 n 
+0000001811 00000 n 
+0000001982 00000 n 
+0000002148 00000 n 
+0000002356 00000 n 
+0000002561 00000 n 
+0000002761 00000 n 
+0000002960 00000 n 
+0000003172 00000 n 
+0000003285 00000 n 
+0000003395 00000 n 
+0000003503 00000 n 
+trailer
+<<
+/Size 19
+/Root 2 0 R
+/Info 4 0 R
+>>
+startxref
+3839
+%%EOF

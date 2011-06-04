@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/classes/webapps/datanode/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/classes/webapps/datanode" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web2">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/classes/webapps/hdfs/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/classes/webapps/hdfs" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web3">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/classes/webapps/secondary/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/classes/webapps/secondary" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="common2" level="project" />
+    <orderEntry type="library" name="lib2" level="project" />
+    <orderEntry type="library" name="common14" level="project" />
+    <orderEntry type="library" name="common12" level="project" />
+    <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" name="common10" level="project" />
+    <orderEntry type="library" name="common13" level="project" />
+    <orderEntry type="library" name="common17" level="project" />
+    <orderEntry type="library" name="common4" level="project" />
+    <orderEntry type="library" name="hadoop-0.21.0" level="project" />
+    <orderEntry type="library" name="common9" level="project" />
+    <orderEntry type="library" name="common11" level="project" />
+    <orderEntry type="library" name="common19" level="project" />
+    <orderEntry type="library" name="common1" level="project" />
+    <orderEntry type="library" name="common15" level="project" />
+    <orderEntry type="library" name="build" level="project" />
+    <orderEntry type="library" name="common18" level="project" />
+    <orderEntry type="library" name="common" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../mapred/contrib/datajoin/lib/hadoop-hdfs-test-0.21.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="common3" level="project" />
+    <orderEntry type="library" name="common7" level="project" />
+    <orderEntry type="library" name="common5" level="project" />
+    <orderEntry type="library" name="common8" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../mapred/contrib/mumak/hadoop-0.21.0-mumak.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="common16" level="project" />
+    <orderEntry type="module" module-name="Test2" />
+    <orderEntry type="module" module-name="Mapred" />
+    <orderEntry type="module" module-name="Test1" />
+    <orderEntry type="module" module-name="Test" />
+    <orderEntry type="module" module-name="Hdfs" />
+    <orderEntry type="module" module-name="Common" />
+  </component>
+</module>
+

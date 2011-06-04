@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+<!-- In: conf/mapred-site.xml -->
+<property>
+  <name>mapred.job.tracker</name>
+  <value>localhost:54311</value>
+  <description>The host and port that the MapReduce job tracker runs
+  at.  If "local", then jobs are run in-process as a single map
+  and reduce task.
+  </description>
+</property>
+
+<property>
+  <name>mapreduce.jobtracker.taskScheduler</name>
+  <value>org.apache.hadoop.mapred.FairScheduler</value>
+</property>
+
+<property>
+    <name>mapred.fairscheduler.allocation.file</name>
+    <value>/Users/wei/hadoop/conf/fair-scheduler.xml</value>
+</property>
+
+</configuration>
