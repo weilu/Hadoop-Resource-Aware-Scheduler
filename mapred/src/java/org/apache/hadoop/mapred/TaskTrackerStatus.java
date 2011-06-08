@@ -75,6 +75,12 @@ public class TaskTrackerStatus implements Writable {
     private long cpuFrequency = UNAVAILABLE; // in kHz
     private float cpuUsage = UNAVAILABLE; // in %
 
+      private long bandwidthCapacity = UNAVAILABLE;
+      private long cumulativeIncomingTraffic = UNAVAILABLE;
+      private long cumulativeOutgoingTraffic = UNAVAILABLE;
+      private long currentBandwidth = UNAVAILABLE;
+      private float bandwidthUsage = UNAVAILABLE;
+
     ResourceStatus() {
       totalVirtualMemory = JobConf.DISABLED_MEMORY_LIMIT;
       totalPhysicalMemory = JobConf.DISABLED_MEMORY_LIMIT;
@@ -308,7 +314,47 @@ public class TaskTrackerStatus implements Writable {
     public float getCpuUsage() {
       return cpuUsage;
     }
-    
+
+      public long getBandwidthCapacity() {
+          return bandwidthCapacity;
+      }
+
+      public void setBandwidthCapacity(long bandwidthCapacity) {
+          this.bandwidthCapacity = bandwidthCapacity;
+      }
+
+      public long getCumulativeIncomingTraffic() {
+          return cumulativeIncomingTraffic;
+      }
+
+      public void setCumulativeIncomingTraffic(long cumulativeIncomingTraffic) {
+          this.cumulativeIncomingTraffic = cumulativeIncomingTraffic;
+      }
+
+      public long getCumulativeOutgoingTraffic() {
+          return cumulativeOutgoingTraffic;
+      }
+
+      public void setCumulativeOutgoingTraffic(long cumulativeOutgoingTraffic) {
+          this.cumulativeOutgoingTraffic = cumulativeOutgoingTraffic;
+      }
+
+      public long getCurrentBandwidth() {
+          return currentBandwidth;
+      }
+
+      public void setCurrentBandwidth(long currentBandwidth) {
+          this.currentBandwidth = currentBandwidth;
+      }
+
+      public float getBandwidthUsage() {
+          return bandwidthUsage;
+      }
+
+      public void setBandwidthUsage(float bandwidthUsage) {
+          this.bandwidthUsage = bandwidthUsage;
+      }
+
     public void write(DataOutput out) throws IOException {
       WritableUtils.writeVLong(out, totalVirtualMemory);
       WritableUtils.writeVLong(out, totalPhysicalMemory);
@@ -321,6 +367,12 @@ public class TaskTrackerStatus implements Writable {
       WritableUtils.writeVLong(out, cpuFrequency);
       WritableUtils.writeVInt(out, numProcessors);
       out.writeFloat(getCpuUsage());
+
+      WritableUtils.writeVLong(out, bandwidthCapacity);
+      WritableUtils.writeVLong(out, cumulativeIncomingTraffic);
+      WritableUtils.writeVLong(out, cumulativeOutgoingTraffic);
+      WritableUtils.writeVLong(out, currentBandwidth);
+      out.writeFloat(getBandwidthUsage());
     }
     
     public void readFields(DataInput in) throws IOException {
@@ -335,6 +387,12 @@ public class TaskTrackerStatus implements Writable {
       cpuFrequency = WritableUtils.readVLong(in);
       numProcessors = WritableUtils.readVInt(in);
       setCpuUsage(in.readFloat());
+
+        bandwidthCapacity = WritableUtils.readVLong(in);
+        cumulativeIncomingTraffic = WritableUtils.readVLong(in);
+        cumulativeOutgoingTraffic = WritableUtils.readVLong(in);
+        currentBandwidth = WritableUtils.readVLong(in);
+        setBandwidthUsage(in.readFloat());
     }
   }
   

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="javaeeApplication" name="javaEEApplication">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="application.xml" url="file://$MODULE_DIR$/META-INF/application.xml" />
+        </descriptors>
+        <context-artifact name="hadoop-0.21.0:ear exploded" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/common/build/src/org/apache/hadoop" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/contrib/failmon/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/test/aop" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/test/core" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/common/src/test/system/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/build/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/ant" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/contrib/fuse-dfs/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/contrib/hdfsproxy/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/contrib/hdfsproxy/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/contrib/thriftfs/gen-java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/contrib/thriftfs/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/contrib/thriftfs/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/test/aop" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/test/hdfs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/test/system/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/test/system/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/hdfs/src/test/unit" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/build/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/benchmarks/gridmix2/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/block_forensics/client" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/block_forensics/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/capacity-scheduler/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/capacity-scheduler/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/data_join/src/examples" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/data_join/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/data_join/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/dynamic-scheduler/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/dynamic-scheduler/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/eclipse-plugin/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/fairscheduler/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/fairscheduler/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/gridmix/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/gridmix/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/index/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/index/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/mrunit/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/mrunit/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/mumak/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/mumak/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/raid/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/raid/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/streaming/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/streaming/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/vaidya/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/vertica/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/contrib/vertica/src/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/examples" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/test/aop" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/test/mapred" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/test/system/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/test/system/test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/test/unit" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/mapred/src/tools" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
+

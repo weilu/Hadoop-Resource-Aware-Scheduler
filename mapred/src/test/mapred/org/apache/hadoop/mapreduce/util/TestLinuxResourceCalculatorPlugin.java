@@ -42,10 +42,11 @@ public class TestLinuxResourceCalculatorPlugin extends TestCase {
     
 	  long currentTime = 0;
 	  public FakeLinuxResourceCalculatorPlugin(String procfsMemFile,
-			                                       String procfsCpuFile,
-			                                       String procfsStatFile,
-			                                       long jiffyLengthInMillis) {
-	    super(procfsMemFile, procfsCpuFile, procfsStatFile, jiffyLengthInMillis);
+                                               String procfsCpuFile,
+                                               String procfsStatFile,
+                                               String procfsNetDevFile,
+                                               long jiffyLengthInMillis) {
+	    super(procfsMemFile, procfsCpuFile, procfsStatFile, procfsNetDevFile, jiffyLengthInMillis);
 	  }
 	  @Override
 	  long getCurrentTime() {
@@ -60,6 +61,7 @@ public class TestLinuxResourceCalculatorPlugin extends TestCase {
          "test.build.data", "/tmp")).toString().replace(' ', '+');
   private static final String FAKE_MEMFILE;
   private static final String FAKE_CPUFILE;
+  private static final String FAKE_NETDEVFILE;
   private static final String FAKE_STATFILE;
   private static final long FAKE_JIFFY_LENGTH = 10L;
   static {
@@ -67,8 +69,9 @@ public class TestLinuxResourceCalculatorPlugin extends TestCase {
     FAKE_MEMFILE = TEST_ROOT_DIR + File.separator + "MEMINFO_" + randomNum;
     FAKE_CPUFILE = TEST_ROOT_DIR + File.separator + "CPUINFO_" + randomNum;
     FAKE_STATFILE = TEST_ROOT_DIR + File.separator + "STATINFO_" + randomNum;
+    FAKE_NETDEVFILE = TEST_ROOT_DIR + File.separator + "NETDEVINFO_" + randomNum;
     plugin = new FakeLinuxResourceCalculatorPlugin(FAKE_MEMFILE, FAKE_CPUFILE,
-                                                   FAKE_STATFILE,
+                                                   FAKE_STATFILE, FAKE_NETDEVFILE,
                                                    FAKE_JIFFY_LENGTH);
   }
   static final String MEMINFO_FORMAT = 
@@ -140,6 +143,16 @@ public class TestLinuxResourceCalculatorPlugin extends TestCase {
     "processes 26414943\n" +
     "procs_running 1\n" +
     "procs_blocked 0\n";
+
+  static final String NET_DEV_FILE_FORMAT =
+          "Inter-|   Receive                                                |  Transmit\n" +
+                  " face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed\n" +
+                  "    lo:3670017916 9012700    0    0    0     0          0         0 3670017916 9012700    0    0    0     0       0          0\n" +
+                  "  eth0:%d 161698539    0   49    0     0          0  66939835 %d 93087107    0    0    0     0       0          0\n" +
+                  "  eth1:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0\n" +
+                  "  eth2:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0\n" +
+                  "  eth3:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0\n" +
+                  "  sit0:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0\n";
   
   /**
    * Test parsing /proc/stat and /proc/cpuinfo
@@ -207,6 +220,16 @@ public class TestLinuxResourceCalculatorPlugin extends TestCase {
     fWriter.write(String.format(STAT_FILE_FORMAT, uTime, nTime, sTime));
     fWriter.close();
   }
+
+  /**
+   * Write information to fake /proc/net/dev file
+   */
+  private void updateNetDevFile(long inTraffic, long outTraffic)
+    throws IOException {
+    FileWriter fWriter = new FileWriter(FAKE_NETDEVFILE);
+    fWriter.write(String.format(NET_DEV_FILE_FORMAT, inTraffic, outTraffic));
+    fWriter.close();
+  }
   
   /**
    * Test parsing /proc/meminfo
@@ -232,5 +255,30 @@ public class TestLinuxResourceCalculatorPlugin extends TestCase {
                  1024L * (memFree + inactive + swapFree));
     assertEquals(plugin.getPhysicalMemorySize(), 1024L * memTotal);
     assertEquals(plugin.getVirtualMemorySize(), 1024L * (memTotal + swapTotal));
+  }
+
+  @Test
+  public void testParsingProcNetDevFile() throws IOException {
+    long inTraffic = 1989123321L;
+    long outTraffic = 3288741359L;
+    File tempFile = new File(FAKE_NETDEVFILE);
+    tempFile.deleteOnExit();
+    FileWriter fWriter = new FileWriter(FAKE_NETDEVFILE);
+    fWriter.write(String.format(NET_DEV_FILE_FORMAT,
+      inTraffic, outTraffic));
+
+    fWriter.close();
+    assertEquals(plugin.getCumulativeIncomingTraffic(),
+                 inTraffic);
+    assertEquals(plugin.getCumulativeOutgoingTraffic(),
+                 outTraffic);
+
+    inTraffic += 100L;
+    outTraffic += 100L;
+    plugin.advanceTime(200L);
+    updateNetDevFile(inTraffic, outTraffic);
+    long currentBandwidth = plugin.getCurrentBandwidth();
+    assertEquals(currentBandwidth, (long)(200F/(200F*plugin.jiffyLengthInMillis)));
+    assertEquals(plugin.getBandwidthUsage(), currentBandwidth/(100F * 1024F * 1024F));
   }
 }

@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AntConfiguration">
+    <defaultAnt bundledAnt="true" />
+  </component>
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/common/src/test" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/hdfs/src/test" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test" includeSubdirectories="true" />
+    </excludeFromCompile>
+    <resourceExtensions>
+      <entry name=".+\.(properties|xml|html|dtd|tld)" />
+      <entry name=".+\.(gif|png|jpeg|jpg)" />
+    </resourceExtensions>
+    <wildcardResourcePatterns>
+      <entry name="?*.properties" />
+      <entry name="?*.xml" />
+      <entry name="?*.gif" />
+      <entry name="?*.png" />
+      <entry name="?*.jpeg" />
+      <entry name="?*.jpg" />
+      <entry name="?*.html" />
+      <entry name="?*.dtd" />
+      <entry name="?*.tld" />
+      <entry name="?*.ftl" />
+    </wildcardResourcePatterns>
+    <annotationProcessing enabled="false" useClasspath="true" />
+  </component>
+  <component name="CopyrightManager" default="">
+    <module2copyright />
+  </component>
+  <component name="DependencyValidationManager">
+    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
+  </component>
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="IdProvider" IDEtalkID="C2EDB4EE27797A3E4CF35DF0DFB332BA" />
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" />
+    <option name="OPTION_SCOPE" value="protected" />
+    <option name="OPTION_HIERARCHY" value="true" />
+    <option name="OPTION_NAVIGATOR" value="true" />
+    <option name="OPTION_INDEX" value="true" />
+    <option name="OPTION_SEPARATE_INDEX" value="true" />
+    <option name="OPTION_DOCUMENT_TAG_USE" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_VERSION" value="false" />
+    <option name="OPTION_DOCUMENT_TAG_DEPRECATED" value="true" />
+    <option name="OPTION_DEPRECATED_LIST" value="true" />
+    <option name="OTHER_OPTIONS" value="" />
+    <option name="HEAP_SIZE" />
+    <option name="LOCALE" />
+    <option name="OPEN_IN_BROWSER" value="true" />
+  </component>
+  <component name="Palette2">
+    <group name="Swing">
+      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
+      </item>
+      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
+      </item>
+      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.png" removable="false" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
+      </item>
+      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.png" removable="false" auto-create-binding="false" can-attach-label="true">
+        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
+      </item>
+      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
+        <initial-values>
+          <property name="text" value="Button" />
+        </initial-values>
+      </item>
+      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
+        <initial-values>
+          <property name="text" value="RadioButton" />
+        </initial-values>
+      </item>
+      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
+        <initial-values>
+          <property name="text" value="CheckBox" />
+        </initial-values>
+      </item>
+      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.png" removable="false" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
+        <initial-values>
+          <property name="text" value="Label" />
+        </initial-values>
+      </item>
+      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.png" removable="false" auto-create-binding="true" can-attach-label="true">
+        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+          <preferred-size width="150" height="-1" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.png" removable="false" auto-create-binding="true" can-attach-label="true">
+        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+          <preferred-size width="150" height="-1" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.png" removable="false" auto-create-binding="true" can-attach-label="true">
+        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
+          <preferred-size width="150" height="-1" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.png" removable="false" auto-create-binding="true" can-attach-label="true">
+        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+          <preferred-size width="150" height="50" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
+        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+          <preferred-size width="150" height="50" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
+        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+          <preferred-size width="150" height="50" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.png" removable="false" auto-create-binding="true" can-attach-label="true">
+        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
+      </item>
+      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+          <preferred-size width="150" height="50" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
+          <preferred-size width="150" height="50" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
+          <preferred-size width="150" height="50" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
+          <preferred-size width="200" height="200" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.png" removable="false" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
+          <preferred-size width="200" height="200" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.png" removable="false" auto-create-binding="true" can-attach-label="true">
+        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
+      </item>
+      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
+      </item>
+      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.png" removable="false" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
+      </item>
+      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
+      </item>
+      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.png" removable="false" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
+          <preferred-size width="-1" height="20" />
+        </default-constraints>
+      </item>
+      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.png" removable="false" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
+      </item>
+      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
+        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
+      </item>
+    </group>
+  </component>
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/build/src/org/apache/Apache.iml" filepath="$PROJECT_DIR$/common/build/src/org/apache/Apache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/block_forensics/src/Block_forensics.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/block_forensics/src/Block_forensics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/block_forensics/Block_forensics1.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/block_forensics/Block_forensics1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfs/build/Build.iml" filepath="$PROJECT_DIR$/hdfs/build/Build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/build/Build1.iml" filepath="$PROJECT_DIR$/mapred/build/Build1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/capacity-scheduler/src/Capacity-scheduler.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/capacity-scheduler/src/Capacity-scheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/src/Common.iml" filepath="$PROJECT_DIR$/common/src/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/data_join/src/Data_join.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/data_join/src/Data_join.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/dynamic-scheduler/src/Dynamic-scheduler.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/dynamic-scheduler/src/Dynamic-scheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/eclipse-plugin/src/Eclipse-plugin.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/eclipse-plugin/src/Eclipse-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/src/contrib/failmon/src/Failmon.iml" filepath="$PROJECT_DIR$/common/src/contrib/failmon/src/Failmon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/fairscheduler/src/Fairscheduler.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/fairscheduler/src/Fairscheduler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfs/src/contrib/fuse-dfs/src/Fuse-dfs.iml" filepath="$PROJECT_DIR$/hdfs/src/contrib/fuse-dfs/src/Fuse-dfs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/gridmix/src/Gridmix.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/gridmix/src/Gridmix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/benchmarks/gridmix2/src/Gridmix2.iml" filepath="$PROJECT_DIR$/mapred/src/benchmarks/gridmix2/src/Gridmix2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfs/src/Hdfs.iml" filepath="$PROJECT_DIR$/hdfs/src/Hdfs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfs/src/contrib/hdfsproxy/src/Hdfsproxy.iml" filepath="$PROJECT_DIR$/hdfs/src/contrib/hdfsproxy/src/Hdfsproxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/index/src/Index.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/index/src/Index.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/Mapred.iml" filepath="$PROJECT_DIR$/mapred/src/Mapred.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/mrunit/src/Mrunit.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/mrunit/src/Mrunit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/mumak/src/Mumak.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/mumak/src/Mumak.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/raid/src/Raid.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/raid/src/Raid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/streaming/src/Streaming.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/streaming/src/Streaming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/test/system/System.iml" filepath="$PROJECT_DIR$/mapred/src/test/system/System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/src/test/system/System1.iml" filepath="$PROJECT_DIR$/common/src/test/system/System1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfs/src/test/system/System2.iml" filepath="$PROJECT_DIR$/hdfs/src/test/system/System2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/test/Test.iml" filepath="$PROJECT_DIR$/mapred/src/test/Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfs/src/test/Test1.iml" filepath="$PROJECT_DIR$/hdfs/src/test/Test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/src/test/Test2.iml" filepath="$PROJECT_DIR$/common/src/test/Test2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfs/src/contrib/thriftfs/Thriftfs.iml" filepath="$PROJECT_DIR$/hdfs/src/contrib/thriftfs/Thriftfs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfs/src/contrib/thriftfs/src/Thriftfs1.iml" filepath="$PROJECT_DIR$/hdfs/src/contrib/thriftfs/src/Thriftfs1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/vaidya/src/Vaidya.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/vaidya/src/Vaidya.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapred/src/contrib/vertica/src/Vertica.iml" filepath="$PROJECT_DIR$/mapred/src/contrib/vertica/src/Vertica.iml" />
+    </modules>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+  </component>
+  <component name="WebServicesPlugin" addRequiredLibraries="true" />
+  <component name="libraryTable">
+    <library name="build">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-tools-0.21.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-tools-0.21.1-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/ftpserver-core-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/mina-core-2.0.0-M5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/ftplet-api-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/hadoop-common-test-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/aspectjtools-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/aspectjrt-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/slf4j-log4j12-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/ftpserver-deprecated-1.0.0-M2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/Hadoop/common/qdox-1.10.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common1">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/paranamer-2.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common10">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/junitperf-1.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/cactus.integration.shared.api-1.8.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/hadoop-common-test-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jstl-1.1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/mina-core-2.0.0-M5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/cargo-core-uberjar-0.9.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/ftpserver-deprecated-1.0.0-M2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/aspectjrt-1.5.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/ftplet-api-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/cargo-ant-0.9.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/ftpserver-core-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-io-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jsp-api-2.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/slf4j-log4j12-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/cactus.integration.ant-1.8.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-logging-api-1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/servlet-api-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/standard-1.1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/cactus.core.framework.uberjar.javaEE.14-1.8.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/hdfsproxy/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common11">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/fairscheduler/common/jetty-util-6.1.14.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common12">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vaidya/common/jetty-util-6.1.14.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common13">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/gridmix/common/jackson-core-asl-1.4.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common14">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/vertica/common/kfs-0.3.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common15">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/raid/common/jetty-6.1.14.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common16">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/block_forensics/common/jetty-util-6.1.14.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common17">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mrunit/common/jetty-6.1.14.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common18">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/thriftfs/common/jsp-2.1-6.1.14.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common19">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/capacity-scheduler/common/commons-logging-1.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common2">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/ftplet-api-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/aspectjrt-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/mina-core-2.0.0-M5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/ftpserver-core-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/aspectjtools-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/ftpserver-deprecated-1.0.0-M2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/mumak/common/hadoop-common-test-0.21.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common3">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/eclipse-plugin/common/core-3.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common4">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/aspectjtools-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/mockito-all-1.8.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/aspectjrt-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/build/ivy/lib/Hadoop-Hdfs/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common5">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/hadoop-hdfs-test-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/ftpserver-deprecated-1.0.0-M2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/hadoop-common-test-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/ftplet-api-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/ftpserver-core-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/mina-core-2.0.0-M5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/datajoin/common/core-3.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common6">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/failmon/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/failmon/common/log4j-1.2.15.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common7">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/hadoop-hdfs-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/hadoop-hdfs-test-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/ftplet-api-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/hadoop-common-test-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/lucene-core-2.3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/ftpserver-core-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/mina-core-2.0.0-M5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/ftpserver-deprecated-1.0.0-M2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/index/common/core-3.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common8">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/hadoop-common-0.21.0-SNAPSHOT.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/build/ivy/lib/dynamic-priority/common/jackson-mapper-asl-1.4.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="common9">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/commons-httpclient-3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/aspectjtools-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/aspectjrt-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/commons-logging-api-1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/mockito-all-1.8.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jdiff-1.0.9.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/slf4j-log4j12-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/build/ivy/lib/Hadoop-Common/common/jasper-runtime-5.5.12.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="hadoop-0.21.0">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/hadoop-hdfs-test-0.21.0-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-hdfs-test-0.21.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-mapred-test-0.21.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-mapred-0.21.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-hdfs-ant-0.21.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-mapred-tools-0.21.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-hdfs-0.21.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-mapred-0.21.0-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-mapred-examples-0.21.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-hdfs-0.21.0-sources.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-common-test-0.21.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hadoop-common-0.21.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="ivy">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/hdfs/ivy/maven-ant-tasks-2.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/ivy/ivy-2.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="ivy1">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/ivy/maven-ant-tasks-2.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/ivy/ivy-2.1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="ivy2">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/common/ivy/ivy-2.1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/common/ivy/maven-ant-tasks-2.0.10.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="lib">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/hdfs/src/contrib/thriftfs/lib/hadoopthriftapi.jar!/" />
+        <root url="jar://$PROJECT_DIR$/hdfs/src/contrib/thriftfs/lib/libthrift.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="lib1">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/paranamer-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/avro-1.3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/kfs-0.3.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/aspectjtools-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jetty-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jackson-mapper-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/mina-core-2.0.0-M5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-logging-api-1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/aspectjrt-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jsp-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jdiff-1.0.9.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/core-3.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/hsqldb-1.8.0.10.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-el-1.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/junit-4.8.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/slf4j-log4j12-1.5.11.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jasper-runtime-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jasper-compiler-5.5.12.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/servlet-api-2.5-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/qdox-1.10.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jsp-api-2.1-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/ftpserver-core-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/ant-1.6.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/asm-3.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-cli-1.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jets3t-0.7.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-net-1.4.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/paranamer-ant-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/ftplet-api-1.0.0.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/xmlenc-0.52.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/log4j-1.2.15.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/paranamer-generator-2.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/mockito-all-1.8.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/ftpserver-deprecated-1.0.0-M2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jackson-core-asl-1.4.2.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/oro-2.0.8.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/jetty-util-6.1.14.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-lang-2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/lib/commons-httpclient-3.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="lib2">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/contrib/index/lib/lucene-core-2.3.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/contrib/index/lib/hadoop-hdfs-test-0.21.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="mapred">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/test.zip!/" />
+        <root url="jar://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/test.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+  </component>
+</project>
+

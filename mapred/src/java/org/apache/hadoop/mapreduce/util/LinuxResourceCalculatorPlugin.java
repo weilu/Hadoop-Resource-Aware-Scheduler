@@ -71,10 +71,20 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
   private static final Pattern CPU_TIME_FORMAT =
     Pattern.compile("^cpu[ \t]*([0-9]*)" +
     		            "[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t].*");
+
+    /**
+     * Pattern for parsing /proc/net/dev
+     */
+    private static final String PROCFS_NET_DEV = "/proc/net/dev";
+    private static final Pattern ETH0_IO_FORMAT =
+            Pattern.compile("^  eth0:[ \t]*([0-9]*)" +
+                    "[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)" +
+                    "[ \t]*([0-9]*)");
   
   private String procfsMemFile;
   private String procfsCpuFile;
   private String procfsStatFile;
+    private String procfsNetDevFile;
   long jiffyLengthInMillis;
 
   private long ramSize = 0;
@@ -86,10 +96,21 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
   private long cpuFrequency = 0L; // CPU frequency on the system (kHz)
   private long cumulativeCpuTime = 0L; // CPU used time since system is on (ms)
   private long lastCumulativeCpuTime = 0L; // CPU used time read last time (ms)
+    private long totalBandwidth = 100 * 1024 * 1024; //in bytes
+    private long cumulativeIncomingTraffic = 0;
+    private long cumulativeOutgoingTraffic = 0;
+    private long lastCumulativeIncomingTraffic = 0;
+    private long lastCumulativeOutgoingTraffic = 0;
+    private long currentBandwidth = 0;
+
   // Unix timestamp while reading the CPU time (ms)
   private float cpuUsage = TaskTrackerStatus.UNAVAILABLE;
   private long sampleTime = TaskTrackerStatus.UNAVAILABLE;
   private long lastSampleTime = TaskTrackerStatus.UNAVAILABLE;
+
+    private float bandwidthUsage = TaskTrackerStatus.UNAVAILABLE;
+    private long networkSampleTime = TaskTrackerStatus.UNAVAILABLE;
+    private long networkLastSampleTime = TaskTrackerStatus.UNAVAILABLE;
 
   boolean readMemInfoFile = false;
   boolean readCpuInfoFile = false;
@@ -106,6 +127,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     procfsMemFile = PROCFS_MEMFILE;
     procfsCpuFile = PROCFS_CPUINFO;
     procfsStatFile = PROCFS_STAT;
+      procfsNetDevFile = PROCFS_NET_DEV;
     jiffyLengthInMillis = ProcfsBasedProcessTree.JIFFY_LENGTH_IN_MILLIS;
     
   }
@@ -116,15 +138,18 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
    * @param procfsMemFile fake file for /proc/meminfo
    * @param procfsCpuFile fake file for /proc/cpuinfo
    * @param procfsStatFile fake file for /proc/stat
+   * @param procfsNetDevFile
    * @param jiffyLengthInMillis fake jiffy length value
    */
   public LinuxResourceCalculatorPlugin(String procfsMemFile,
                                        String procfsCpuFile,
                                        String procfsStatFile,
+                                       String procfsNetDevFile,
                                        long jiffyLengthInMillis) {
     this.procfsMemFile = procfsMemFile;
     this.procfsCpuFile = procfsCpuFile;
     this.procfsStatFile = procfsStatFile;
+    this.procfsNetDevFile = procfsNetDevFile;
     this.jiffyLengthInMillis = jiffyLengthInMillis;
   }
 
@@ -294,6 +319,49 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     }
   }
 
+  /**
+   * Read /proc/net/dev file, parse and calculate network IO info
+   */
+  private void readProcNetDevFile() {
+    BufferedReader in = null;
+    FileReader fReader = null;
+    try {
+      fReader = new FileReader(procfsNetDevFile);
+      in = new BufferedReader(fReader);
+    } catch (FileNotFoundException f) {
+      // shouldn't happen....
+      return;
+    }
+
+    Matcher mat = null;
+    try {
+      String str = in.readLine();
+      while (str != null) {
+        mat = ETH0_IO_FORMAT.matcher(str);
+        if (mat.find()) {
+          cumulativeIncomingTraffic = Long.parseLong(mat.group(1));
+          cumulativeOutgoingTraffic = Long.parseLong(mat.group(9));
+          break;
+        }
+        str = in.readLine();
+      }
+    } catch (IOException io) {
+      LOG.warn("Error reading the stream " + io);
+    } finally {
+      // Close the streams
+      try {
+        fReader.close();
+        try {
+          in.close();
+        } catch (IOException i) {
+          LOG.warn("Error closing the stream " + in);
+        }
+      } catch (IOException i) {
+        LOG.warn("Error closing the stream " + fReader);
+      }
+    }
+  }
+
   /** {@inheritDoc} */
   @Override
   public long getPhysicalMemorySize() {
@@ -368,7 +436,46 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     return cpuUsage;
   }
 
-  /**
+    public long getBandwidthCapacity(){
+        return totalBandwidth;
+    }
+    public long getCumulativeIncomingTraffic(){
+        readProcNetDevFile();
+        return cumulativeIncomingTraffic;
+    }
+    public long getCumulativeOutgoingTraffic(){
+        readProcNetDevFile();
+        return cumulativeOutgoingTraffic;
+    }
+    public long getCurrentBandwidth(){
+        readProcNetDevFile();
+        networkSampleTime = getCurrentTime();
+        if (networkLastSampleTime == TaskTrackerStatus.UNAVAILABLE ||
+                networkLastSampleTime > networkSampleTime) {
+            // lastSampleTime > sampleTime may happen when the system time is changed
+            networkLastSampleTime = networkSampleTime;
+            lastCumulativeIncomingTraffic = cumulativeIncomingTraffic;
+            lastCumulativeOutgoingTraffic = cumulativeOutgoingTraffic;
+            return totalBandwidth;
+        }
+        // When lastSampleTime is sufficiently old, update
+        final long MINIMUM_UPDATE_INTERVAL = 10 * jiffyLengthInMillis;
+        if (networkSampleTime > networkLastSampleTime + MINIMUM_UPDATE_INTERVAL) {
+            currentBandwidth =
+                    (long)((float)(cumulativeIncomingTraffic + cumulativeOutgoingTraffic
+                            - lastCumulativeIncomingTraffic - lastCumulativeOutgoingTraffic)/
+                    ((float)(networkSampleTime - networkLastSampleTime)*1000));
+            networkLastSampleTime = networkSampleTime;
+            lastCumulativeIncomingTraffic = cumulativeIncomingTraffic;
+            lastCumulativeOutgoingTraffic = cumulativeOutgoingTraffic;
+        }
+        return currentBandwidth;
+    }
+    public float getBandwidthUsage(){
+        return (float) getCurrentBandwidth()/(float)totalBandwidth;
+    }
+
+    /**
    * Test the {@link LinuxResourceCalculatorPlugin}
    *
    * @param args

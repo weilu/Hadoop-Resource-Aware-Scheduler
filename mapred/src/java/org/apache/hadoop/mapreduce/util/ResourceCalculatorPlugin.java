@@ -90,6 +90,12 @@ public abstract class ResourceCalculatorPlugin extends Configured {
    */
   public abstract float getCpuUsage();
 
+    public abstract long getBandwidthCapacity();
+    public abstract long getCumulativeIncomingTraffic();
+    public abstract long getCumulativeOutgoingTraffic();
+    public abstract long getCurrentBandwidth();
+    public abstract float getBandwidthUsage();
+
   /**
    * Get the ResourceCalculatorPlugin from the class name and configure it. If
    * class name is null, this method will try and return a memory calculator
