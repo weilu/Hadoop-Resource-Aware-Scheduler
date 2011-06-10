@@ -15,25 +15,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="ad1553bb-5843-41f6-8746-19af3b22bc4c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapred/TaskTrackerStatus$ResourceStatus.class" afterPath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapred/TaskTrackerStatus$ResourceStatus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.class" afterPath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.class" afterPath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapred/TaskTrackerStatus$TaskTrackerHealthStatus.class" afterPath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapred/TaskTrackerStatus$TaskTrackerHealthStatus.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hadoop-0.21.0.ipr" afterPath="$PROJECT_DIR$/hadoop-0.21.0.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hadoop-0.21.0.iws" afterPath="$PROJECT_DIR$/hadoop-0.21.0.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/data_join/src/Data_join.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/data_join/src/Data_join.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/mrunit/src/Mrunit.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/mrunit/src/Mrunit.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/vaidya/src/Vaidya.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/vaidya/src/Vaidya.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/eclipse-plugin/src/Eclipse-plugin.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/eclipse-plugin/src/Eclipse-plugin.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/util/TestLinuxResourceCalculatorPlugin.java" afterPath="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/util/TestLinuxResourceCalculatorPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapred/TaskTrackerStatus.class" afterPath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapred/TaskTrackerStatus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapred/TaskTrackerStatus$TaskTrackerHealthStatus.class" afterPath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapred/TaskTrackerStatus$TaskTrackerHealthStatus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.class" afterPath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapred/TaskTrackerStatus$ResourceStatus.class" afterPath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapred/TaskTrackerStatus$ResourceStatus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.class" afterPath="$PROJECT_DIR$/mapred/build/classes/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapred/TaskTrackerStatus.class" afterPath="$PROJECT_DIR$/mapred/build/contrib/mumak/classes/org/apache/hadoop/mapred/TaskTrackerStatus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT-sources.jar" afterPath="$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT-sources.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/DummyResourceCalculatorPlugin.java" afterPath="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/DummyResourceCalculatorPlugin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/Mapred.iml" afterPath="$PROJECT_DIR$/mapred/src/Mapred.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/gridmix/src/Gridmix.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/gridmix/src/Gridmix.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/vertica/src/Vertica.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/vertica/src/Vertica.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/streaming/src/Streaming.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/streaming/src/Streaming.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/benchmarks/gridmix2/src/Gridmix2.iml" afterPath="$PROJECT_DIR$/mapred/src/benchmarks/gridmix2/src/Gridmix2.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/raid/src/Raid.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/raid/src/Raid.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/test/Test.iml" afterPath="$PROJECT_DIR$/mapred/src/test/Test.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/contrib/index/src/Index.iml" afterPath="$PROJECT_DIR$/mapred/src/contrib/index/src/Index.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" />
     </list>
-    <ignored path="$USER_HOME_GRAILS$/" />
     <ignored path="$USER_HOME_GRIFFON$/" />
+    <ignored path="$USER_HOME_GRAILS$/" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +51,60 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" line="450" class="org.apache.hadoop.mapreduce.util.LinuxResourceCalculatorPlugin" package="org.apache.hadoop.mapreduce.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" line="455" class="org.apache.hadoop.mapreduce.util.LinuxResourceCalculatorPlugin" package="org.apache.hadoop.mapreduce.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" line="463" class="org.apache.hadoop.mapreduce.util.LinuxResourceCalculatorPlugin" package="org.apache.hadoop.mapreduce.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" line="471" class="org.apache.hadoop.mapreduce.util.LinuxResourceCalculatorPlugin" package="org.apache.hadoop.mapreduce.util">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -90,10 +146,19 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ResourceCalculatorPlugin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.java">
+      <file leaf-file-name="TestLinuxResourceCalculatorPlugin.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/util/TestLinuxResourceCalculatorPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="38" selection-start="2752" selection-end="2772" vertical-scroll-proportion="0.0">
+            <state line="51" column="27" selection-start="2038" selection-end="2038" vertical-scroll-proportion="-4.262032">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JTClient.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/test/system/java/org/apache/hadoop/mapreduce/test/system/JTClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="78" column="30" selection-start="2612" selection-end="2612" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -102,70 +167,61 @@
       <file leaf-file-name="LinuxResourceCalculatorPlugin.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="438" column="16" selection-start="13838" selection-end="13838" vertical-scroll-proportion="-6.9615383">
+            <state line="466" column="28" selection-start="15193" selection-end="15193" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProcfsBasedProcessTree.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ProcfsBasedProcessTree.java">
+      <file leaf-file-name="DummyResourceCalculatorPlugin.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/DummyResourceCalculatorPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="27" selection-start="2648" selection-end="2670" vertical-scroll-proportion="-10.076923">
+            <state line="112" column="35" selection-start="3609" selection-end="3609" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestLinuxResourceCalculatorPlugin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/util/TestLinuxResourceCalculatorPlugin.java">
+      <file leaf-file-name="ResourceCalculatorPlugin.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="279" column="42" selection-start="11207" selection-end="11207" vertical-scroll-proportion="0.0">
+            <state line="92" column="0" selection-start="2727" selection-end="2984" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LinuxMemoryCalculatorPlugin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxMemoryCalculatorPlugin.java">
+      <file leaf-file-name="JobClientAspect.aj" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/test/system/aop/org/apache/hadoop/mapred/JobClientAspect.aj">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="36" selection-start="1787" selection-end="1787" vertical-scroll-proportion="0.0">
+            <state line="22" column="36" selection-start="949" selection-end="949" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskTracker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java">
+      <file leaf-file-name="JTProtocol.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/test/system/java/org/apache/hadoop/mapreduce/test/system/JTProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1569" column="23" selection-start="55757" selection-end="55757" vertical-scroll-proportion="-5.3461537">
+            <state line="29" column="22" selection-start="1102" selection-end="1102" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MemoryCalculatorPlugin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/MemoryCalculatorPlugin.java">
+      <file leaf-file-name="JobClient.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="22" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.0">
+            <state line="302" column="29" selection-start="9424" selection-end="9431" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskTrackerStatus.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java">
+      <file leaf-file-name="MRCluster.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/test/system/java/org/apache/hadoop/mapreduce/test/system/MRCluster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="356" column="56" selection-start="11105" selection-end="11105" vertical-scroll-proportion="2.0123458">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskStatus.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="7" selection-start="776" selection-end="777" vertical-scroll-proportion="3.6923077">
+            <state line="144" column="15" selection-start="5170" selection-end="5170" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -185,10 +241,13 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/util/TestLinuxResourceCalculatorPlugin.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" />
+        <option value="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/DummyResourceCalculatorPlugin.java" />
+        <option value="$PROJECT_DIR$/hadoop-mapred-0.21.0.jar!/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.class" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" />
+        <option value="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/util/TestLinuxResourceCalculatorPlugin.java" />
       </list>
     </option>
   </component>
@@ -230,7 +289,6 @@
     </navigator>
     <panes>
       <pane id="Favorites" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -277,7 +335,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mapred" />
+              <option name="myItemId" value="system" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -295,37 +353,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mapred" />
+              <option name="myItemId" value="system" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hadoop-0.21.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapred" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapreduce" />
+              <option name="myItemId" value="system" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -335,39 +371,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapred" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hadoop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mapreduce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
+              <option name="myItemId" value="build" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
@@ -377,8 +394,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="dynamic.classpath" value="false" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="options.lastSelected" value="reference.projectsettings.compiler.excludes" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -460,7 +477,47 @@
         <value defaultName="moduleWithDependencies" />
       </option>
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="56209" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestLinuxResourceCalculatorPlugin.testParsingProcMemFile" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false">
+        <pattern>
+          <option name="PATTERN" value="org.apache.hadoop.mapreduce.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="snapshooter" />
+      <module name="Test" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="org.apache.hadoop.mapreduce.util" />
+      <option name="MAIN_CLASS_NAME" value="org.apache.hadoop.mapreduce.util.TestLinuxResourceCalculatorPlugin" />
+      <option name="METHOD_NAME" value="testParsingProcMemFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="56221" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -476,6 +533,32 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+        <option name="ValidateXdebugSetup" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="FtpUpload" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+        <option name="ValidateXdebugSetup" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PhpRunConfigurationType" factoryName="PHP">
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="FtpUpload" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+        <option name="ValidateXdebugSetup" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -487,6 +570,14 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" air_descriptor_path="" air_program_params="" air_publisher_id="" air_root_dir_path="" air_run_mode="AppDescriptor" class_name="" html_or_swf_file_path="" main_class_name="" method_name="" module_name="" output_log_level="" package_name="" port="0" run_mode="HtmlOrSwfFile" scope="Class" socket_policy_port="0" url_to_launch="http://">
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -541,10 +632,11 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Application.LinuxResourceCalculatorPlugin" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.TestLinuxResourceCalculatorPlugin" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.TestLinuxResourceCalculatorPlugin.testParsingProcNetDevFile" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TestLinuxResourceCalculatorPlugin.testParsingProcMemFile" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -589,28 +681,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="11" y="22" width="1269" height="774" extended-state="0" />
-    <editor active="false" />
+    <frame x="11" y="22" width="1218" height="765" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938475" sideWeight="0.26911315" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20642202" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25342464" sideWeight="0.56434107" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39908257" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7201835" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4248062" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868218" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3612403" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2496124" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3984496" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -684,114 +776,83 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/TaskTrackerStatus.class">
+    <entry file="file://$PROJECT_DIR$/common/src/java/org/apache/hadoop/ipc/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="20" selection-start="291" selection-end="291" vertical-scroll-proportion="0.13186814">
-          <folding />
-        </state>
+        <state line="1051" column="27" selection-start="37027" selection-end="37027" vertical-scroll-proportion="49.6" />
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/hadoop-common-0.21.0-SNAPSHOT.jar!/org/apache/hadoop/io/WritableUtils.class">
+    <entry file="file://$PROJECT_DIR$/common/src/java/org/apache/hadoop/ipc/ConnectionHeader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="23" selection-start="2462" selection-end="2462" vertical-scroll-proportion="0.38403043">
-          <folding />
-        </state>
+        <state line="109" column="16" selection-start="3735" selection-end="3735" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxMemoryCalculatorPlugin.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/test/system/java/org/apache/hadoop/mapreduce/test/system/MRDaemonClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="36" selection-start="1787" selection-end="1787" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="31" column="57" selection-start="1269" selection-end="1269" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java">
+    <entry file="file://$PROJECT_DIR$/common/src/test/system/java/org/apache/hadoop/test/system/DaemonProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1569" column="23" selection-start="55757" selection-end="55757" vertical-scroll-proportion="-5.3461537">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapreduce/util/ProcfsBasedProcessTree.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="762" selection-end="762" vertical-scroll-proportion="0.29657796">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ProcfsBasedProcessTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="27" selection-start="2648" selection-end="2670" vertical-scroll-proportion="-10.076923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/MemoryCalculatorPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="22" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="16" selection-start="3950" selection-end="3950" vertical-scroll-proportion="0.7490494">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/util/TestLinuxResourceCalculatorPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="279" column="42" selection-start="11207" selection-end="11207" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="27" column="46" selection-start="1116" selection-end="1124" vertical-scroll-proportion="-4.6153846" />
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="25" selection-start="908" selection-end="908" vertical-scroll-proportion="0.5931559">
-          <folding />
-        </state>
+        <state line="33" column="25" selection-start="1086" selection-end="1086" vertical-scroll-proportion="0.5849057" />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/mapred/contrib/mumak/hadoop-0.21.0-mumak.jar!/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="20" selection-start="299" selection-end="299" vertical-scroll-proportion="0.2599278" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/test/system/java/org/apache/hadoop/mapreduce/test/system/JTClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="30" selection-start="2612" selection-end="2612" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="438" column="16" selection-start="13838" selection-end="13838" vertical-scroll-proportion="-6.9615383">
+        <state line="466" column="28" selection-start="15193" selection-end="15193" vertical-scroll-proportion="0.0">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/DummyResourceCalculatorPlugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="112" column="35" selection-start="3609" selection-end="3609" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="38" selection-start="2752" selection-end="2772" vertical-scroll-proportion="0.0">
+        <state line="92" column="0" selection-start="2727" selection-end="2984" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/test/system/aop/org/apache/hadoop/mapred/JobClientAspect.aj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="36" selection-start="949" selection-end="949" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/test/system/java/org/apache/hadoop/mapreduce/test/system/JTProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="22" selection-start="1102" selection-end="1102" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="302" column="29" selection-start="9424" selection-end="9431" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/TaskStatus.class">
+    <entry file="file://$PROJECT_DIR$/mapred/src/test/system/java/org/apache/hadoop/mapreduce/test/system/MRCluster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="16" selection-start="6437" selection-end="6437" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+        <state line="144" column="15" selection-start="5170" selection-end="5170" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/util/TestLinuxResourceCalculatorPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="7" selection-start="776" selection-end="777" vertical-scroll-proportion="3.6923077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/ivy/lib/streaming/common/hadoop-common-0.21.0-SNAPSHOT.jar!/org/apache/hadoop/io/Writable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="9" selection-start="314" selection-end="314" vertical-scroll-proportion="0.171123">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="356" column="56" selection-start="11105" selection-end="11105" vertical-scroll-proportion="2.0123458">
+        <state line="51" column="27" selection-start="2038" selection-end="2038" vertical-scroll-proportion="-4.262032">
           <folding />
         </state>
       </provider>

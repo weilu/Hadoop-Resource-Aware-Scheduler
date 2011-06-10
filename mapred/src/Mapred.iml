@@ -50,6 +50,7 @@
     </orderEntry>
     <orderEntry type="library" name="common19" level="project" />
     <orderEntry type="library" name="common1" level="project" />
+    <orderEntry type="module" module-name="Build" />
     <orderEntry type="library" name="common15" level="project" />
     <orderEntry type="library" name="build" level="project" />
     <orderEntry type="library" name="common18" level="project" />
@@ -101,14 +102,12 @@
     <orderEntry type="module" module-name="System2" />
     <orderEntry type="module" module-name="System" />
     <orderEntry type="module" module-name="Test1" />
-    <orderEntry type="module" module-name="Build" />
     <orderEntry type="module" module-name="Common" />
     <orderEntry type="module" module-name="Gridmix2" />
     <orderEntry type="module" module-name="Fairscheduler" />
     <orderEntry type="module" module-name="Raid" />
     <orderEntry type="module" module-name="Hdfs" />
     <orderEntry type="module" module-name="Test" />
-    <orderEntry type="module" module-name="Build1" />
     <orderEntry type="module" module-name="Mumak" />
   </component>
 </module>

@@ -25,7 +25,6 @@
     <orderEntry type="library" name="common19" level="project" />
     <orderEntry type="library" name="common1" level="project" />
     <orderEntry type="library" name="common15" level="project" />
-    <orderEntry type="library" name="build" level="project" />
     <orderEntry type="library" name="common18" level="project" />
     <orderEntry type="library" name="common" level="project" />
     <orderEntry type="module-library">
@@ -60,14 +59,13 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="common16" level="project" />
+    <orderEntry type="module" module-name="Mapred" />
     <orderEntry type="module" module-name="Test2" />
     <orderEntry type="module" module-name="System2" />
     <orderEntry type="module" module-name="Gridmix2" />
-    <orderEntry type="module" module-name="Mapred" />
     <orderEntry type="module" module-name="Raid" />
     <orderEntry type="module" module-name="Test1" />
     <orderEntry type="module" module-name="Hdfs" />
-    <orderEntry type="module" module-name="Build" />
     <orderEntry type="module" module-name="Common" />
   </component>
 </module>

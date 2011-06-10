@@ -6,9 +6,51 @@
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <excludeFromCompile>
-      <directory url="file://$PROJECT_DIR$/common/src/test" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/hdfs/src/test" includeSubdirectories="true" />
-      <directory url="file://$PROJECT_DIR$/mapred/src/test" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/cli" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/conf" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/examples" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/fs" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/hdfs" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/io" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/ipc" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/filecache" includeSubdirectories="true" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/FailJob.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/GenericMRLoadGenerator.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/MapReduceTestUtil.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/SleepJob.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestChild.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestJobACLs.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestLocalRunner.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestMapCollection.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestMapReduce.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestMapReduceLazyOutput.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestMapReduceLocal.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestMRJobClient.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestNoJobSetupCleanup.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/TestValueIterReset.java" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/security" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/jobhistory" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapreduce/lib" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/util" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/record" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/security" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/test" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/tools" includeSubdirectories="true" />
+      <file url="file://$PROJECT_DIR$/hdfs/src/test/aop/org/apache/hadoop/fi/FiConfig.java" />
+      <file url="file://$PROJECT_DIR$/hdfs/src/test/aop/org/apache/hadoop/fi/ProbabilityModel.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/aop/org/apache/hadoop/fi/ProbabilityModel.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/util/TestRunJar.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/util/TestReflectionUtils.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/aop/org/apache/hadoop/fi/FiConfig.java" />
+      <file url="file://$PROJECT_DIR$/hdfs/src/test/aop/org/apache/hadoop/hdfs/TestFiPipelines.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/system/test/org/apache/hadoop/mapred/TestFileOwner.java" />
+      <file url="file://$PROJECT_DIR$/mapred/src/test/system/java/org/apache/hadoop/mapreduce/test/system/JTClient.java" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/system" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/tools" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/unit" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/aop" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/mapred/src/test/bin" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />

@@ -93,7 +93,6 @@
     <orderEntry type="module" module-name="Fairscheduler" />
     <orderEntry type="module" module-name="Hdfs" />
     <orderEntry type="module" module-name="Test" />
-    <orderEntry type="module" module-name="Build1" />
     <orderEntry type="module" module-name="Mumak" />
   </component>
 </module>

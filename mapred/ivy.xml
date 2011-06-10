@@ -77,7 +77,7 @@
    <dependency org="org.apache.hadoop" name="hadoop-common-test" 
                rev="${hadoop-common.version}-SNAPSHOT" conf="test->default"/>
    <dependency org="org.apache.hadoop" name="hadoop-hdfs-test" 
-               rev="${hadoop-hdfs.version}" conf="test->default"/>
+               rev="${hadoop-hdfs.version}-SNAPSHOT" conf="test->default"/>
 
    <dependency org="checkstyle" name="checkstyle" rev="${checkstyle.version}"
                conf="checkstyle->default"/>

@@ -1568,6 +1568,9 @@ public class TaskTracker
       long cpuFreq = getCpuFrequencyOnTT();
       int numCpu = getNumProcessorsOnTT();
       float cpuUsage = getCpuUsageOnTT();
+      long currentBandwidth = getCurrentBandwidthOnTT();
+      float bandwidthUsage = getBandwidthUsageOnTT();
+
 
       status.getResourceStatus().setAvailableSpace(freeDiskSpace);
       status.getResourceStatus().setTotalVirtualMemory(totVmem);
@@ -1582,6 +1585,9 @@ public class TaskTracker
       status.getResourceStatus().setCpuFrequency(cpuFreq);
       status.getResourceStatus().setNumProcessors(numCpu);
       status.getResourceStatus().setCpuUsage(cpuUsage);
+
+      status.getResourceStatus().setCurrentBandwidth(currentBandwidth);
+      status.getResourceStatus().setBandwidthUsage(bandwidthUsage);
     }
     //add node health information
     
@@ -1730,6 +1736,22 @@ public class TaskTracker
       cpuUsage = resourceCalculatorPlugin.getCpuUsage();
     }
     return cpuUsage;
+  }
+
+  long getCurrentBandwidthOnTT() {
+    long currentBandwidth = TaskTrackerStatus.UNAVAILABLE;
+    if (resourceCalculatorPlugin != null) {
+      currentBandwidth = resourceCalculatorPlugin.getCurrentBandwidth();
+    }
+    return currentBandwidth;
+  }
+
+  float getBandwidthUsageOnTT() {
+    float bandwidthUsage = TaskTrackerStatus.UNAVAILABLE;
+    if (resourceCalculatorPlugin != null) {
+      bandwidthUsage = resourceCalculatorPlugin.getBandwidthUsage();
+    }
+    return bandwidthUsage;
   }
   
   long getTotalMemoryAllottedForTasksOnTT() {

@@ -96,7 +96,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
   private long cpuFrequency = 0L; // CPU frequency on the system (kHz)
   private long cumulativeCpuTime = 0L; // CPU used time since system is on (ms)
   private long lastCumulativeCpuTime = 0L; // CPU used time read last time (ms)
-    private long totalBandwidth = 100 * 1024 * 1024; //in bytes
+    private long totalBandwidth = 1000/8 * 1024 * 1024; //in byte per second
     private long cumulativeIncomingTraffic = 0;
     private long cumulativeOutgoingTraffic = 0;
     private long lastCumulativeIncomingTraffic = 0;
@@ -464,7 +464,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
             currentBandwidth =
                     (long)((float)(cumulativeIncomingTraffic + cumulativeOutgoingTraffic
                             - lastCumulativeIncomingTraffic - lastCumulativeOutgoingTraffic)/
-                    ((float)(networkSampleTime - networkLastSampleTime)*1000));
+                    ((float)(networkSampleTime - networkLastSampleTime)/1000));
             networkLastSampleTime = networkSampleTime;
             lastCumulativeIncomingTraffic = cumulativeIncomingTraffic;
             lastCumulativeOutgoingTraffic = cumulativeOutgoingTraffic;

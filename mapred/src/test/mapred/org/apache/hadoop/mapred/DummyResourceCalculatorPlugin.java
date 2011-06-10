@@ -98,4 +98,20 @@ public class DummyResourceCalculatorPlugin extends ResourceCalculatorPlugin {
   public float getCpuUsage() {
     return getConf().getFloat(CPU_USAGE, -1);
   }
+
+    public long getBandwidthCapacity(){
+        return -1;
+    }
+    public long getCumulativeIncomingTraffic(){
+        return -1;
+    }
+    public long getCumulativeOutgoingTraffic(){
+        return -1;
+    }
+    public long getCurrentBandwidth(){
+        return -1;
+    }
+    public float getBandwidthUsage(){
+        return -1;
+    }
 }
