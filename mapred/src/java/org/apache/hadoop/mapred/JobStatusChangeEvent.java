@@ -27,7 +27,7 @@ package org.apache.hadoop.mapred;
  */
 class JobStatusChangeEvent extends JobChangeEvent {
   // Events in job status that can lead to a job-status change
-  static enum EventType {RUN_STATE_CHANGED, START_TIME_CHANGED, PRIORITY_CHANGED}
+  static enum EventType {RUN_STATE_CHANGED, START_TIME_CHANGED, PRIORITY_CHANGED, SAMPLE_STATE_CHANGED}
   
   private JobStatus oldStatus;
   private JobStatus newStatus;

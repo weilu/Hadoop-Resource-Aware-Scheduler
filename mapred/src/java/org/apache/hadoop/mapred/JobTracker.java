@@ -3940,6 +3940,13 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
         // An old TaskTrackerStatus is used later in countMapTasks, etc.
         job.updateTaskStatus(tip, (TaskStatus)report.clone());
         JobStatus newStatus = (JobStatus)job.getStatus().clone();
+
+          //update the listeners if a job was just sampled or just failed to sample
+          if(prevStatus.getSampleState()!= newStatus.getSampleState()) {
+              JobStatusChangeEvent event =
+                      new JobStatusChangeEvent(job, EventType.SAMPLE_STATE_CHANGED, prevStatus, newStatus);
+              updateJobInProgressListeners(event);
+          }
         
         // Update the listeners if an incomplete job completes
         if (prevStatus.getRunState() != newStatus.getRunState()) {

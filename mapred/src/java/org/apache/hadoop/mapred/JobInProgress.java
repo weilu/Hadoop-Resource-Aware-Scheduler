@@ -48,12 +48,8 @@ import org.apache.hadoop.fs.LocalFileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.CleanupQueue.PathDeletionContext;
+import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.JobContext;
-import org.apache.hadoop.mapreduce.JobCounter;
-import org.apache.hadoop.mapreduce.JobACL;
-import org.apache.hadoop.mapreduce.JobSubmissionFiles;
-import org.apache.hadoop.mapreduce.MRJobConfig;
-import org.apache.hadoop.mapreduce.TaskType;
 import org.apache.hadoop.mapreduce.jobhistory.JobFinishedEvent;
 import org.apache.hadoop.mapreduce.jobhistory.JobHistory;
 import org.apache.hadoop.mapreduce.jobhistory.JobInfoChangeEvent;
@@ -2648,6 +2644,9 @@ public class JobInProgress {
       // JobTracker should cleanup this task
       jobtracker.markCompletedTaskAttempt(status.getTaskTracker(), taskid);
     } else if (tip.isMapTask()) {
+
+      jobSampleDone();
+
       runningMapTasks -= 1;
       finishedMapTasks += 1;
       metrics.completeMap(taskid);
@@ -2748,6 +2747,35 @@ public class JobInProgress {
       this.jobtracker.getInstrumentation().addRunningJob(conf, jobId);
     }
     
+  }
+
+    public void jobSampleScheduled() {
+        if(this.status.getSampleState() == JobSampleState.WAITING){
+            changeSampleStateTo(JobSampleState.SCHEDULED);
+        }
+    }
+
+    public void jobSampleWaiting() {
+        if(this.status.getSampleState() == JobSampleState.SCHEDULED){
+            changeSampleStateTo(JobSampleState.WAITING);
+        }
+    }
+    
+    public void jobSampleDone() {
+        if(this.status.getSampleState() == JobSampleState.SCHEDULED){
+            changeSampleStateTo(JobSampleState.DONE);
+        }
+    }
+
+  private void changeSampleStateTo(JobSampleState newState) {
+    JobSampleState oldState = this.status.getSampleState();
+    if (oldState == newState) {
+      return; //old and new states are same
+    }
+    LOG.info("Job " + this.status.getJobID() +
+               " has changed SampleState: " + oldState + " -> " + newState);
+    this.status.setSampleState(newState);
+
   }
 
   /**
@@ -3009,6 +3037,7 @@ public class JobInProgress {
       // hence we are decrementing the same.      
       if(!tip.isJobCleanupTask() && !tip.isJobSetupTask()) {
         if(tip.isMapTask()) {
+          jobSampleWaiting();
           runningMapTasks -= 1;
         } else {
           runningReduceTasks -= 1;

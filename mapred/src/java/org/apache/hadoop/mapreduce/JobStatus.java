@@ -91,7 +91,8 @@ public class JobStatus implements Writable, Cloneable {
   private String historyFile = "";
   private String trackingUrl ="";
 
-    
+    private JobSampleState sampleState = JobSampleState.WAITING;
+
   /**
    */
   public JobStatus() {
@@ -415,7 +416,15 @@ public class JobStatus implements Writable, Cloneable {
     return historyFile;
   }
 
-  public String toString() {
+    public synchronized JobSampleState getSampleState() {
+        return sampleState;
+    }
+
+    public synchronized void setSampleState(JobSampleState sampled) {
+        this.sampleState = sampled;
+    }
+
+    public String toString() {
     StringBuffer buffer = new StringBuffer();
     buffer.append("job-id : " + jobid);
     buffer.append("map-progress : " + mapProgress);
@@ -427,6 +436,7 @@ public class JobStatus implements Writable, Cloneable {
     buffer.append("user-name : " + user);
     buffer.append("priority : " + priority);
     buffer.append("scheduling-info : " + schedulingInfo);
+    buffer.append("sampleState: " + sampleState);
     return buffer.toString();
   }
 }

@@ -17,12 +17,7 @@
 
 <property>
   <name>mapreduce.jobtracker.taskScheduler</name>
-  <value>org.apache.hadoop.mapred.FairScheduler</value>
-</property>
-
-<property>
-    <name>mapred.fairscheduler.allocation.file</name>
-    <value>/Users/wei/hadoop/conf/fair-scheduler.xml</value>
+  <value>org.apache.hadoop.mapred.ResourceScheduler</value>
 </property>
 
 </configuration>
