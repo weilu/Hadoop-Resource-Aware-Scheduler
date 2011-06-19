@@ -72,7 +72,7 @@ import org.apache.hadoop.util.ToolRunner;
  *     <value>1099511627776</value>
  *   </property>
  * </configuration></xmp>
- * 
+ *
  * Equivalently, {@link RandomWriter} also supports all the above options
  * and ones supported by {@link GenericOptionsParser} via the command-line.
  */
@@ -217,7 +217,7 @@ public class RandomWriter extends Configured implements Tool {
     public void setup(Context context) {
       Configuration conf = context.getConfiguration();
       numBytesToWrite = conf.getLong(BYTES_PER_MAP,
-                                    1*1024*1024*1024);
+                                    1*1024*1024);
       minKeySize = conf.getInt(MIN_KEY, 10);
       keySizeRange = 
         conf.getInt(MAX_KEY, 1000) - minKeySize;
@@ -245,9 +245,9 @@ public class RandomWriter extends Configured implements Tool {
     Configuration conf = getConf();
     JobClient client = new JobClient(conf);
     ClusterStatus cluster = client.getClusterStatus();
-    int numMapsPerHost = conf.getInt(MAPS_PER_HOST, 10);
+    int numMapsPerHost = conf.getInt(MAPS_PER_HOST, 5);
     long numBytesToWritePerMap = conf.getLong(BYTES_PER_MAP,
-                                             1*1024*1024*1024);
+                                             1*1024*1024);
     if (numBytesToWritePerMap == 0) {
       System.err.println("Cannot have" + BYTES_PER_MAP + " set to 0");
       return -2;
