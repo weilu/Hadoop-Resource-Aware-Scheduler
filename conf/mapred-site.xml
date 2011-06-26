@@ -20,4 +20,19 @@
   <value>org.apache.hadoop.mapred.ResourceScheduler</value>
 </property>
 
+<property>
+  <name>mapred.child.java.opts</name>
+  <value>-server -Djava.net.preferIPv4Stack=true -Xmx1024m</value>
+  <description>Java opts for the task tracker child processes.  
+  The following symbol, if present, will be interpolated: @taskid@ is replaced 
+  by current TaskID. Any other occurrences of '@' will go unchanged.
+  For example, to enable verbose gc logging to a file named for the taskid in
+  /tmp and to set the heap maximum to be a gigabyte, pass a 'value' of:
+        -Xmx1024m -verbose:gc -Xloggc:/tmp/@taskid@.gc
+  
+  The configuration variable mapred.child.ulimit can be used to control the
+  maximum virtual memory of the child processes. 
+  </description>
+</property>
+
 </configuration>

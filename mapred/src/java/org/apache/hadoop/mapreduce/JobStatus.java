@@ -343,6 +343,8 @@ public class JobStatus implements Writable, Cloneable {
       WritableUtils.writeEnum(out, entry.getKey());
       Text.writeString(out, entry.getValue().toString());
     }
+
+      WritableUtils.writeEnum(out, sampleState);
   }
 
   public synchronized void readFields(DataInput in) throws IOException {
@@ -371,6 +373,8 @@ public class JobStatus implements Writable, Cloneable {
       String acl = Text.readString(in);
       this.jobACLs.put(aclType, new AccessControlList(acl));
     }
+
+      this.sampleState = WritableUtils.readEnum(in, JobSampleState.class);
   }
 
   /**

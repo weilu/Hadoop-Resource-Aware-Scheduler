@@ -23,8 +23,6 @@ import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
@@ -34,19 +32,16 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.LocalDirAllocator;
 import org.apache.hadoop.fs.LocalFileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.DataInputBuffer;
 import org.apache.hadoop.io.RawComparator;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.WritableUtils;
 import org.apache.hadoop.io.SequenceFile.CompressionType;
 import org.apache.hadoop.io.compress.CompressionCodec;
 import org.apache.hadoop.io.compress.DefaultCodec;
@@ -58,10 +53,7 @@ import org.apache.hadoop.mapred.Merger.Segment;
 import org.apache.hadoop.mapred.SortedRanges.SkipRangeIterator;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.map.WrappedMapper;
-import org.apache.hadoop.mapreduce.split.JobSplit;
-import org.apache.hadoop.mapreduce.split.JobSplit.SplitMetaInfo;
 import org.apache.hadoop.mapreduce.split.JobSplit.TaskSplitIndex;
-import org.apache.hadoop.mapreduce.split.JobSplit.TaskSplitMetaInfo;
 import org.apache.hadoop.mapreduce.task.MapContextImpl;
 import org.apache.hadoop.mapreduce.MRConfig;
 import org.apache.hadoop.mapreduce.MRJobConfig;
@@ -89,7 +81,7 @@ class MapTask extends Task {
 
   private Progress mapPhase;
   private Progress sortPhase;
-  
+
   {   // set phase for this task
     setPhase(TaskStatus.Phase.MAP); 
     getProgress().setStatus("map");
@@ -368,15 +360,19 @@ class MapTask extends Task {
                     TaskReporter reporter
                     ) throws IOException, InterruptedException,
                              ClassNotFoundException {
-    InputSplit inputSplit = getSplitDetails(new Path(splitIndex.getSplitLocation()),
+      LOG.info("getting inputSplit for task " + this.hashCode() +" from: " + splitIndex.getSplitLocation());
+      setReadStartTime(System.currentTimeMillis());
+      InputSplit inputSplit = getSplitDetails(new Path(splitIndex.getSplitLocation()),
            splitIndex.getStartOffset());
+      setReadDoneTime(System.currentTimeMillis());
+      LOG.info("getting inputSplit done ");
 
     updateJobWithSplit(job, inputSplit);
     reporter.setInputSplit(inputSplit);
 
     RecordReader<INKEY,INVALUE> rawIn =                  // open input
       job.getInputFormat().getRecordReader(inputSplit, job, reporter);
-    RecordReader<INKEY,INVALUE> in = isSkipping() ? 
+    RecordReader<INKEY,INVALUE> in = isSkipping() ?
         new SkippingRecordReader<INKEY,INVALUE>(rawIn, umbilical, reporter) :
         new TrackedRecordReader<INKEY,INVALUE>(rawIn, reporter);
     job.setBoolean(JobContext.SKIP_RECORDS, isSkipping());
@@ -398,7 +394,9 @@ class MapTask extends Task {
       mapPhase.complete();
       setPhase(TaskStatus.Phase.SORT);
       statusUpdate(umbilical);
+      setWriteStartTime(System.currentTimeMillis());
       collector.flush();
+      setWriteDoneTime(System.currentTimeMillis());
     } finally {
       //close
       in.close();                               // close input
@@ -616,10 +614,14 @@ class MapTask extends Task {
     org.apache.hadoop.mapreduce.InputFormat<INKEY,INVALUE> inputFormat =
       (org.apache.hadoop.mapreduce.InputFormat<INKEY,INVALUE>)
         ReflectionUtils.newInstance(taskContext.getInputFormatClass(), job);
-    // rebuild the input split
+      LOG.info("getting inputSplit for task " + this.hashCode() +" from: " + splitIndex.getSplitLocation());
+      setReadStartTime(System.currentTimeMillis());
+      // rebuild the input split
     org.apache.hadoop.mapreduce.InputSplit split = null;
     split = getSplitDetails(new Path(splitIndex.getSplitLocation()),
         splitIndex.getStartOffset());
+      setReadDoneTime(System.currentTimeMillis());
+      LOG.info("getting inputSplit done ");
 
     org.apache.hadoop.mapreduce.RecordReader<INKEY,INVALUE> input =
       new NewTrackingRecordReader<INKEY,INVALUE>
@@ -654,7 +656,9 @@ class MapTask extends Task {
     setPhase(TaskStatus.Phase.SORT);
     statusUpdate(umbilical);
     input.close();
+    setWriteStartTime(System.currentTimeMillis());
     output.close(mapperContext);
+    setWriteDoneTime(System.currentTimeMillis());
   }
 
   interface MapOutputCollector<K, V> {

@@ -63,6 +63,11 @@ public abstract class TaskStatus implements Writable, Cloneable {
   private long startTime; //in ms
   private long finishTime; 
   private long outputSize = -1L;
+
+    private long readInputStartTime;
+    private long readInputDoneTime;
+    private long writeOutputStartTime;
+    private long writeOutputDoneTime;
     
   private volatile Phase phase = Phase.STARTING; 
   private Counters counters;
@@ -275,7 +280,40 @@ public abstract class TaskStatus implements Writable, Cloneable {
           StringUtils.stringifyException(new Exception()));
     }
   }
-  /**
+
+    public long getReadInputStartTime() {
+        return readInputStartTime;
+    }
+
+    public void setReadInputStartTime(long readInputStartTime) {
+        this.readInputStartTime = readInputStartTime;
+    }
+
+    public long getReadInputDoneTime() {
+        return readInputDoneTime;
+    }
+
+    public void setReadInputDoneTime(long readInputDoneTime) {
+        this.readInputDoneTime = readInputDoneTime;
+    }
+
+    public long getWriteOutputStartTime() {
+        return writeOutputStartTime;
+    }
+
+    public void setWriteOutputStartTime(long writeOutputStartTime) {
+        this.writeOutputStartTime = writeOutputStartTime;
+    }
+
+    public long getWriteOutputDoneTime() {
+        return writeOutputDoneTime;
+    }
+
+    public void setWriteOutputDoneTime(long writeOutputDoneTime) {
+        this.writeOutputDoneTime = writeOutputDoneTime;
+    }
+
+    /**
    * Get current phase of this task. Phase.Map in case of map tasks, 
    * for reduce one of Phase.SHUFFLE, Phase.SORT or Phase.REDUCE. 
    * @return . 
@@ -404,6 +442,15 @@ public abstract class TaskStatus implements Writable, Cloneable {
     this.phase = status.getPhase();
     this.counters = status.getCounters();
     this.outputSize = status.outputSize;
+
+    if (status.getReadInputStartTime() > 0)
+        this.setReadInputStartTime(status.getReadInputStartTime());
+    if (status.getReadInputDoneTime() > 0)
+        this.setReadInputDoneTime(status.getReadInputDoneTime());
+    if(status.getWriteOutputStartTime() > 0)
+        this.setWriteOutputStartTime(status.getWriteOutputStartTime());
+    if(status.getWriteOutputDoneTime() > 0)
+        this.setWriteOutputDoneTime(status.getWriteOutputDoneTime());
   }
 
   /**
@@ -471,6 +518,11 @@ public abstract class TaskStatus implements Writable, Cloneable {
       counters.write(out);
     }
     nextRecordRange.write(out);
+
+      out.writeLong(readInputStartTime);
+      out.writeLong(readInputDoneTime);
+      out.writeLong(writeOutputStartTime);
+      out.writeLong(writeOutputDoneTime);
   }
 
   public void readFields(DataInput in) throws IOException {
@@ -490,6 +542,11 @@ public abstract class TaskStatus implements Writable, Cloneable {
       counters.readFields(in);
     }
     nextRecordRange.readFields(in);
+
+      readInputStartTime = in.readLong();
+      readInputDoneTime = in.readLong();
+      writeOutputStartTime = in.readLong();
+      writeOutputDoneTime = in.readLong();
   }
   
   //////////////////////////////////////////////////////////////////////////////

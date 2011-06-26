@@ -135,8 +135,9 @@ class TaskInProgress {
     new HashMap<TaskAttemptID, Long>();
   
   private String user;
-  
 
+    private TaskAttemptID sampleTaskId;
+  
   /**
    * Constructor for MapTask
    */
@@ -1338,4 +1339,18 @@ class TaskInProgress {
   int getNumSlotsRequired() {
     return numSlotsRequired;
   }
+
+    public synchronized boolean getIsSample(TaskAttemptID taskId) {
+        if(taskId == null || sampleTaskId == null)
+            return false;
+        return taskId.equals(sampleTaskId);
+    }
+
+    public synchronized void setSampleTaskId(TaskAttemptID sampleTaskId) {
+        this.sampleTaskId = sampleTaskId;
+    }
+
+    public synchronized TaskAttemptID getSampleTaskId() {
+        return sampleTaskId;
+    }
 }

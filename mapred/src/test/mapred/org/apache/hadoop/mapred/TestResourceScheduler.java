@@ -17,18 +17,13 @@
  */
 package org.apache.hadoop.mapred;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import junit.framework.TestCase;
-
 import org.apache.hadoop.mapreduce.TaskType;
 import org.apache.hadoop.mapreduce.server.jobtracker.TaskTracker;
 import org.apache.hadoop.mapreduce.split.JobSplit;
+
+import java.io.IOException;
+import java.util.*;
 
 public class TestResourceScheduler extends TestCase {
   
@@ -274,17 +269,18 @@ public class TestResourceScheduler extends TestCase {
   }
   
   protected TaskScheduler createTaskScheduler() {
-    return new JobQueueTaskScheduler();
+    return new ResourceScheduler();
   }
   
-  static void submitJobs(FakeTaskTrackerManager taskTrackerManager, JobConf jobConf, 
-                         int numJobs, int state)
-    throws IOException {
+  static void submitJobs(FakeTaskTrackerManager taskTrackerManager, JobConf jobConf,
+                         int numJobs, int state, long delayInMilliSec)
+    throws IOException, InterruptedException {
     for (int i = 0; i < numJobs; i++) {
       JobInProgress job = new FakeJobInProgress(jobConf, taskTrackerManager, 
       UtilsForTests.getJobTracker());
       job.getStatus().setRunState(state);
       taskTrackerManager.submitJob(job);
+        Thread.sleep(delayInMilliSec);
     }
   }
 
@@ -292,16 +288,16 @@ public class TestResourceScheduler extends TestCase {
     assertEquals(0, scheduler.assignTasks(tracker(taskTrackerManager, "tt1")).size());
   }
 
-  public void testNonRunningJobsAreIgnored() throws IOException {
-    submitJobs(taskTrackerManager, jobConf, 1, JobStatus.PREP);
-    submitJobs(taskTrackerManager, jobConf, 1, JobStatus.SUCCEEDED);
-    submitJobs(taskTrackerManager, jobConf, 1, JobStatus.FAILED);
-    submitJobs(taskTrackerManager, jobConf, 1, JobStatus.KILLED);
+  public void testNonRunningJobsAreIgnored() throws IOException, InterruptedException {
+    submitJobs(taskTrackerManager, jobConf, 1, JobStatus.PREP, 0);
+    submitJobs(taskTrackerManager, jobConf, 1, JobStatus.SUCCEEDED, 0);
+    submitJobs(taskTrackerManager, jobConf, 1, JobStatus.FAILED, 0);
+    submitJobs(taskTrackerManager, jobConf, 1, JobStatus.KILLED, 0);
     assertEquals(0, scheduler.assignTasks(tracker(taskTrackerManager, "tt1")).size());
   }
   
-  public void testDefaultTaskAssignment() throws IOException {
-    submitJobs(taskTrackerManager, jobConf, 2, JobStatus.RUNNING);
+  public void testDefaultTaskAssignment() throws IOException, InterruptedException {
+    submitJobs(taskTrackerManager, jobConf, 2, JobStatus.RUNNING, 0);
     // All slots are filled with job 1
     checkAssignment(scheduler, tracker(taskTrackerManager, "tt1"), 
                     new String[] {"attempt_test_0001_m_000001_0 on tt1", 
@@ -315,6 +311,27 @@ public class TestResourceScheduler extends TestCase {
                                          "attempt_test_0001_m_000006_0 on tt2", 
                                          "attempt_test_0001_r_000007_0 on tt2"});
     checkAssignment(scheduler, tracker(taskTrackerManager, "tt2"), 
+                    new String[] {"attempt_test_0001_r_000008_0 on tt2"});
+    checkAssignment(scheduler, tracker(taskTrackerManager, "tt2"), new String[] {});
+    checkAssignment(scheduler, tracker(taskTrackerManager, "tt1"), new String[] {});
+    checkAssignment(scheduler, tracker(taskTrackerManager, "tt2"), new String[] {});
+  }
+
+    public void testTaskAssignmentWithDelay() throws IOException, InterruptedException {
+    submitJobs(taskTrackerManager, jobConf, 2, JobStatus.RUNNING, 6000);
+    // All slots are filled with job 1
+    checkAssignment(scheduler, tracker(taskTrackerManager, "tt1"),
+                    new String[] {"attempt_test_0001_m_000001_0 on tt1",
+                                  "attempt_test_0001_m_000002_0 on tt1",
+                                  "attempt_test_0001_r_000003_0 on tt1"});
+    checkAssignment(scheduler, tracker(taskTrackerManager, "tt1"),
+                    new String[] {"attempt_test_0001_r_000004_0 on tt1"});
+    checkAssignment(scheduler, tracker(taskTrackerManager, "tt1"), new String[] {});
+    checkAssignment(scheduler, tracker(taskTrackerManager, "tt2"),
+                    new String[] {"attempt_test_0001_m_000005_0 on tt2",
+                                         "attempt_test_0001_m_000006_0 on tt2",
+                                         "attempt_test_0001_r_000007_0 on tt2"});
+    checkAssignment(scheduler, tracker(taskTrackerManager, "tt2"),
                     new String[] {"attempt_test_0001_r_000008_0 on tt2"});
     checkAssignment(scheduler, tracker(taskTrackerManager, "tt2"), new String[] {});
     checkAssignment(scheduler, tracker(taskTrackerManager, "tt1"), new String[] {});

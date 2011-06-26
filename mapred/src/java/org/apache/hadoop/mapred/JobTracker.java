@@ -1203,6 +1203,8 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
   // All the known jobs.  (jobid->JobInProgress)
   Map<JobID, JobInProgress> jobs = new TreeMap<JobID, JobInProgress>();
 
+  MapSampleReportLogger mapLogger = new MapSampleReportLogger();
+
   // (trackerID --> list of jobs to cleanup)
   Map<String, Set<JobID>> trackerToJobsToCleanup = 
     new HashMap<String, Set<JobID>>();

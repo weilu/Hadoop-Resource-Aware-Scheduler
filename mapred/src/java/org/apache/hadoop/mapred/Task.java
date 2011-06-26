@@ -122,7 +122,7 @@ abstract public class Task implements Writable, Configurable {
   protected boolean jobCleanup = false;
   protected boolean jobSetup = false;
   protected boolean taskCleanup = false;
-  
+
   //skip ranges based on failed ranges from previous attempts
   private SortedRanges skipRanges = new SortedRanges();
   private boolean skipping = false;
@@ -246,6 +246,38 @@ abstract public class Task implements Writable, Configurable {
   protected synchronized void setPhase(TaskStatus.Phase phase){
     this.taskStatus.setPhase(phase); 
   }
+
+    protected synchronized void setReadStartTime(long start){
+        this.taskStatus.setReadInputStartTime(start);
+    }
+
+    protected synchronized long getReadStartTime(){
+        return this.taskStatus.getReadInputStartTime();
+    }
+    
+    protected synchronized void setReadDoneTime(long done){
+        this.taskStatus.setReadInputDoneTime(done);
+    }
+
+    protected synchronized long getReadDoneTime(){
+        return this.taskStatus.getReadInputDoneTime();
+    }
+
+    protected synchronized void setWriteStartTime(long start){
+        this.taskStatus.setWriteOutputStartTime(start);
+    }
+
+    protected synchronized long getWriteStartTime(){
+        return this.taskStatus.getWriteOutputStartTime();
+    }
+
+    protected synchronized void setWriteDoneTime(long done){
+        this.taskStatus.setWriteOutputDoneTime(done);
+    }
+
+    protected synchronized long getWriteDoneTime(){
+        return this.taskStatus.getWriteOutputDoneTime();
+    }
   
   /**
    * Get whether to write skip records.

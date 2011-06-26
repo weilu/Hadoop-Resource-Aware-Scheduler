@@ -74,9 +74,6 @@ import org.apache.hadoop.mapreduce.split.JobSplit;
 import org.apache.hadoop.mapreduce.split.SplitMetaInfoReader;
 import org.apache.hadoop.mapreduce.split.JobSplit.TaskSplitMetaInfo;
 import org.apache.hadoop.mapreduce.task.JobContextImpl;
-import org.apache.hadoop.metrics.MetricsContext;
-import org.apache.hadoop.metrics.MetricsRecord;
-import org.apache.hadoop.metrics.MetricsUtil;
 import org.apache.hadoop.net.NetUtils;
 import org.apache.hadoop.net.NetworkTopology;
 import org.apache.hadoop.net.Node;
@@ -1167,6 +1164,8 @@ public class JobInProgress {
         }
         if (state == TaskStatus.State.SUCCEEDED) {
           completedTask(tip, status);
+          if(tip.getIsSample(taskid))
+            jobtracker.mapLogger.logStatsUponTaskComplete(tip);
           if(ttStat != null) {
             ttStat.incrSucceededTasks();
           }
@@ -1242,6 +1241,21 @@ public class JobInProgress {
     return counters;
   }
 
+    private void markSampleScheduled(TaskInProgress tip, TaskAttemptID taskId) {
+        //update the listeners that the job sampling has been scheduled. trigger job reordering
+        JobStatus prevStatus = (JobStatus)status.clone();
+        if(prevStatus.getSampleState() == JobSampleState.WAITING) {
+            jobSampleScheduled();
+            tip.setSampleTaskId(taskId);
+            JobStatus newStatus = (JobStatus)status.clone();
+            JobStatusChangeEvent event =
+                    new JobStatusChangeEvent(this, JobStatusChangeEvent.EventType.SAMPLE_STATE_CHANGED, prevStatus, newStatus);
+
+            jobtracker.updateJobInProgressListeners(event);
+        }
+    }
+
+
   /////////////////////////////////////////////////////
   // Create/manage tasks
   /////////////////////////////////////////////////////
@@ -1266,6 +1280,10 @@ public class JobInProgress {
     
     Task result = maps[target].getTaskToRun(tts.getTrackerName());
     if (result != null) {
+      if(!maps[target].isJobSetupTask()){
+        markSampleScheduled(maps[target], result.getTaskID());
+      }
+
       addRunningTaskToTIP(maps[target], result.getTaskID(), tts, true);
     }
 
@@ -1555,11 +1573,11 @@ public class JobInProgress {
    * @param tip The tip for which the task is added
    * @param id The attempt-id for the task
    * @param tts task-tracker status
-   * @param isScheduled Whether this task is scheduled from the JT or has 
+   * @param isScheduled Whether this task is scheduled from the JT or has
    *        joined back upon restart
    */
-  synchronized void addRunningTaskToTIP(TaskInProgress tip, TaskAttemptID id, 
-                                        TaskTrackerStatus tts, 
+  synchronized void addRunningTaskToTIP(TaskInProgress tip, TaskAttemptID id,
+                                        TaskTrackerStatus tts,
                                         boolean isScheduled) {
     // Make an entry in the tip if the attempt is not scheduled i.e externally
     // added
@@ -1628,10 +1646,12 @@ public class JobInProgress {
     if (tip.isMapTask() && !tip.isJobSetupTask() && !tip.isJobCleanupTask()) {
       // increment the data locality counter for maps
       int level = getLocalityLevel(tip, tts);
+      boolean dataLocal = false;
       switch (level) {
       case 0 :
         LOG.info("Choosing data-local task " + tip.getTIPId());
         jobCounters.incrCounter(JobCounter.DATA_LOCAL_MAPS, 1);
+        dataLocal = true;
         break;
       case 1:
         LOG.info("Choosing rack-local task " + tip.getTIPId());
@@ -1645,6 +1665,9 @@ public class JobInProgress {
         }
         break;
       }
+
+      if (this.status.getSampleState() == JobSampleState.SCHEDULED && tip.getIsSample(id))
+        jobtracker.mapLogger.logDataLocality(tip, dataLocal, tts.getTrackerName());
     }
   }
     
@@ -2645,14 +2668,16 @@ public class JobInProgress {
       jobtracker.markCompletedTaskAttempt(status.getTaskTracker(), taskid);
     } else if (tip.isMapTask()) {
 
-      jobSampleDone();
-
       runningMapTasks -= 1;
       finishedMapTasks += 1;
       metrics.completeMap(taskid);
       if (!tip.isJobSetupTask() && hasSpeculativeMaps) {
         updateTaskTrackerStats(tip,ttStatus,trackerMapStats,mapTaskStats);
       }
+
+      if(tip.getIsSample(taskid))
+        jobSampleDone();
+
       // remove the completed map from the resp running caches
       retireMap(tip);
       if ((finishedMapTasks + failedMapTIPs) == (numMapTasks)) {
@@ -3037,7 +3062,10 @@ public class JobInProgress {
       // hence we are decrementing the same.      
       if(!tip.isJobCleanupTask() && !tip.isJobSetupTask()) {
         if(tip.isMapTask()) {
-          jobSampleWaiting();
+          if(tip.getIsSample(taskid)){
+            tip.setSampleTaskId(null);
+            jobSampleWaiting();
+          }
           runningMapTasks -= 1;
         } else {
           runningReduceTasks -= 1;

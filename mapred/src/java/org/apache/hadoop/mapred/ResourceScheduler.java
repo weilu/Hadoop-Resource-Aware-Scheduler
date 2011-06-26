@@ -176,7 +176,6 @@ class ResourceScheduler extends TaskScheduler {
                     if (t != null) {
                         assignedTasks.add(t);
                         ++numLocalMaps;
-                        markSampleScheduled(job);
 
 
                         // Don't assign map tasks to the hilt!
@@ -198,7 +197,7 @@ class ResourceScheduler extends TaskScheduler {
                     if (t != null) {
                         assignedTasks.add(t);
                         ++numNonLocalMaps;
-                        markSampleScheduled(job);
+
 
                         // We assign at most 1 off-switch or speculative task
                         // This is to prevent TaskTrackers from stealing local-tasks
@@ -262,20 +261,6 @@ class ResourceScheduler extends TaskScheduler {
         }
 
         return assignedTasks;
-    }
-
-    private void markSampleScheduled(JobInProgress job) {
-        //update the listeners that the job sampling has been scheduled. trigger job reordering
-        JobStatus prevStatus = (JobStatus)job.getStatus().clone();
-        if(prevStatus.getSampleState() == JobSampleState.WAITING) {
-            job.jobSampleScheduled();
-            JobStatus newStatus = (JobStatus)job.getStatus().clone();
-            JobStatusChangeEvent event =
-                    new JobStatusChangeEvent(job, JobStatusChangeEvent.EventType.SAMPLE_STATE_CHANGED, prevStatus, newStatus);
-
-            if(taskTrackerManager instanceof JobTracker)
-                ((JobTracker)taskTrackerManager).updateJobInProgressListeners(event);
-        }
     }
 
     private boolean exceededPadding(boolean isMapTask,

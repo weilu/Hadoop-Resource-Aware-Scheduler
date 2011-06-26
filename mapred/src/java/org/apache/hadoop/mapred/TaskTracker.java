@@ -2550,6 +2550,10 @@ public class TaskTracker
         setTaskRunner(task.createRunner(TaskTracker.this, this));
         this.runner.start();
         this.taskStatus.setStartTime(System.currentTimeMillis());
+        this.taskStatus.setReadInputDoneTime(task.getReadDoneTime());
+        this.taskStatus.setReadInputStartTime(task.getReadStartTime());
+        this.taskStatus.setWriteOutputDoneTime(task.getWriteDoneTime());
+        this.taskStatus.setWriteOutputStartTime(task.getWriteStartTime());
       } else {
         LOG.info("Not launching task: " + task.getTaskID() + 
             " since it's state is " + this.taskStatus.getRunState());
@@ -2597,7 +2601,7 @@ public class TaskTracker
                  ); 
         return;
       }
-      
+
       this.taskStatus.statusUpdate(taskStatus);
       this.lastProgressReport = System.currentTimeMillis();
     }

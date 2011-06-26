@@ -119,6 +119,7 @@
 
   <property name="test.mapred.build.classes" value="${test.build.dir}/mapred/classes"/>
   <property name="test.mapred.commit.tests.file" value="${test.src.dir}/commit-tests" />
+  <property name="test.mapred.my.tests.file" value="${test.src.dir}/my-tests" />
   <property name="test.mapred.smoke.tests.file" value="${test.src.dir}/smoke-tests" />
   <property name="test.mapred.all.tests.file" value="${test.src.dir}/all-tests" />
 
@@ -753,6 +754,15 @@
      description="Run approximate 10-minute set of unit tests prior to commiting"
      unless="testcase">
      <macro-test-runner test.file="${test.mapred.commit.tests.file}" suite.type="mapred"
+      classpath="${test.classpath.id}"
+      test.dir="${test.build.dir}"
+      fileset.dir="${test.src.dir}"/>
+   </target>
+   
+   <target name="run-my-test" depends="compile-mapred-test"
+     description="Lu Wei's test set!"
+     unless="testcase">
+     <macro-test-runner test.file="${test.mapred.my.tests.file}" suite.type="mapred"
       classpath="${test.classpath.id}"
       test.dir="${test.build.dir}"
       fileset.dir="${test.src.dir}"/>
