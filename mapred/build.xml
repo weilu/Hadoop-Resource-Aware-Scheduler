@@ -762,6 +762,7 @@
    <target name="run-my-test" depends="compile-mapred-test"
      description="Lu Wei's test set!"
      unless="testcase">
+     <junit printsummary="true" showoutput="yes" />
      <macro-test-runner test.file="${test.mapred.my.tests.file}" suite.type="mapred"
       classpath="${test.classpath.id}"
       test.dir="${test.build.dir}"

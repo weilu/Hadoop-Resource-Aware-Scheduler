@@ -2245,7 +2245,8 @@ public class TaskTracker
       TaskLauncher launcher) {
     Task t = action.getTask();
     LOG.info("LaunchTaskAction (registerTask): " + t.getTaskID() +
-             " task's state:" + t.getState());
+             " task's state:" + t.getState() +
+             "; sampleMapTask: " + t.taskStatus.getSampleStatus().getSampleMapTaskId());
     TaskInProgress tip = new TaskInProgress(t, this.fConf, launcher);
     synchronized (this) {
       tasks.put(t.getTaskID(), tip);
@@ -2432,7 +2433,8 @@ public class TaskTracker
                                                  TaskStatus.Phase.CLEANUP :  
                                                task.isMapTask()? TaskStatus.Phase.MAP:
                                                TaskStatus.Phase.SHUFFLE,
-                                               task.getCounters()); 
+                                               task.getCounters());
+      taskStatus.getSampleStatus().setSampleMapTaskId(task.taskStatus.getSampleStatus().getSampleMapTaskId());
       taskTimeout = (10 * 60 * 1000);
     }
         
@@ -2550,10 +2552,11 @@ public class TaskTracker
         setTaskRunner(task.createRunner(TaskTracker.this, this));
         this.runner.start();
         this.taskStatus.setStartTime(System.currentTimeMillis());
-        this.taskStatus.setReadInputDoneTime(task.getReadDoneTime());
-        this.taskStatus.setReadInputStartTime(task.getReadStartTime());
-        this.taskStatus.setWriteOutputDoneTime(task.getWriteDoneTime());
-        this.taskStatus.setWriteOutputStartTime(task.getWriteStartTime());
+
+        taskStatus.getSampleStatus().setReadInputDoneTime(task.getReadDoneTime());
+        taskStatus.getSampleStatus().setReadInputStartTime(task.getReadStartTime());
+        taskStatus.getSampleStatus().setWriteOutputDoneTime(task.getWriteDoneTime());
+        taskStatus.getSampleStatus().setWriteOutputStartTime(task.getWriteStartTime());
       } else {
         LOG.info("Not launching task: " + task.getTaskID() + 
             " since it's state is " + this.taskStatus.getRunState());

@@ -360,12 +360,12 @@ class MapTask extends Task {
                     TaskReporter reporter
                     ) throws IOException, InterruptedException,
                              ClassNotFoundException {
-      LOG.info("getting inputSplit for task " + this.hashCode() +" from: " + splitIndex.getSplitLocation());
+      LOG.info("[benchmark] getting inputSplit for task " + this.hashCode() +" from: " + splitIndex.getSplitLocation());
       setReadStartTime(System.currentTimeMillis());
       InputSplit inputSplit = getSplitDetails(new Path(splitIndex.getSplitLocation()),
            splitIndex.getStartOffset());
       setReadDoneTime(System.currentTimeMillis());
-      LOG.info("getting inputSplit done ");
+      LOG.info("[benchmark] getting inputSplit done ");
 
     updateJobWithSplit(job, inputSplit);
     reporter.setInputSplit(inputSplit);
@@ -390,13 +390,16 @@ class MapTask extends Task {
       ReflectionUtils.newInstance(job.getMapRunnerClass(), job);
 
     try {
+      LOG.info("[benchmark] mapper run start");
       runner.run(in, new OldOutputCollector(collector, conf), reporter);
       mapPhase.complete();
       setPhase(TaskStatus.Phase.SORT);
       statusUpdate(umbilical);
+      LOG.info("[benchmark] writing map output start/status update done");
       setWriteStartTime(System.currentTimeMillis());
       collector.flush();
       setWriteDoneTime(System.currentTimeMillis());
+      LOG.info("[benchmark] writing map output done");
     } finally {
       //close
       in.close();                               // close input
@@ -614,14 +617,14 @@ class MapTask extends Task {
     org.apache.hadoop.mapreduce.InputFormat<INKEY,INVALUE> inputFormat =
       (org.apache.hadoop.mapreduce.InputFormat<INKEY,INVALUE>)
         ReflectionUtils.newInstance(taskContext.getInputFormatClass(), job);
-      LOG.info("getting inputSplit for task " + this.hashCode() +" from: " + splitIndex.getSplitLocation());
+      LOG.info("[benchmark] getting inputSplit for task " + this.hashCode() +" from: " + splitIndex.getSplitLocation());
       setReadStartTime(System.currentTimeMillis());
       // rebuild the input split
     org.apache.hadoop.mapreduce.InputSplit split = null;
     split = getSplitDetails(new Path(splitIndex.getSplitLocation()),
         splitIndex.getStartOffset());
       setReadDoneTime(System.currentTimeMillis());
-      LOG.info("getting inputSplit done ");
+      LOG.info("[benchmark] getting inputSplit done ");
 
     org.apache.hadoop.mapreduce.RecordReader<INKEY,INVALUE> input =
       new NewTrackingRecordReader<INKEY,INVALUE>
@@ -651,14 +654,18 @@ class MapTask extends Task {
               mapContext);
 
     input.initialize(split, mapperContext);
+    LOG.info("[benchmark] mapper run start");
     mapper.run(mapperContext);
+    LOG.info("[benchmark] mapper run done");
     mapPhase.complete();
     setPhase(TaskStatus.Phase.SORT);
     statusUpdate(umbilical);
     input.close();
+    LOG.info("[benchmark] writing map output start");
     setWriteStartTime(System.currentTimeMillis());
     output.close(mapperContext);
     setWriteDoneTime(System.currentTimeMillis());
+    LOG.info("[benchmark] writing map output done");
   }
 
   interface MapOutputCollector<K, V> {
@@ -756,7 +763,7 @@ class MapTask extends Task {
     // spill accounting
     final int maxRec;
     final int softLimit;
-    boolean spillInProgress;;
+    boolean spillInProgress;
     int bufferRemaining;
     volatile Throwable sortSpillException = null;
 

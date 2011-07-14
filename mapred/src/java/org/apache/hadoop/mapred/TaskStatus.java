@@ -64,10 +64,7 @@ public abstract class TaskStatus implements Writable, Cloneable {
   private long finishTime; 
   private long outputSize = -1L;
 
-    private long readInputStartTime;
-    private long readInputDoneTime;
-    private long writeOutputStartTime;
-    private long writeOutputDoneTime;
+    private SampleTaskStatus sampleStatus;
     
   private volatile Phase phase = Phase.STARTING; 
   private Counters counters;
@@ -90,6 +87,7 @@ public abstract class TaskStatus implements Writable, Cloneable {
   public TaskStatus() {
     taskid = new TaskAttemptID();
     numSlots = 0;
+    sampleStatus = new SampleTaskStatus();
   }
 
   public TaskStatus(TaskAttemptID taskid, float progress, int numSlots,
@@ -106,6 +104,7 @@ public abstract class TaskStatus implements Writable, Cloneable {
     this.phase = phase;
     this.counters = counters;
     this.includeCounters = true;
+    sampleStatus = new SampleTaskStatus();
   }
   
   public TaskAttemptID getTaskID() { return taskid; }
@@ -280,37 +279,12 @@ public abstract class TaskStatus implements Writable, Cloneable {
           StringUtils.stringifyException(new Exception()));
     }
   }
-
-    public long getReadInputStartTime() {
-        return readInputStartTime;
+    public SampleTaskStatus getSampleStatus() {
+        return sampleStatus;
     }
 
-    public void setReadInputStartTime(long readInputStartTime) {
-        this.readInputStartTime = readInputStartTime;
-    }
-
-    public long getReadInputDoneTime() {
-        return readInputDoneTime;
-    }
-
-    public void setReadInputDoneTime(long readInputDoneTime) {
-        this.readInputDoneTime = readInputDoneTime;
-    }
-
-    public long getWriteOutputStartTime() {
-        return writeOutputStartTime;
-    }
-
-    public void setWriteOutputStartTime(long writeOutputStartTime) {
-        this.writeOutputStartTime = writeOutputStartTime;
-    }
-
-    public long getWriteOutputDoneTime() {
-        return writeOutputDoneTime;
-    }
-
-    public void setWriteOutputDoneTime(long writeOutputDoneTime) {
-        this.writeOutputDoneTime = writeOutputDoneTime;
+    public void setSampleStatus(SampleTaskStatus sampleStatus) {
+        this.sampleStatus = sampleStatus;
     }
 
     /**
@@ -443,17 +417,23 @@ public abstract class TaskStatus implements Writable, Cloneable {
     this.counters = status.getCounters();
     this.outputSize = status.outputSize;
 
-    if (status.getReadInputStartTime() > 0)
-        this.setReadInputStartTime(status.getReadInputStartTime());
-    if (status.getReadInputDoneTime() > 0)
-        this.setReadInputDoneTime(status.getReadInputDoneTime());
-    if(status.getWriteOutputStartTime() > 0)
-        this.setWriteOutputStartTime(status.getWriteOutputStartTime());
-    if(status.getWriteOutputDoneTime() > 0)
-        this.setWriteOutputDoneTime(status.getWriteOutputDoneTime());
+    updateSampleTaskStatus(status.getSampleStatus());
   }
 
-  /**
+    private void updateSampleTaskStatus(SampleTaskStatus status) {
+        if (status.getReadInputStartTime() > 0)
+            sampleStatus.setReadInputStartTime(status.getReadInputStartTime());
+        if (status.getReadInputDoneTime() > 0)
+            sampleStatus.setReadInputDoneTime(status.getReadInputDoneTime());
+        if(status.getWriteOutputStartTime() > 0)
+            sampleStatus.setWriteOutputStartTime(status.getWriteOutputStartTime());
+        if(status.getWriteOutputDoneTime() > 0)
+            sampleStatus.setWriteOutputDoneTime(status.getWriteOutputDoneTime());
+        if(status.getNetworkSampleMapCopyDurationMilliSec() > 0)
+            sampleStatus.setNetworkSampleMapCopyDurationMilliSec(status.getNetworkSampleMapCopyDurationMilliSec());
+    }
+
+    /**
    * Update specific fields of task status
    * 
    * This update is done in JobTracker when a cleanup attempt of task
@@ -518,11 +498,7 @@ public abstract class TaskStatus implements Writable, Cloneable {
       counters.write(out);
     }
     nextRecordRange.write(out);
-
-      out.writeLong(readInputStartTime);
-      out.writeLong(readInputDoneTime);
-      out.writeLong(writeOutputStartTime);
-      out.writeLong(writeOutputDoneTime);
+    sampleStatus.write(out);
   }
 
   public void readFields(DataInput in) throws IOException {
@@ -542,11 +518,7 @@ public abstract class TaskStatus implements Writable, Cloneable {
       counters.readFields(in);
     }
     nextRecordRange.readFields(in);
-
-      readInputStartTime = in.readLong();
-      readInputDoneTime = in.readLong();
-      writeOutputStartTime = in.readLong();
-      writeOutputDoneTime = in.readLong();
+    sampleStatus.readFields(in);
   }
   
   //////////////////////////////////////////////////////////////////////////////

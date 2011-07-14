@@ -167,6 +167,8 @@ public class JobInProgress {
 
   // A set of running reduce TIPs
   Set<TaskInProgress> runningReduces;
+
+  Set<TaskInProgress> finishedReduces;
   
   // A list of cleanup tasks for the map task attempts, to be launched
   List<TaskAttemptID> mapCleanupTasks = new LinkedList<TaskAttemptID>();
@@ -329,6 +331,7 @@ public class JobInProgress {
     this.runningMapCache = new IdentityHashMap<Node, Set<TaskInProgress>>();
     this.nonRunningReduces = new LinkedList<TaskInProgress>();    
     this.runningReduces = new LinkedHashSet<TaskInProgress>();
+    this.finishedReduces = new LinkedHashSet<TaskInProgress>();
     this.resourceEstimator = new ResourceEstimator(this);
     this.status = new JobStatus(jobid, 0.0f, 0.0f, JobStatus.PREP, 
         this.profile.getUser(), this.profile.getJobName(), 
@@ -436,13 +439,9 @@ public class JobInProgress {
     this.runningMapCache = new IdentityHashMap<Node, Set<TaskInProgress>>();
     this.nonRunningReduces = new LinkedList<TaskInProgress>();    
     this.runningReduces = new LinkedHashSet<TaskInProgress>();
+    this.finishedReduces = new LinkedHashSet<TaskInProgress>();
     this.resourceEstimator = new ResourceEstimator(this);
-    
-    this.nonLocalMaps = new LinkedList<TaskInProgress>();
-    this.nonLocalRunningMaps = new LinkedHashSet<TaskInProgress>();
-    this.runningMapCache = new IdentityHashMap<Node, Set<TaskInProgress>>();
-    this.nonRunningReduces = new LinkedList<TaskInProgress>();    
-    this.runningReduces = new LinkedHashSet<TaskInProgress>();
+
     this.slowTaskThreshold = Math.max(0.0f,
         conf.getFloat(MRJobConfig.SPECULATIVE_SLOWTASK_THRESHOLD,1.0f));
     this.speculativeCap = conf.getFloat(
@@ -954,6 +953,10 @@ public class JobInProgress {
   {
     return runningReduces;
   }
+
+  Set<TaskInProgress> getFinishedReduces(){
+      return finishedReduces;
+  }
   
   /**
    * Get the job configuration
@@ -1164,8 +1167,11 @@ public class JobInProgress {
         }
         if (state == TaskStatus.State.SUCCEEDED) {
           completedTask(tip, status);
-          if(tip.getIsSample(taskid))
-            jobtracker.mapLogger.logStatsUponTaskComplete(tip);
+          if(tip.getIsSample(taskid)){
+            jobtracker.mapLogger.logStatsUponMapSampleTaskComplete(tip);
+            float localReducePercentage = getLocalReduceRateForTaskTracker(status.getTaskTracker());
+            jobtracker.mapLogger.logLocalReducesPercentage(tip, localReducePercentage);
+          }
           if(ttStat != null) {
             ttStat.incrSucceededTasks();
           }
@@ -1189,6 +1195,8 @@ public class JobInProgress {
       } else {
         this.status.setReduceProgress((float) (this.status.reduceProgress() + 
                                            (progressDelta / reduces.length)));
+        jobtracker.mapLogger.logNetworkCopyDurationAndReduceTracker(jobId.toString(), 
+                status.getSampleStatus().getNetworkSampleMapCopyDurationMilliSec(), status.getTaskTracker());
       }
     }
   }
@@ -1285,6 +1293,8 @@ public class JobInProgress {
       }
 
       addRunningTaskToTIP(maps[target], result.getTaskID(), tts, true);
+      if(maps[target].getIsSample(result.getTaskID()))
+        result.taskStatus.getSampleStatus().setSampleMapTaskId(result.getTaskID());
     }
 
     return result;
@@ -1546,6 +1556,8 @@ public class JobInProgress {
     Task result = reduces[target].getTaskToRun(tts.getTrackerName());
     if (result != null) {
       addRunningTaskToTIP(reduces[target], result.getTaskID(), tts, true);
+      TaskAttemptID sampleMapTaskId = jobtracker.mapLogger.getSampleMapTaskId(jobId);
+      result.taskStatus.getSampleStatus().setSampleMapTaskId(sampleMapTaskId);
     }
 
     return result;
@@ -1666,8 +1678,9 @@ public class JobInProgress {
         break;
       }
 
-      if (this.status.getSampleState() == JobSampleState.SCHEDULED && tip.getIsSample(id))
+      if (this.status.getSampleState() == JobSampleState.SCHEDULED && tip.getIsSample(id)){
         jobtracker.mapLogger.logDataLocality(tip, dataLocal, tts.getTrackerName());
+      }
     }
   }
     
@@ -2692,6 +2705,7 @@ public class JobInProgress {
       }
       // remove the completed reduces from the running reducers set
       retireReduce(tip);
+      finishedReduces.add(tip);
       if ((finishedReduceTasks + failedReduceTIPs) == (numReduceTasks)) {
         this.status.setReduceProgress(1.0f);
       }
@@ -3321,6 +3335,7 @@ public class JobInProgress {
        this.runningMapCache = null;
        this.nonRunningReduces = null;
        this.runningReduces = null;
+       this.finishedReduces = null;
 
      }
      // remove jobs delegation tokens
@@ -3640,5 +3655,36 @@ public class JobInProgress {
     LOG.info("jobToken generated and stored with users keys in "
         + keysFile.toUri().getPath());
   }
+
+    protected float getLocalReduceRateForTaskTracker(String taskTracker){
+        int localReduces = 0;
+
+        //check running reduces
+        for(TaskInProgress t : getRunningReduces()){
+            if(!t.isRunning())
+                continue;
+
+            if(t.getActiveTasks().values().contains(taskTracker))
+                localReduces++;
+        }
+
+        //check finished reduces
+        for(TaskInProgress t : getFinishedReduces()){
+            if(t.isRunning())
+                continue;
+
+            TaskStatus status = t.getTaskStatus(t.getSuccessfulTaskid());
+            if(status == null)
+                continue;
+
+            if(status.getTaskTracker().equals(taskTracker))
+                localReduces++;
+        }
+        
+        int totalReduces = reduces.length;
+        LOG.info("local reduces: " + localReduces + "; total reduces: " + totalReduces);
+
+        return 1.0f * localReduces/totalReduces;
+    }
 
 }

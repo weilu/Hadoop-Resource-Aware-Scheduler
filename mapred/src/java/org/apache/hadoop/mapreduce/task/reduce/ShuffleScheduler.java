@@ -153,6 +153,9 @@ class ShuffleScheduler<K,V> {
       reduceShuffleBytes.increment(bytes);
       lastProgressTime = System.currentTimeMillis();
       LOG.debug("map " + mapId + " done " + statusString);
+
+        if(mapId.equals(status.getSampleStatus().getSampleMapTaskId()))
+            status.getSampleStatus().setNetworkSampleMapCopyDurationMilliSec(System.currentTimeMillis() - shuffleStart.get());
     }
   }
 

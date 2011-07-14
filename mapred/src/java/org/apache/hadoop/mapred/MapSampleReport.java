@@ -12,7 +12,9 @@ public class MapSampleReport{
     public static final long UNAVAILABLE = -1L;
     public static final Log LOG = LogFactory.getLog(MapSampleReport.class);
 
+    private TaskAttemptID sampleMapTaskId;
     private String trackerName;
+    private String reduceTrackerName;
     private long trackerDiskIORate = UNAVAILABLE;
     private long trackerNetworkIORate = UNAVAILABLE;
 
@@ -20,6 +22,7 @@ public class MapSampleReport{
     private long diskWriteBytes = UNAVAILABLE;
     private long networkReadBytes = UNAVAILABLE;
     private long networkWriteBytes = UNAVAILABLE;
+    private long additionalSpillBytes = UNAVAILABLE;
 
     private long mapDurationMilliSec = UNAVAILABLE;
     private long diskReadDurationMilliSec = UNAVAILABLE;
@@ -31,6 +34,7 @@ public class MapSampleReport{
     long taskNetworkIORate = UNAVAILABLE;
 
     boolean dataLocal = false;
+    float localReducesPercentage = 0f;
 
     public MapSampleReport(String trackerName) {
         this.trackerName = trackerName;
@@ -125,6 +129,22 @@ public class MapSampleReport{
         this.networkWriteDurationMilliSec = networkWriteDurationMilliSec;
     }
 
+    public String getReduceTrackerName() {
+        return reduceTrackerName;
+    }
+
+    public void setReduceTrackerName(String reduceTrackerName) {
+        this.reduceTrackerName = reduceTrackerName;
+    }
+
+    public TaskAttemptID getSampleMapTaskId() {
+        return sampleMapTaskId;
+    }
+
+    public void setSampleMapTaskId(TaskAttemptID sampleMapTaskId) {
+        this.sampleMapTaskId = sampleMapTaskId;
+    }
+
     public void setReadDuration(long readDuration) {
         if(dataLocal){
             diskReadDurationMilliSec = readDuration;
@@ -145,13 +165,16 @@ public class MapSampleReport{
     @Override
     public String toString() {
         return "MapSampleReport{" +
-                "trackerName='" + trackerName + '\'' +
+                "sampleMapTaskId=" + sampleMapTaskId +
+                ", trackerName='" + trackerName + '\'' +
+                ", reduceTrackerName='" + reduceTrackerName + '\'' +
                 ", trackerDiskIORate=" + trackerDiskIORate +
                 ", trackerNetworkIORate=" + trackerNetworkIORate +
                 ", diskReadBytes=" + diskReadBytes +
                 ", diskWriteBytes=" + diskWriteBytes +
                 ", networkReadBytes=" + networkReadBytes +
                 ", networkWriteBytes=" + networkWriteBytes +
+                ", additionalSpillBytes=" + additionalSpillBytes +
                 ", mapDurationMilliSec=" + mapDurationMilliSec +
                 ", diskReadDurationMilliSec=" + diskReadDurationMilliSec +
                 ", diskWriteDurationMilliSec=" + diskWriteDurationMilliSec +
@@ -160,6 +183,7 @@ public class MapSampleReport{
                 ", taskDiskIORate=" + taskDiskIORate +
                 ", taskNetworkIORate=" + taskNetworkIORate +
                 ", dataLocal=" + dataLocal +
+                ", localReducesPercentage=" + localReducesPercentage +
                 '}';
     }
 }

@@ -15,18 +15,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="ad1553bb-5843-41f6-8746-19af3b22bc4c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/task/reduce/ShuffleScheduler.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/task/reduce/ShuffleScheduler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hadoop-0.21.0.ipr" afterPath="$PROJECT_DIR$/hadoop-0.21.0.ipr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/test/my-tests" afterPath="$PROJECT_DIR$/mapred/src/test/my-tests" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hadoop-0.21.0.iws" afterPath="$PROJECT_DIR$/hadoop-0.21.0.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Task.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Task.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskInProgress.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskInProgress.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/TestResourceScheduler.java" afterPath="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/TestResourceScheduler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReport.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReport.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/SampleTaskStatus.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTask.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/JobStatus.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/JobStatus.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReport.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/TestJobInProgress.java" afterPath="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/TestJobInProgress.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" />
     </list>
@@ -105,19 +105,6 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" line="2267" class="org.apache.hadoop.mapred.TaskTracker" package="org.apache.hadoop.mapred">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" line="2268" class="org.apache.hadoop.mapred.TaskTracker" package="org.apache.hadoop.mapred">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -157,6 +144,19 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" line="2271" class="org.apache.hadoop.mapred.TaskTracker" package="org.apache.hadoop.mapred">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
       <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskRunner.java" line="228" class="org.apache.hadoop.mapred.TaskRunner" package="org.apache.hadoop.mapred">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
@@ -170,7 +170,72 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" line="1165" class="org.apache.hadoop.mapred.JobInProgress" package="org.apache.hadoop.mapred">
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" line="1168" class="org.apache.hadoop.mapred.JobInProgress" package="org.apache.hadoop.mapred">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" line="2139" class="org.apache.hadoop.mapred.TaskTracker.TaskLauncher" package="org.apache.hadoop.mapred">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" line="2140" class="org.apache.hadoop.mapred.TaskTracker.TaskLauncher" package="org.apache.hadoop.mapred">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" line="2141" class="org.apache.hadoop.mapred.TaskTracker.TaskLauncher" package="org.apache.hadoop.mapred">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" line="2142" class="org.apache.hadoop.mapred.TaskTracker.TaskLauncher" package="org.apache.hadoop.mapred">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="false" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" line="2143" class="org.apache.hadoop.mapred.TaskTracker.TaskLauncher" package="org.apache.hadoop.mapred">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -225,52 +290,73 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MapSampleReportLogger.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java">
+      <file leaf-file-name="TaskStatus.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="23" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.0">
+            <state line="47" column="62" selection-start="1912" selection-end="1912" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestDFSIO.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/fs/TestDFSIO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="572" column="9" selection-start="18831" selection-end="18835" vertical-scroll-proportion="2.0769231">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskInProgress.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskInProgress.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1032" column="73" selection-start="33719" selection-end="33719" vertical-scroll-proportion="-4.9615383">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Task.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Task.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="265" column="32" selection-start="9622" selection-end="9639" vertical-scroll-proportion="-0.46153846">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapTask.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MapTask.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="383" column="78" selection-start="13120" selection-end="13120" vertical-scroll-proportion="-13.961538">
+            <state line="823" column="12" selection-start="29514" selection-end="29520" vertical-scroll-proportion="1.0053476">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecordWriter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/RecordWriter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="45" column="23" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mapper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/Mapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="121" column="0" selection-start="4752" selection-end="4752" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IFile.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/IFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="20" selection-start="3530" selection-end="3536" vertical-scroll-proportion="15.269231">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResourceScheduler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="29" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SampleJobQueueJobInProgressListener.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/SampleJobQueueJobInProgressListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="141" column="24" selection-start="5899" selection-end="5922" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JobInProgress.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2814" column="17" selection-start="99716" selection-end="99739" vertical-scroll-proportion="-18.038462">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -278,97 +364,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskRunner.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskRunner.java">
+      <file leaf-file-name="SampleTaskStatus.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/SampleTaskStatus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="272" column="7" selection-start="10137" selection-end="10137" vertical-scroll-proportion="-7.423077">
-              <folding>
-                <element signature="docComment;field#mapOutputFile#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getTask#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getTaskInProgress#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getTracker#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getJvmManager#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#prepare#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#prepare#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#close#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#getChildJavaOpts#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getChildJavaOpts#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#getChildUlimit#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getChildUlimit#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#getChildEnv#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getChildEnv#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#getLogLevel#0;class#TaskRunner#0" expanded="false" />
-                <element signature="class#6684:7149" expanded="false" />
-                <element signature="method#run#0;class#6684:7149" expanded="false" />
-                <element signature="docComment;method#prepareLogFiles#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#prepareLogFiles#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#writeJobACLs#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#setupChildTaskConfiguration#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#setupChildTaskConfiguration#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#getVMSetupCmd#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getVMSetupCmd#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#getVMArgs#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getVMArgs#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#setupLog4jProperties#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#createChildTmpDir#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#createChildTmpDir#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#getClassPaths#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getClassPaths#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#getVMEnvironment#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#getVMEnvironment#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#writeLocalTaskFile#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#writeLocalTaskFile#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#setupChildMapredLocalDirs#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#setupChildMapredLocalDirs#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#formWorkDir#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#formWorkDir#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#appendSystemClasspaths#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#appendJobJarClasspaths#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#appendJobJarClasspaths#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#setupWorkDir#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#setupWorkDir#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#symlink#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#symlink#0;class#TaskRunner#0" expanded="false" />
-                <element signature="docComment;method#kill#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#kill#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#signalDone#0;class#TaskRunner#0" expanded="false" />
-                <element signature="method#setExitCode#0;class#TaskRunner#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JvmManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JvmManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="457" column="48" selection-start="15442" selection-end="15442" vertical-scroll-proportion="-8.807693">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="0" selection-start="4903" selection-end="4903" vertical-scroll-proportion="-7.1923075">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinuxTaskController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/LinuxTaskController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="7" selection-start="4799" selection-end="4799" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Child.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Child.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.7487602">
+            <state line="29" column="44" selection-start="1257" selection-end="1257" vertical-scroll-proportion="-6.0">
               <folding />
             </state>
           </provider>
@@ -388,22 +387,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mapred/src/examples/org/apache/hadoop/examples/RandomWriter.java" />
-        <option value="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/fs/TestDFSIO.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceEstimator.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskRunner.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReport.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskInProgress.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTask.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Task.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/SampleJobQueueJobInProgressListener.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/JobStatus.java" />
+        <option value="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/fs/TestLocalFSIO.java" />
+        <option value="$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/mapred/TestJobInProgress.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReport.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskInProgress.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Task.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/task/reduce/ShuffleScheduler.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTask.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/SampleTaskStatus.java" />
       </list>
     </option>
   </component>
@@ -512,15 +511,93 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="mapred" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hadoop-0.21.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hadoop-0.21.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hadoop-0.21.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hadoop-0.21.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hadoop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hadoop-0.21.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hadoop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="fs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Favorites" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -536,8 +613,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="options.lastSelected" value="reference.projectsettings.compiler.javacompiler" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -546,6 +623,7 @@
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.apache.hadoop.mapred" />
+      <recent name="org.apache.hadoop.fs" />
       <recent name="org.apache.hadoop.mapreduce" />
     </key>
   </component>
@@ -852,19 +930,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1266" height="774" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27220395" sideWeight="0.62691134" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24424343" sideWeight="0.4235474" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36238533" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2495935" sideWeight="0.6620795" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45412844" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5657492" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3259587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3612403" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -954,173 +1032,116 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mapred/src/test/mapred/org/apache/hadoop/fs/TestDFSIO.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/task/reduce/Fetcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="572" column="9" selection-start="18831" selection-end="18835" vertical-scroll-proportion="2.0769231">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="144" column="27" selection-start="5569" selection-end="5569" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskInProgress.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1032" column="73" selection-start="33719" selection-end="33719" vertical-scroll-proportion="-4.9615383">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="2462" column="68" selection-start="88625" selection-end="88625" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/EagerTaskInitializationListener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0855615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/SampleJobQueueJobInProgressListener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="162" selection-end="162" vertical-scroll-proportion="0.08791209">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="49" selection-start="1673" selection-end="1708" vertical-scroll-proportion="0.0">
+        <state line="40" column="29" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/SampleJobQueueJobInProgressListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="105" selection-start="5748" selection-end="5748" vertical-scroll-proportion="0.0">
+        <state line="141" column="24" selection-start="5899" selection-end="5922" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Task.java">
+    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/IFile.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="32" selection-start="9622" selection-end="9639" vertical-scroll-proportion="-0.46153846">
+        <state line="58" column="24" selection-start="3016" selection-end="3016" vertical-scroll-proportion="0.33269963">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/IFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="20" selection-start="3530" selection-end="3536" vertical-scroll-proportion="15.269231">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/lib/map/InverseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="14" selection-start="1303" selection-end="1303" vertical-scroll-proportion="0.25785124">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/Mapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="121" column="0" selection-start="4752" selection-end="4752" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/io/OutputStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="25" selection-start="309" selection-end="309" vertical-scroll-proportion="0.26592797">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/RecordWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="23" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2814" column="17" selection-start="99716" selection-end="99739" vertical-scroll-proportion="-18.038462">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="23" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.0">
+        <state line="47" column="62" selection-start="1912" selection-end="1912" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/SampleTaskStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="44" selection-start="1257" selection-end="1257" vertical-scroll-proportion="-6.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="383" column="78" selection-start="13120" selection-end="13120" vertical-scroll-proportion="-13.961538">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1246" column="33" selection-start="44471" selection-end="44471" vertical-scroll-proportion="-2.9230769">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="7" selection-start="10137" selection-end="10137" vertical-scroll-proportion="-7.423077">
-          <folding>
-            <element signature="docComment;field#mapOutputFile#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getTask#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getTaskInProgress#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getTracker#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getJvmManager#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#prepare#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#prepare#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#close#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#getChildJavaOpts#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getChildJavaOpts#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#getChildUlimit#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getChildUlimit#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#getChildEnv#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getChildEnv#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#getLogLevel#0;class#TaskRunner#0" expanded="false" />
-            <element signature="class#6684:7149" expanded="false" />
-            <element signature="method#run#0;class#6684:7149" expanded="false" />
-            <element signature="docComment;method#prepareLogFiles#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#prepareLogFiles#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#writeJobACLs#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#setupChildTaskConfiguration#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#setupChildTaskConfiguration#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#getVMSetupCmd#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getVMSetupCmd#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#getVMArgs#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getVMArgs#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#setupLog4jProperties#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#createChildTmpDir#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#createChildTmpDir#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#getClassPaths#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getClassPaths#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#getVMEnvironment#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#getVMEnvironment#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#writeLocalTaskFile#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#writeLocalTaskFile#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#setupChildMapredLocalDirs#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#setupChildMapredLocalDirs#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#formWorkDir#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#formWorkDir#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#appendSystemClasspaths#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#appendJobJarClasspaths#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#appendJobJarClasspaths#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#setupWorkDir#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#setupWorkDir#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#symlink#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#symlink#0;class#TaskRunner#0" expanded="false" />
-            <element signature="docComment;method#kill#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#kill#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#signalDone#0;class#TaskRunner#0" expanded="false" />
-            <element signature="method#setExitCode#0;class#TaskRunner#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/lang/Thread.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="29" selection-start="3679" selection-end="3679" vertical-scroll-proportion="0.3322034">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/TaskController.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="18" selection-start="1152" selection-end="1152" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JvmManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="457" column="48" selection-start="15442" selection-end="15442" vertical-scroll-proportion="-8.807693">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="0" selection-start="4903" selection-end="4903" vertical-scroll-proportion="-7.1923075">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/JobSampleState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/LinuxTaskController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="7" selection-start="4799" selection-end="4799" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Child.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.7487602">
+        <state line="823" column="12" selection-start="29514" selection-end="29520" vertical-scroll-proportion="1.0053476">
           <folding />
         </state>
       </provider>

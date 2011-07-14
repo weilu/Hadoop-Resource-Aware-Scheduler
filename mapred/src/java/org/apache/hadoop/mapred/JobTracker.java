@@ -2451,7 +2451,7 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
         if (tasks != null) {
           for (Task task : tasks) {
             expireLaunchingTasks.addNewTask(task.getTaskID());
-            LOG.debug(trackerName + " -> LaunchTask: " + task.getTaskID());
+            LOG.debug(trackerName + " -> LaunchTask: " + task.getTaskID() + "; sampleMapTask: " + task.taskStatus.getSampleStatus().getSampleMapTaskId());
             actions.add(new LaunchTaskAction(task));
           }
         }
@@ -2717,6 +2717,10 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
       }
     }
 
+    LOG.info(trackerStatus.getTrackerName()
+            + " current bandwidth: " + trackerStatus.getResourceStatus().getCurrentBandwidth()
+            + " ;bandwidth usage: " + trackerStatus.getResourceStatus().getBandwidthUsage());
+                                                                                                
     updateTaskStatuses(trackerStatus);
     updateNodeHealthStatus(trackerStatus);
     

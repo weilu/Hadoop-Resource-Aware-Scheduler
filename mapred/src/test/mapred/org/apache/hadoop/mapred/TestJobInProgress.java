@@ -284,4 +284,41 @@ public class TestJobInProgress extends TestCase {
     assertEquals(pendingReduces, jip.pendingReduces());
   }
 
+    public void testLocalReduceRate()  throws Exception {
+        JobConf conf = new JobConf();
+        conf.setNumMapTasks(2);
+        conf.setNumReduceTasks(2);
+        conf.setSpeculativeExecution(false);
+        MyFakeJobInProgress jip = new MyFakeJobInProgress(conf, jobTracker);
+        jip.initTasks();
+
+        TaskAttemptID[] tid = new TaskAttemptID[4];
+
+        for (int i = 0; i < 2; i++) {
+            tid[i] = jip.findAndRunNewTask(true, trackers[i], hosts[i],
+                    clusterSize, numUniqueHosts);
+        }
+
+        for (int i = 2; i < 4; i++ ) {
+            tid[i] = jip.findAndRunNewTask(false, trackers[i], hosts[i],
+                    clusterSize, numUniqueHosts);
+        }
+        assertEquals("mapper tracker local reduce rate should be 0",
+                0.0f, jip.getLocalReduceRateForTaskTracker(trackers[0]));
+        assertEquals("mapper tracker local reduce rate should be 0",
+                0.0f, jip.getLocalReduceRateForTaskTracker(trackers[1]));
+        assertEquals("running reducer tracker local reduce rate should be 0.5",
+                0.5f, jip.getLocalReduceRateForTaskTracker(trackers[2]));
+        assertEquals("running reducer tracker local reduce rate should be 0.5",
+                0.5f, jip.getLocalReduceRateForTaskTracker(trackers[3]));
+
+        jip.failTask(tid[2]);
+        jip.finishTask(tid[3]);
+        assertEquals("failed reducer tracker local reduce rate should be 0.0",
+                0.0f, jip.getLocalReduceRateForTaskTracker(trackers[2]));
+        assertEquals("completed reducer tracker local reduce rate should be 0.5",
+                0.5f, jip.getLocalReduceRateForTaskTracker(trackers[3]));
+
+    }
+
 }

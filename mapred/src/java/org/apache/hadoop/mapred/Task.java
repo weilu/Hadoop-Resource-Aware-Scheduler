@@ -244,39 +244,44 @@ abstract public class Task implements Writable, Configurable {
    * @param phase task phase 
    */
   protected synchronized void setPhase(TaskStatus.Phase phase){
-    this.taskStatus.setPhase(phase); 
+    taskStatus.setPhase(phase);
   }
 
+    //only set these for sample tasks instead of all
     protected synchronized void setReadStartTime(long start){
-        this.taskStatus.setReadInputStartTime(start);
+        if(taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId()))
+            taskStatus.getSampleStatus().setReadInputStartTime(start);
     }
 
     protected synchronized long getReadStartTime(){
-        return this.taskStatus.getReadInputStartTime();
+        return taskStatus.getSampleStatus().getReadInputStartTime();
     }
     
     protected synchronized void setReadDoneTime(long done){
-        this.taskStatus.setReadInputDoneTime(done);
+        if(taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId()))
+            taskStatus.getSampleStatus().setReadInputDoneTime(done);
     }
 
     protected synchronized long getReadDoneTime(){
-        return this.taskStatus.getReadInputDoneTime();
+        return taskStatus.getSampleStatus().getReadInputDoneTime();
     }
 
     protected synchronized void setWriteStartTime(long start){
-        this.taskStatus.setWriteOutputStartTime(start);
+        if(this.taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId()))
+            taskStatus.getSampleStatus().setWriteOutputStartTime(start);
     }
 
     protected synchronized long getWriteStartTime(){
-        return this.taskStatus.getWriteOutputStartTime();
+        return taskStatus.getSampleStatus().getWriteOutputStartTime();
     }
 
     protected synchronized void setWriteDoneTime(long done){
-        this.taskStatus.setWriteOutputDoneTime(done);
+        if(taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId()))
+            taskStatus.getSampleStatus().setWriteOutputDoneTime(done);
     }
 
     protected synchronized long getWriteDoneTime(){
-        return this.taskStatus.getWriteOutputDoneTime();
+        return taskStatus.getSampleStatus().getWriteOutputDoneTime();
     }
   
   /**
