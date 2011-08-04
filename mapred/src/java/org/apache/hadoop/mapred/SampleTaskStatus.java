@@ -21,15 +21,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.classification.InterfaceAudience;
 import org.apache.hadoop.classification.InterfaceStability;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
-import org.apache.hadoop.io.WritableUtils;
-import org.apache.hadoop.util.StringUtils;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.List;
 
 /**************************************************
  * Describes the current status of a sampled task.
@@ -42,24 +38,17 @@ public class SampleTaskStatus implements Writable, Cloneable {
             LogFactory.getLog(SampleTaskStatus.class.getName());
 
     private TaskAttemptID sampleMapTaskId = new TaskAttemptID();
+    private String sampleMapTracker = "";
     private long readInputStartTime;
     private long readInputDoneTime;
     private long writeOutputStartTime;
     private long writeOutputDoneTime;
     private long networkSampleMapCopyDurationMilliSec;
 
-    protected SampleTaskStatus() {
-    }
+    private long additionalSpillDurationMilliSec;
+    private long additionalSpillSize;
 
-    protected SampleTaskStatus(TaskAttemptID sampleMapTaskId, long readInputStartTime, long readInputDoneTime,
-                               long writeOutputStartTime, long writeOutputDoneTime,
-                               long networkSampleMapCopyDurationMilliSec) {
-        this.sampleMapTaskId = sampleMapTaskId;
-        this.readInputStartTime = readInputStartTime;
-        this.readInputDoneTime = readInputDoneTime;
-        this.writeOutputStartTime = writeOutputStartTime;
-        this.writeOutputDoneTime = writeOutputDoneTime;
-        this.networkSampleMapCopyDurationMilliSec = networkSampleMapCopyDurationMilliSec;
+    protected SampleTaskStatus() {
     }
 
     public long getReadInputStartTime() {
@@ -110,6 +99,30 @@ public class SampleTaskStatus implements Writable, Cloneable {
         this.sampleMapTaskId = sampleMapTaskId;
     }
 
+    public String getSampleMapTracker() {
+        return sampleMapTracker;
+    }
+
+    public void setSampleMapTracker(String sampleMapTracker) {
+        this.sampleMapTracker = sampleMapTracker;
+    }
+
+    public long getAdditionalSpillDurationMilliSec() {
+        return additionalSpillDurationMilliSec;
+    }
+
+    public void setAdditionalSpillDurationMilliSec(long additionalSpillDurationMilliSec) {
+        this.additionalSpillDurationMilliSec = additionalSpillDurationMilliSec;
+    }
+
+    public long getAdditionalSpillSize() {
+        return additionalSpillSize;
+    }
+
+    public void setAdditionalSpillSize(long additionalSpillSize) {
+        this.additionalSpillSize = additionalSpillSize;
+    }
+
     @Override
     public Object clone() {
         try {
@@ -125,21 +138,27 @@ public class SampleTaskStatus implements Writable, Cloneable {
     //////////////////////////////////////////////
     public void write(DataOutput out) throws IOException {
         sampleMapTaskId.write(out);
+        out.writeUTF(sampleMapTracker);
         out.writeLong(readInputStartTime);
         out.writeLong(readInputDoneTime);
         out.writeLong(writeOutputStartTime);
         out.writeLong(writeOutputDoneTime);
         out.writeLong(networkSampleMapCopyDurationMilliSec);
+        out.writeLong(additionalSpillDurationMilliSec);
+        out.writeLong(additionalSpillSize);
     }
 
     public void readFields(DataInput in) throws IOException {
 
         this.sampleMapTaskId.readFields(in);
+        sampleMapTracker = in.readUTF();
         readInputStartTime = in.readLong();
         readInputDoneTime = in.readLong();
         writeOutputStartTime = in.readLong();
         writeOutputDoneTime = in.readLong();
         networkSampleMapCopyDurationMilliSec = in.readLong();
+        additionalSpillDurationMilliSec = in.readLong();
+        additionalSpillSize = in.readLong();
     }
 
     static SampleTaskStatus readTaskStatus(DataInput in) throws IOException {

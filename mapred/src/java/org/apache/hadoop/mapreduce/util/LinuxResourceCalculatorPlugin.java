@@ -471,8 +471,10 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
         }
         return currentBandwidth;
     }
+
+    //in %
     public float getBandwidthUsage(){
-        return (float) getCurrentBandwidth()/(float)totalBandwidth;
+        return 100f*getCurrentBandwidth()/totalBandwidth;
     }
 
     /**

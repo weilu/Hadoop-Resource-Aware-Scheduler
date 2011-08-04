@@ -36,6 +36,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapred.Counters;
 import org.apache.hadoop.mapred.JobConf;
+import org.apache.hadoop.mapred.SampleTaskStatus;
 import org.apache.hadoop.mapred.TaskStatus;
 import org.apache.hadoop.mapreduce.MRJobConfig;
 import org.apache.hadoop.mapreduce.TaskAttemptID;
@@ -154,9 +155,21 @@ class ShuffleScheduler<K,V> {
       lastProgressTime = System.currentTimeMillis();
       LOG.debug("map " + mapId + " done " + statusString);
 
-        if(mapId.equals(status.getSampleStatus().getSampleMapTaskId()))
-            status.getSampleStatus().setNetworkSampleMapCopyDurationMilliSec(System.currentTimeMillis() - shuffleStart.get());
+        SampleTaskStatus sampleStatus = status.getSampleStatus();
+        if(mapId.equals(sampleStatus.getSampleMapTaskId())
+                && isDifferentTTFromSample(sampleStatus.getSampleMapTracker()))
+            status.getSampleStatus().setNetworkSampleMapCopyDurationMilliSec(millis);
     }
+  }
+
+  private boolean isDifferentTTFromSample(String sampleMapTracker){
+      if(!(reporter instanceof Shuffle))
+          return false;
+      Shuffle shuffle = (Shuffle)reporter;
+      if(shuffle.getTaskTrackerName().equals(sampleMapTracker))
+          return false;
+
+      return true;
   }
 
   public synchronized void copyFailed(TaskAttemptID mapId, MapHost host,

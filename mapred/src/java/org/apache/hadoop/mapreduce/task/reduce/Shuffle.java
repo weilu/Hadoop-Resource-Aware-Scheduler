@@ -26,14 +26,7 @@ import org.apache.hadoop.classification.InterfaceStability;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.LocalDirAllocator;
 import org.apache.hadoop.io.compress.CompressionCodec;
-import org.apache.hadoop.mapred.Counters;
-import org.apache.hadoop.mapred.JobConf;
-import org.apache.hadoop.mapred.RawKeyValueIterator;
-import org.apache.hadoop.mapred.Reducer;
-import org.apache.hadoop.mapred.Reporter;
-import org.apache.hadoop.mapred.Task;
-import org.apache.hadoop.mapred.TaskStatus;
-import org.apache.hadoop.mapred.TaskUmbilicalProtocol;
+import org.apache.hadoop.mapred.*;
 import org.apache.hadoop.mapred.Task.CombineOutputCollector;
 import org.apache.hadoop.mapreduce.MRJobConfig;
 import org.apache.hadoop.mapreduce.TaskAttemptID;
@@ -189,4 +182,12 @@ public class Shuffle<K, V> implements ExceptionReporter {
       super(msg, t);
     }
   }
+
+    public String getTaskTrackerName() {
+        TaskTracker tracker = umbilical instanceof TaskTracker?(TaskTracker)umbilical:null;
+        if(tracker != null)
+            return tracker.getName();
+        else
+            return "";
+    }
 }

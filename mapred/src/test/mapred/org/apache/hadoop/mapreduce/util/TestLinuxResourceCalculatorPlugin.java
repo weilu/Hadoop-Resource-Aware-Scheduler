@@ -286,6 +286,6 @@ public class TestLinuxResourceCalculatorPlugin extends TestCase {
                 outTraffic);
 
         assertEquals(currentBandwidth, (long)(200F*1000/(200F*plugin.jiffyLengthInMillis)));
-        assertEquals(plugin.getBandwidthUsage(), currentBandwidth/(1000F/8 * 1024F * 1024F));
+        assertEquals(plugin.getBandwidthUsage(), 100 * currentBandwidth/(1000F/8 * 1024F * 1024F));
     }
 }

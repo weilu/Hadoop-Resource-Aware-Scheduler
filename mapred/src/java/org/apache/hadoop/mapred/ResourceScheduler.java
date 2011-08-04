@@ -38,17 +38,17 @@ class ResourceScheduler extends TaskScheduler {
     public static final Log LOG = LogFactory.getLog(ResourceScheduler.class);
 
     protected EagerTaskInitializationListener eagerTaskInitializationListener;
-    protected SampleJobQueueJobInProgressListener sampleJobQueueJobInProcessListener;
+    protected ResourceJobQueueListener resourceJobQueueListener;
     private float padFraction;
 
     public ResourceScheduler() {
-        this.sampleJobQueueJobInProcessListener = new SampleJobQueueJobInProgressListener();
+        this.resourceJobQueueListener = new ResourceJobQueueListener();
     }
 
     @Override
     public synchronized void start() throws IOException {
         super.start();
-        taskTrackerManager.addJobInProgressListener(sampleJobQueueJobInProcessListener);
+        taskTrackerManager.addJobInProgressListener(resourceJobQueueListener);
         eagerTaskInitializationListener.setTaskTrackerManager(taskTrackerManager);
         eagerTaskInitializationListener.start();
         taskTrackerManager.addJobInProgressListener(
@@ -57,9 +57,9 @@ class ResourceScheduler extends TaskScheduler {
 
     @Override
     public synchronized void terminate() throws IOException {
-        if (sampleJobQueueJobInProcessListener != null) {
+        if (resourceJobQueueListener != null) {
             taskTrackerManager.removeJobInProgressListener(
-                    sampleJobQueueJobInProcessListener);
+                    resourceJobQueueListener);
         }
         if (eagerTaskInitializationListener != null) {
             taskTrackerManager.removeJobInProgressListener(
@@ -88,7 +88,7 @@ class ResourceScheduler extends TaskScheduler {
         final int clusterReduceCapacity = clusterStatus.getMaxReduceTasks();
 
         Collection<JobInProgress> jobQueue =
-                sampleJobQueueJobInProcessListener.getJobQueue();
+                resourceJobQueueListener.getJobQueue();
 
         //
         // Get map + reduce counts for the current tracker.
@@ -274,7 +274,7 @@ class ResourceScheduler extends TaskScheduler {
                         clusterStatus.getMaxReduceTasks();
 
         Collection<JobInProgress> jobQueue =
-                sampleJobQueueJobInProcessListener.getJobQueue();
+                resourceJobQueueListener.getJobQueue();
 
         boolean exceededPadding = false;
         synchronized (jobQueue) {
@@ -310,6 +310,6 @@ class ResourceScheduler extends TaskScheduler {
 
     @Override
     public synchronized Collection<JobInProgress> getJobs(String queueName) {
-        return sampleJobQueueJobInProcessListener.getJobQueue();
+        return resourceJobQueueListener.getJobQueue();
     }
 }

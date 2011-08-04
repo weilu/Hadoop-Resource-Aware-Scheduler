@@ -15,8 +15,9 @@ public class MapSampleReport{
     private TaskAttemptID sampleMapTaskId;
     private String trackerName;
     private String reduceTrackerName;
-    private long trackerDiskIORate = UNAVAILABLE;
-    private long trackerNetworkIORate = UNAVAILABLE;
+    private long trackerDiskIOScore = UNAVAILABLE;
+    private long trackerNetworkIOScore = UNAVAILABLE;
+    private long trackerCPUScore = UNAVAILABLE;
 
     private long diskReadBytes = UNAVAILABLE;
     private long diskWriteBytes = UNAVAILABLE;
@@ -29,6 +30,7 @@ public class MapSampleReport{
     private long diskWriteDurationMilliSec = UNAVAILABLE;
     private long networkReadDurationMilliSec = UNAVAILABLE;
     private long networkWriteDurationMilliSec = UNAVAILABLE;
+    private long additionalSpillDurationMilliSec = UNAVAILABLE;
 
     long taskDiskIORate = UNAVAILABLE;
     long taskNetworkIORate = UNAVAILABLE;
@@ -49,20 +51,28 @@ public class MapSampleReport{
         this.trackerName = trackerName;
     }
 
-    public long getTrackerDiskIORate() {
-        return trackerDiskIORate;
+    public long getTrackerDiskIOScore() {
+        return trackerDiskIOScore;
     }
 
-    public void setTrackerDiskIORate(long trackerDiskIORate) {
-        this.trackerDiskIORate = trackerDiskIORate;
+    public void setTrackerDiskIOScore(long trackerDiskIOScore) {
+        this.trackerDiskIOScore = trackerDiskIOScore;
     }
 
-    public long getTrackerNetworkIORate() {
-        return trackerNetworkIORate;
+    public long getTrackerNetworkIOScore() {
+        return trackerNetworkIOScore;
     }
 
-    public void setTrackerNetworkIORate(long trackerNetworkIORate) {
-        this.trackerNetworkIORate = trackerNetworkIORate;
+    public void setTrackerNetworkIOScore(long trackerNetworkIOScore) {
+        this.trackerNetworkIOScore = trackerNetworkIOScore;
+    }
+
+    public long getTrackerCPUScore() {
+        return trackerCPUScore;
+    }
+
+    public void setTrackerCPUScore(long trackerCPUScore) {
+        this.trackerCPUScore = trackerCPUScore;
     }
 
     public long getDiskReadBytes() {
@@ -97,6 +107,14 @@ public class MapSampleReport{
         this.networkWriteBytes = networkWriteBytes;
     }
 
+    public long getAdditionalSpillBytes() {
+        return additionalSpillBytes;
+    }
+
+    public void setAdditionalSpillBytes(long additionalSpillBytes) {
+        this.additionalSpillBytes = additionalSpillBytes;
+    }
+
     public long getMapDurationMilliSec() {
         return mapDurationMilliSec;
     }
@@ -129,6 +147,14 @@ public class MapSampleReport{
         this.networkWriteDurationMilliSec = networkWriteDurationMilliSec;
     }
 
+    public long getAdditionalSpillDurationMilliSec() {
+        return additionalSpillDurationMilliSec;
+    }
+
+    public void setAdditionalSpillDurationMilliSec(long additionalSpillDurationMilliSec) {
+        this.additionalSpillDurationMilliSec = additionalSpillDurationMilliSec;
+    }
+
     public String getReduceTrackerName() {
         return reduceTrackerName;
     }
@@ -157,8 +183,14 @@ public class MapSampleReport{
     }
 
     public void setReadSize(long sizeBytes) {
-        diskReadBytes = sizeBytes;       //TODO:assume always read from disk: need to investigate
-        networkReadBytes = dataLocal?0:sizeBytes;
+        if(dataLocal){
+            diskReadBytes = sizeBytes;    
+            networkReadBytes = 0;
+        }
+        else{
+            networkReadBytes = sizeBytes;
+            diskReadBytes = 0;
+        }
 
     }
 
@@ -168,8 +200,9 @@ public class MapSampleReport{
                 "sampleMapTaskId=" + sampleMapTaskId +
                 ", trackerName='" + trackerName + '\'' +
                 ", reduceTrackerName='" + reduceTrackerName + '\'' +
-                ", trackerDiskIORate=" + trackerDiskIORate +
-                ", trackerNetworkIORate=" + trackerNetworkIORate +
+                ", trackerDiskIOScore=" + trackerDiskIOScore +
+                ", trackerNetworkIOScore=" + trackerNetworkIOScore +
+                ", trackerCPUScore=" + trackerCPUScore +
                 ", diskReadBytes=" + diskReadBytes +
                 ", diskWriteBytes=" + diskWriteBytes +
                 ", networkReadBytes=" + networkReadBytes +
@@ -180,6 +213,7 @@ public class MapSampleReport{
                 ", diskWriteDurationMilliSec=" + diskWriteDurationMilliSec +
                 ", networkReadDurationMilliSec=" + networkReadDurationMilliSec +
                 ", networkWriteDurationMilliSec=" + networkWriteDurationMilliSec +
+                ", additionalSpillDurationMilliSec=" + additionalSpillDurationMilliSec +
                 ", taskDiskIORate=" + taskDiskIORate +
                 ", taskNetworkIORate=" + taskNetworkIORate +
                 ", dataLocal=" + dataLocal +

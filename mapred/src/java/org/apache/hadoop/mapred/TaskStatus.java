@@ -431,6 +431,10 @@ public abstract class TaskStatus implements Writable, Cloneable {
             sampleStatus.setWriteOutputDoneTime(status.getWriteOutputDoneTime());
         if(status.getNetworkSampleMapCopyDurationMilliSec() > 0)
             sampleStatus.setNetworkSampleMapCopyDurationMilliSec(status.getNetworkSampleMapCopyDurationMilliSec());
+        if(status.getAdditionalSpillDurationMilliSec() > 0)
+            sampleStatus.setAdditionalSpillDurationMilliSec(status.getAdditionalSpillDurationMilliSec());
+        if(status.getAdditionalSpillSize() > 0)
+            sampleStatus.setAdditionalSpillSize(status.getAdditionalSpillSize());
     }
 
     /**

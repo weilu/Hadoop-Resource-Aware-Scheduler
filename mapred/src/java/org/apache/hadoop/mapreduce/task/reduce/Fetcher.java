@@ -275,7 +275,7 @@ class Fetcher<K,V> extends Thread {
     long compressedLength = -1;
     
     try {
-      long startTime = System.currentTimeMillis();
+//      long startTime = System.currentTimeMillis();
       int forReduce = -1;
       //Read the shuffle header
       try {
@@ -309,7 +309,8 @@ class Fetcher<K,V> extends Thread {
         LOG.info("fetcher#" + id + " - MergerManager returned Status.WAIT ...");
         return false;
       } 
-      
+
+      long startTime = System.currentTimeMillis();
       // Go!
       LOG.info("fetcher#" + id + " about to shuffle output of map " + 
                mapOutput.getMapId() + " decomp: " +

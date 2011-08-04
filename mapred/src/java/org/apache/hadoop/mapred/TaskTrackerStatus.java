@@ -75,11 +75,11 @@ public class TaskTrackerStatus implements Writable {
     private long cpuFrequency = UNAVAILABLE; // in kHz
     private float cpuUsage = UNAVAILABLE; // in %
 
-      private long bandwidthCapacity = UNAVAILABLE;
-      private long cumulativeIncomingTraffic = UNAVAILABLE;
-      private long cumulativeOutgoingTraffic = UNAVAILABLE;
+      private long bandwidthCapacity = 1000/8 * 1024 * 1024;
       private long currentBandwidth = UNAVAILABLE;
       private float bandwidthUsage = UNAVAILABLE;
+
+      private long DEFAULT_SCORE = 1;
 
     ResourceStatus() {
       totalVirtualMemory = JobConf.DISABLED_MEMORY_LIMIT;
@@ -323,22 +323,6 @@ public class TaskTrackerStatus implements Writable {
           this.bandwidthCapacity = bandwidthCapacity;
       }
 
-      public long getCumulativeIncomingTraffic() {
-          return cumulativeIncomingTraffic;
-      }
-
-      public void setCumulativeIncomingTraffic(long cumulativeIncomingTraffic) {
-          this.cumulativeIncomingTraffic = cumulativeIncomingTraffic;
-      }
-
-      public long getCumulativeOutgoingTraffic() {
-          return cumulativeOutgoingTraffic;
-      }
-
-      public void setCumulativeOutgoingTraffic(long cumulativeOutgoingTraffic) {
-          this.cumulativeOutgoingTraffic = cumulativeOutgoingTraffic;
-      }
-
       public long getCurrentBandwidth() {
           return currentBandwidth;
       }
@@ -369,8 +353,6 @@ public class TaskTrackerStatus implements Writable {
       out.writeFloat(getCpuUsage());
 
       WritableUtils.writeVLong(out, bandwidthCapacity);
-      WritableUtils.writeVLong(out, cumulativeIncomingTraffic);
-      WritableUtils.writeVLong(out, cumulativeOutgoingTraffic);
       WritableUtils.writeVLong(out, currentBandwidth);
       out.writeFloat(getBandwidthUsage());
     }
@@ -389,11 +371,42 @@ public class TaskTrackerStatus implements Writable {
       setCpuUsage(in.readFloat());
 
         bandwidthCapacity = WritableUtils.readVLong(in);
-        cumulativeIncomingTraffic = WritableUtils.readVLong(in);
-        cumulativeOutgoingTraffic = WritableUtils.readVLong(in);
         currentBandwidth = WritableUtils.readVLong(in);
         setBandwidthUsage(in.readFloat());
     }
+
+      @Override
+      public String toString() {
+          return "ResourceStatus{" +
+                  "availableSpace=" + availableSpace +
+                  ", numProcessors=" + numProcessors +
+                  ", cpuFrequency=" + cpuFrequency +
+                  ", cpuUsage=" + cpuUsage +
+                  ", bandwidthCapacity=" + bandwidthCapacity +
+                  ", currentBandwidth=" + currentBandwidth +
+                  ", bandwidthUsage=" + bandwidthUsage +
+                  '}';
+      }
+
+      public long calculateCPUScore(){
+          long score = (long)(getCpuFrequency() * getNumProcessors() * (1-getCpuUsage()/100));
+          return getSafeScore(score);
+      }
+
+      //TODO
+      public long calculateDiskScore(){
+          long score = 1;
+          return getSafeScore(score);
+      }
+
+      public long calculateNetworkScore(){
+          long score = getBandwidthCapacity() - getCurrentBandwidth();
+          return getSafeScore(score);
+      }
+
+      private long getSafeScore(long score){
+          return score<0?DEFAULT_SCORE:score;
+      }
   }
   
   private ResourceStatus resStatus;

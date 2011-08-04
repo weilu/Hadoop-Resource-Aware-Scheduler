@@ -1410,6 +1410,9 @@ class MapTask extends Task {
 
     private void sortAndSpill() throws IOException, ClassNotFoundException,
                                        InterruptedException {
+      long startTime = System.currentTimeMillis();
+      long spillSize = 0;
+
       //approximate the length of the output file to be the length of the
       //buffer + header lengths for the partitions
       final long size = (bufend >= bufstart
@@ -1476,6 +1479,8 @@ class MapTask extends Task {
             rec.startOffset = segmentStart;
             rec.rawLength = writer.getRawLength();
             rec.partLength = writer.getCompressedLength();
+            spillSize += rec.partLength;
+            LOG.info("spillSize: " + spillSize);
             spillRec.putIndex(rec, i);
 
             writer = null;
@@ -1490,11 +1495,15 @@ class MapTask extends Task {
               mapOutputFile.getSpillIndexFileForWrite(numSpills, partitions
                   * MAP_OUTPUT_INDEX_RECORD_LENGTH);
           spillRec.writeToFile(indexFilename, job);
+          spillSize += partitions*MAP_OUTPUT_INDEX_RECORD_LENGTH;
+          LOG.info("index spillSize: " + spillSize);
         } else {
           indexCacheList.add(spillRec);
           totalIndexCacheMemory +=
             spillRec.size() * MAP_OUTPUT_INDEX_RECORD_LENGTH;
         }
+        long endTime = System.currentTimeMillis();
+        incrementSpillStats(endTime-startTime, spillSize);
         LOG.info("Finished spill " + numSpills);
         ++numSpills;
       } finally {

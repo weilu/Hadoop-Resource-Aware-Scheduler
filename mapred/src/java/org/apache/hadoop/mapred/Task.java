@@ -249,7 +249,7 @@ abstract public class Task implements Writable, Configurable {
 
     //only set these for sample tasks instead of all
     protected synchronized void setReadStartTime(long start){
-        if(taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId()))
+        if(isSample())
             taskStatus.getSampleStatus().setReadInputStartTime(start);
     }
 
@@ -258,7 +258,7 @@ abstract public class Task implements Writable, Configurable {
     }
     
     protected synchronized void setReadDoneTime(long done){
-        if(taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId()))
+        if(isSample())
             taskStatus.getSampleStatus().setReadInputDoneTime(done);
     }
 
@@ -267,7 +267,7 @@ abstract public class Task implements Writable, Configurable {
     }
 
     protected synchronized void setWriteStartTime(long start){
-        if(this.taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId()))
+        if(isSample())
             taskStatus.getSampleStatus().setWriteOutputStartTime(start);
     }
 
@@ -276,12 +276,32 @@ abstract public class Task implements Writable, Configurable {
     }
 
     protected synchronized void setWriteDoneTime(long done){
-        if(taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId()))
+        if(isSample())
             taskStatus.getSampleStatus().setWriteOutputDoneTime(done);
     }
 
     protected synchronized long getWriteDoneTime(){
         return taskStatus.getSampleStatus().getWriteOutputDoneTime();
+    }
+
+    protected synchronized void incrementSpillStats(long timeMilliSec, long size){
+        SampleTaskStatus sampleStatus = taskStatus.getSampleStatus();
+        if(isSample() && getWriteStartTime() == 0){  //only increment if spill happens during map not output 
+            sampleStatus.setAdditionalSpillDurationMilliSec(sampleStatus.getAdditionalSpillDurationMilliSec() + timeMilliSec);
+            sampleStatus.setAdditionalSpillSize(sampleStatus.getAdditionalSpillSize() + size);
+        }
+    }
+
+    protected synchronized long getSpillSize(){
+        return taskStatus.getSampleStatus().getAdditionalSpillSize();
+    }
+
+    protected synchronized long getSpillDuration(){
+        return taskStatus.getSampleStatus().getAdditionalSpillDurationMilliSec();
+    }
+
+    protected boolean isSample(){
+        return taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId());
     }
   
   /**

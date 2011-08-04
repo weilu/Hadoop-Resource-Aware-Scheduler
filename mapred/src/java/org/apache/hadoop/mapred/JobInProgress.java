@@ -1293,8 +1293,11 @@ public class JobInProgress {
       }
 
       addRunningTaskToTIP(maps[target], result.getTaskID(), tts, true);
-      if(maps[target].getIsSample(result.getTaskID()))
-        result.taskStatus.getSampleStatus().setSampleMapTaskId(result.getTaskID());
+      if(maps[target].getIsSample(result.getTaskID())){
+        SampleTaskStatus sampleStatus = result.taskStatus.getSampleStatus();
+        sampleStatus.setSampleMapTaskId(result.getTaskID());
+        sampleStatus.setSampleMapTracker(tts.getTrackerName());
+      }
     }
 
     return result;
@@ -1556,13 +1559,14 @@ public class JobInProgress {
     Task result = reduces[target].getTaskToRun(tts.getTrackerName());
     if (result != null) {
       addRunningTaskToTIP(reduces[target], result.getTaskID(), tts, true);
-      TaskAttemptID sampleMapTaskId = jobtracker.mapLogger.getSampleMapTaskId(jobId);
-      result.taskStatus.getSampleStatus().setSampleMapTaskId(sampleMapTaskId);
+      SampleTaskStatus sampleStatus = result.taskStatus.getSampleStatus();
+      sampleStatus.setSampleMapTaskId(jobtracker.mapLogger.getSampleMapTaskId(jobId));
+      sampleStatus.setSampleMapTracker(jobtracker.mapLogger.getSampleMapTracker(jobId));
     }
 
     return result;
   }
-  
+
   // returns the (cache)level at which the nodes matches
   private int getMatchingLevelForNodes(Node n1, Node n2) {
     int count = 0;
@@ -1680,6 +1684,7 @@ public class JobInProgress {
 
       if (this.status.getSampleState() == JobSampleState.SCHEDULED && tip.getIsSample(id)){
         jobtracker.mapLogger.logDataLocality(tip, dataLocal, tts.getTrackerName());
+        jobtracker.mapLogger.logTrackerStatus(tip, tts);
       }
     }
   }

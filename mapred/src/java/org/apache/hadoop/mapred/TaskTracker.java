@@ -1571,7 +1571,6 @@ public class TaskTracker
       long currentBandwidth = getCurrentBandwidthOnTT();
       float bandwidthUsage = getBandwidthUsageOnTT();
 
-
       status.getResourceStatus().setAvailableSpace(freeDiskSpace);
       status.getResourceStatus().setTotalVirtualMemory(totVmem);
       status.getResourceStatus().setTotalPhysicalMemory(totPmem);
@@ -3368,7 +3367,7 @@ public class TaskTracker
    * Get the name for this task tracker.
    * @return the string like "tracker_mymachine:50010"
    */
-  String getName() {
+  public String getName() {
     return taskTrackerName;
   }
     
