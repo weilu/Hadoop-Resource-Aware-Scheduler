@@ -75,9 +75,8 @@ public class TaskTrackerStatus implements Writable {
     private long cpuFrequency = UNAVAILABLE; // in kHz
     private float cpuUsage = UNAVAILABLE; // in %
 
-      private long bandwidthCapacity = 1000/8 * 1024 * 1024;
-      private long currentBandwidth = UNAVAILABLE;
-      private float bandwidthUsage = UNAVAILABLE;
+      private long networkScore = UNAVAILABLE;
+      private long diskScore = UNAVAILABLE;
 
       private long DEFAULT_SCORE = 1;
 
@@ -315,31 +314,7 @@ public class TaskTrackerStatus implements Writable {
       return cpuUsage;
     }
 
-      public long getBandwidthCapacity() {
-          return bandwidthCapacity;
-      }
-
-      public void setBandwidthCapacity(long bandwidthCapacity) {
-          this.bandwidthCapacity = bandwidthCapacity;
-      }
-
-      public long getCurrentBandwidth() {
-          return currentBandwidth;
-      }
-
-      public void setCurrentBandwidth(long currentBandwidth) {
-          this.currentBandwidth = currentBandwidth;
-      }
-
-      public float getBandwidthUsage() {
-          return bandwidthUsage;
-      }
-
-      public void setBandwidthUsage(float bandwidthUsage) {
-          this.bandwidthUsage = bandwidthUsage;
-      }
-
-    public void write(DataOutput out) throws IOException {
+      public void write(DataOutput out) throws IOException {
       WritableUtils.writeVLong(out, totalVirtualMemory);
       WritableUtils.writeVLong(out, totalPhysicalMemory);
       WritableUtils.writeVLong(out, availableVirtualMemory);
@@ -352,9 +327,8 @@ public class TaskTrackerStatus implements Writable {
       WritableUtils.writeVInt(out, numProcessors);
       out.writeFloat(getCpuUsage());
 
-      WritableUtils.writeVLong(out, bandwidthCapacity);
-      WritableUtils.writeVLong(out, currentBandwidth);
-      out.writeFloat(getBandwidthUsage());
+      WritableUtils.writeVLong(out, networkScore);
+      WritableUtils.writeVLong(out, diskScore);
     }
     
     public void readFields(DataInput in) throws IOException {
@@ -370,9 +344,8 @@ public class TaskTrackerStatus implements Writable {
       numProcessors = WritableUtils.readVInt(in);
       setCpuUsage(in.readFloat());
 
-        bandwidthCapacity = WritableUtils.readVLong(in);
-        currentBandwidth = WritableUtils.readVLong(in);
-        setBandwidthUsage(in.readFloat());
+        networkScore = WritableUtils.readVLong(in);
+        diskScore = WritableUtils.readVLong(in);
     }
 
       @Override
@@ -382,9 +355,8 @@ public class TaskTrackerStatus implements Writable {
                   ", numProcessors=" + numProcessors +
                   ", cpuFrequency=" + cpuFrequency +
                   ", cpuUsage=" + cpuUsage +
-                  ", bandwidthCapacity=" + bandwidthCapacity +
-                  ", currentBandwidth=" + currentBandwidth +
-                  ", bandwidthUsage=" + bandwidthUsage +
+                  ", networkScore=" + networkScore +
+                  ", diskScore=" + diskScore +
                   '}';
       }
 
@@ -393,15 +365,20 @@ public class TaskTrackerStatus implements Writable {
           return getSafeScore(score);
       }
 
-      //TODO
-      public long calculateDiskScore(){
-          long score = 1;
-          return getSafeScore(score);
+      public long getDiskScore(){
+          return diskScore;
       }
 
-      public long calculateNetworkScore(){
-          long score = getBandwidthCapacity() - getCurrentBandwidth();
-          return getSafeScore(score);
+      public long getNetworkScore(){
+          return networkScore;
+      }
+
+      public void setNetworkScore(long networkScore) {
+          this.networkScore = networkScore;
+      }
+
+      public void setDiskScore(long diskScore) {
+          this.diskScore = diskScore;
       }
 
       private long getSafeScore(long score){

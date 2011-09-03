@@ -2718,8 +2718,9 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
     }
 
     LOG.info(trackerStatus.getTrackerName()
-            + " current bandwidth: " + trackerStatus.getResourceStatus().getCurrentBandwidth()
-            + " ;bandwidth usage: " + trackerStatus.getResourceStatus().getBandwidthUsage());
+            + " cpuScore: " + trackerStatus.getResourceStatus().calculateCPUScore()
+            + " networkScore: " + trackerStatus.getResourceStatus().getNetworkScore()
+            + " ;diskScore: " + trackerStatus.getResourceStatus().getDiskScore());
                                                                                                 
     updateTaskStatuses(trackerStatus);
     updateNodeHealthStatus(trackerStatus);

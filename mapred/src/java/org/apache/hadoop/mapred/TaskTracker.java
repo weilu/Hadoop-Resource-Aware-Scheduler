@@ -1568,8 +1568,8 @@ public class TaskTracker
       long cpuFreq = getCpuFrequencyOnTT();
       int numCpu = getNumProcessorsOnTT();
       float cpuUsage = getCpuUsageOnTT();
-      long currentBandwidth = getCurrentBandwidthOnTT();
-      float bandwidthUsage = getBandwidthUsageOnTT();
+      long networkScore = getNetworkScoreOnTT();
+      long diskScore = getDiskScoreOnTT();
 
       status.getResourceStatus().setAvailableSpace(freeDiskSpace);
       status.getResourceStatus().setTotalVirtualMemory(totVmem);
@@ -1585,8 +1585,8 @@ public class TaskTracker
       status.getResourceStatus().setNumProcessors(numCpu);
       status.getResourceStatus().setCpuUsage(cpuUsage);
 
-      status.getResourceStatus().setCurrentBandwidth(currentBandwidth);
-      status.getResourceStatus().setBandwidthUsage(bandwidthUsage);
+      status.getResourceStatus().setNetworkScore(networkScore);
+      status.getResourceStatus().setDiskScore(diskScore);
     }
     //add node health information
     
@@ -1737,20 +1737,20 @@ public class TaskTracker
     return cpuUsage;
   }
 
-  long getCurrentBandwidthOnTT() {
-    long currentBandwidth = TaskTrackerStatus.UNAVAILABLE;
+  long getNetworkScoreOnTT() {
+    long networkScore = 1;
     if (resourceCalculatorPlugin != null) {
-      currentBandwidth = resourceCalculatorPlugin.getCurrentBandwidth();
+      networkScore = resourceCalculatorPlugin.getNetworkScore();
     }
-    return currentBandwidth;
+    return networkScore;
   }
 
-  float getBandwidthUsageOnTT() {
-    float bandwidthUsage = TaskTrackerStatus.UNAVAILABLE;
+  long getDiskScoreOnTT() {
+    long diskScore = 1;
     if (resourceCalculatorPlugin != null) {
-      bandwidthUsage = resourceCalculatorPlugin.getBandwidthUsage();
+      diskScore = resourceCalculatorPlugin.getDiskScore();
     }
-    return bandwidthUsage;
+    return diskScore;
   }
   
   long getTotalMemoryAllottedForTasksOnTT() {

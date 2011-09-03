@@ -65,8 +65,8 @@ public class MapSampleReportLogger {
         LOG.info(resourceStatus.toString());
 
         report.setTrackerCPUScore(resourceStatus.calculateCPUScore());
-        report.setTrackerDiskIOScore(resourceStatus.calculateDiskScore());
-        report.setTrackerNetworkIOScore(resourceStatus.calculateNetworkScore());
+        report.setTrackerDiskIOScore(resourceStatus.getDiskScore());
+        report.setTrackerNetworkIOScore(resourceStatus.getNetworkScore());
     }
 
     public void logDataLocality(TaskInProgress tip, boolean dataLocal, String taskTracker){

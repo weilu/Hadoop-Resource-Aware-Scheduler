@@ -5,8 +5,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.classification.InterfaceAudience;
 import org.apache.hadoop.classification.InterfaceStability;
 
-import java.util.HashMap;
-
 @InterfaceAudience.Private
 @InterfaceStability.Unstable
 public class MapTaskFinishTimeEstimator {
@@ -40,8 +38,8 @@ public class MapTaskFinishTimeEstimator {
     //tracker info
     public void setCurrentTrackerResourceScores(TaskTrackerStatus.ResourceStatus resourceStatus) {
         currentTrackerCpuScore = resourceStatus.calculateCPUScore();
-        currentTrackerDiskScore = resourceStatus.calculateDiskScore();
-        currentTrackerNetworkScore = resourceStatus.calculateNetworkScore();
+        currentTrackerDiskScore = resourceStatus.getDiskScore();
+        currentTrackerNetworkScore = resourceStatus.getNetworkScore();
     }
 
     //tracker dependent task info
@@ -65,7 +63,7 @@ public class MapTaskFinishTimeEstimator {
     private void estimateDiskWriteSize(){
         long sampleReadBytes = sampleReport.getDiskReadBytes() + sampleReport.getNetworkReadBytes();
         long currentReadBytes = currentDiskReadSize + currentNetworkReadSize;
-        currentDiskWriteSize = sampleReport.getDiskWriteBytes() * (currentReadBytes/sampleReadBytes);
+        currentDiskWriteSize = (long)(sampleReport.getDiskWriteBytes() * (1.0 * currentReadBytes/sampleReadBytes));
     }
 
     private void estimateDiskTime(){
@@ -73,8 +71,9 @@ public class MapTaskFinishTimeEstimator {
                 + sampleReport.getAdditionalSpillDurationMilliSec();
         long sampleIOSize = sampleReport.getDiskReadBytes() + sampleReport.getDiskWriteBytes();
         long currentIOSize = currentDiskReadSize + currentDiskWriteSize;
-        estimatedDiskTime = sampleIOTime * (currentIOSize/sampleIOSize)
-                * (sampleReport.getTrackerDiskIOScore()/currentTrackerDiskScore);
+        estimatedDiskTime = (long) (sampleIOTime * (1.0 * currentIOSize/sampleIOSize)
+                * (1.0 * sampleReport.getTrackerDiskIOScore()/currentTrackerDiskScore));
+        LOG.info(sampleReport.getSampleMapTaskId() + "[Disk] sample: " + sampleIOTime + "; estimated: " + estimatedDiskTime);
     }
 
     //network IO estimation
@@ -89,7 +88,9 @@ public class MapTaskFinishTimeEstimator {
         long sampleIOTime = sampleReport.getNetworkReadDurationMilliSec() + sampleReport.getNetworkWriteDurationMilliSec();
         long sampleIOSize = sampleReport.getNetworkReadBytes() + sampleReport.getNetworkWriteBytes();
         long currentIOSize = currentNetworkReadSize + currentNetworkWriteSize;
-        estimatedNetworkTime = sampleIOTime * (currentIOSize/sampleIOSize) * (sampleReport.getTrackerNetworkIOScore()/currentTrackerNetworkScore);
+        estimatedNetworkTime = (long) (sampleIOTime * (1.0 * currentIOSize/sampleIOSize)
+                * (1.0 * sampleReport.getTrackerNetworkIOScore()/currentTrackerNetworkScore));
+        LOG.info(sampleReport.getSampleMapTaskId() + "[Network] sample: " + sampleIOTime + "; estimated: " + estimatedNetworkTime);
     }
 
     //cpu estimation
@@ -97,7 +98,8 @@ public class MapTaskFinishTimeEstimator {
         long sampleCPUTime = sampleReport.getMapDurationMilliSec()
                 - sampleReport.getDiskReadDurationMilliSec() - sampleReport.getDiskWriteDurationMilliSec()
                 - sampleReport.getNetworkReadDurationMilliSec() - sampleReport.getNetworkWriteDurationMilliSec();
-        estimatedCpuTime = (sampleCPUTime<0?0:sampleCPUTime) * (sampleReport.getTrackerCPUScore()/currentTrackerCpuScore);
+        estimatedCpuTime = (long)((sampleCPUTime<0?0:sampleCPUTime) * (1.0 * sampleReport.getTrackerCPUScore()/currentTrackerCpuScore));
+        LOG.info(sampleReport.getSampleMapTaskId() + "[CPU] sample: " + sampleCPUTime + "; estimated: " + estimatedCpuTime);
     }
 
     private void sumEstimatedTime(){
@@ -105,10 +107,7 @@ public class MapTaskFinishTimeEstimator {
     }
 
     public void estimate(){
-        if(localReducePercent==UNAVAILABLE || currentDiskReadSize==UNAVAILABLE || currentNetworkReadSize==UNAVAILABLE)
-            return;
-
-        if(currentTrackerCpuScore==UNAVAILABLE || currentTrackerDiskScore==UNAVAILABLE || currentTrackerNetworkScore==UNAVAILABLE)
+        if (!ready() || !sampleReport.ready())
             return;
 
         estimateCPUTime();
@@ -117,5 +116,27 @@ public class MapTaskFinishTimeEstimator {
         estimateNetworkWriteSize();
         estimateNetworkTime();
         sumEstimatedTime();
+        LOG.info(this.toString());
+    }
+
+    private boolean ready(){
+        boolean notReady = (localReducePercent==UNAVAILABLE || currentDiskReadSize==UNAVAILABLE || currentNetworkReadSize==UNAVAILABLE
+                || currentTrackerCpuScore==UNAVAILABLE || currentTrackerDiskScore==UNAVAILABLE || currentTrackerNetworkScore==UNAVAILABLE);
+        return !notReady;
+    }
+
+    @Override
+    public String toString() {
+        return "MapTaskFinishTimeEstimator{" +
+                ", currentTrackerCpuScore=" + currentTrackerCpuScore +
+                ", currentTrackerDiskScore=" + currentTrackerDiskScore +
+                ", currentTrackerNetworkScore=" + currentTrackerNetworkScore +
+                ", currentDiskReadSize=" + currentDiskReadSize +
+                ", currentDiskWriteSize=" + currentDiskWriteSize +
+                ", currentNetworkReadSize=" + currentNetworkReadSize +
+                ", currentNetworkWriteSize=" + currentNetworkWriteSize +
+                ", readLocal=" + readLocal +
+                ", localReducePercent=" + localReducePercent +
+                '}';
     }
 }

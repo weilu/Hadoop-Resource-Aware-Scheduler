@@ -194,6 +194,13 @@ public class MapSampleReport{
 
     }
 
+    public boolean ready(){
+        boolean notReady = (mapDurationMilliSec == UNAVAILABLE
+                || diskReadDurationMilliSec == UNAVAILABLE || diskWriteDurationMilliSec == UNAVAILABLE
+                || networkReadDurationMilliSec == UNAVAILABLE || networkWriteDurationMilliSec == UNAVAILABLE);
+        return !notReady;
+    }
+
     @Override
     public String toString() {
         return "MapSampleReport{" +

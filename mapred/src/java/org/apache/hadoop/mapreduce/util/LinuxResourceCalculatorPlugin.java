@@ -18,10 +18,8 @@
 
 package org.apache.hadoop.mapreduce.util;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,40 +35,42 @@ import org.apache.hadoop.mapred.TaskTrackerStatus;
 @InterfaceAudience.Private
 @InterfaceStability.Unstable
 public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
-  private static final Log LOG =
-      LogFactory.getLog(LinuxResourceCalculatorPlugin.class);
+    private static final Log LOG =
+            LogFactory.getLog(LinuxResourceCalculatorPlugin.class);
+    private long DEFAULT_SCORE = 1;
+    final long MINIMUM_UPDATE_INTERVAL;
 
-  /**
-   * proc's meminfo virtual file has keys-values in the format
-   * "key:[ \t]*value[ \t]kB".
-   */
-  private static final String PROCFS_MEMFILE = "/proc/meminfo";
-  private static final Pattern PROCFS_MEMFILE_FORMAT =
-      Pattern.compile("^([a-zA-Z]*):[ \t]*([0-9]*)[ \t]kB");
+    /**
+     * proc's meminfo virtual file has keys-values in the format
+     * "key:[ \t]*value[ \t]kB".
+     */
+    private static final String PROCFS_MEMFILE = "/proc/meminfo";
+    private static final Pattern PROCFS_MEMFILE_FORMAT =
+            Pattern.compile("^([a-zA-Z]*):[ \t]*([0-9]*)[ \t]kB");
 
-  // We need the values for the following keys in meminfo
-  private static final String MEMTOTAL_STRING = "MemTotal";
-  private static final String SWAPTOTAL_STRING = "SwapTotal";
-  private static final String MEMFREE_STRING = "MemFree";
-  private static final String SWAPFREE_STRING = "SwapFree";
-  private static final String INACTIVE_STRING = "Inactive";
+    // We need the values for the following keys in meminfo
+    private static final String MEMTOTAL_STRING = "MemTotal";
+    private static final String SWAPTOTAL_STRING = "SwapTotal";
+    private static final String MEMFREE_STRING = "MemFree";
+    private static final String SWAPFREE_STRING = "SwapFree";
+    private static final String INACTIVE_STRING = "Inactive";
 
-  /**
-   * Patterns for parsing /proc/cpuinfo
-   */
-  private static final String PROCFS_CPUINFO = "/proc/cpuinfo";
-  private static final Pattern PROCESSOR_FORMAT =
-      Pattern.compile("^processor[ \t]:[ \t]*([0-9]*)");
-  private static final Pattern FREQUENCY_FORMAT =
-      Pattern.compile("^cpu MHz[ \t]*:[ \t]*([0-9.]*)");
+    /**
+     * Patterns for parsing /proc/cpuinfo
+     */
+    private static final String PROCFS_CPUINFO = "/proc/cpuinfo";
+    private static final Pattern PROCESSOR_FORMAT =
+            Pattern.compile("^processor[ \t]:[ \t]*([0-9]*)");
+    private static final Pattern FREQUENCY_FORMAT =
+            Pattern.compile("^cpu MHz[ \t]*:[ \t]*([0-9.]*)");
 
-  /**
-   * Pattern for parsing /proc/stat
-   */
-  private static final String PROCFS_STAT = "/proc/stat";
-  private static final Pattern CPU_TIME_FORMAT =
-    Pattern.compile("^cpu[ \t]*([0-9]*)" +
-    		            "[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t].*");
+    /**
+     * Pattern for parsing /proc/stat
+     */
+    private static final String PROCFS_STAT = "/proc/stat";
+    private static final Pattern CPU_TIME_FORMAT =
+            Pattern.compile("^cpu[ \t]*([0-9]*)" +
+                    "[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t].*");
 
     /**
      * Pattern for parsing /proc/net/dev
@@ -80,22 +80,23 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
             Pattern.compile("^  eth0:[ \t]*([0-9]*)" +
                     "[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)[ \t]*([0-9]*)" +
                     "[ \t]*([0-9]*)");
-  
-  private String procfsMemFile;
-  private String procfsCpuFile;
-  private String procfsStatFile;
-    private String procfsNetDevFile;
-  long jiffyLengthInMillis;
 
-  private long ramSize = 0;
-  private long swapSize = 0;
-  private long ramSizeFree = 0;  // free ram space on the machine (kB)
-  private long swapSizeFree = 0; // free swap space on the machine (kB)
-  private long inactiveSize = 0; // inactive cache memory (kB)
-  private int numProcessors = 0; // number of processors on the system
-  private long cpuFrequency = 0L; // CPU frequency on the system (kHz)
-  private long cumulativeCpuTime = 0L; // CPU used time since system is on (ms)
-  private long lastCumulativeCpuTime = 0L; // CPU used time read last time (ms)
+    private String procfsMemFile;
+    private String procfsCpuFile;
+    private String procfsStatFile;
+    private String procfsNetDevFile;
+    long jiffyLengthInMillis;
+
+    private long ramSize = 0;
+    private long swapSize = 0;
+    private long ramSizeFree = 0;  // free ram space on the machine (kB)
+    private long swapSizeFree = 0; // free swap space on the machine (kB)
+    private long inactiveSize = 0; // inactive cache memory (kB)
+    private int numProcessors = 0; // number of processors on the system
+    private long cpuFrequency = 0L; // CPU frequency on the system (kHz)
+    private long cumulativeCpuTime = 0L; // CPU used time since system is on (ms)
+    private long lastCumulativeCpuTime = 0L; // CPU used time read last time (ms)
+    //TODO: make it read from file
     private long totalBandwidth = 1000/8 * 1024 * 1024; //in byte per second
     private long cumulativeIncomingTraffic = 0;
     private long cumulativeOutgoingTraffic = 0;
@@ -103,338 +104,385 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     private long lastCumulativeOutgoingTraffic = 0;
     private long currentBandwidth = 0;
 
-  // Unix timestamp while reading the CPU time (ms)
-  private float cpuUsage = TaskTrackerStatus.UNAVAILABLE;
-  private long sampleTime = TaskTrackerStatus.UNAVAILABLE;
-  private long lastSampleTime = TaskTrackerStatus.UNAVAILABLE;
+    //TODO: make it read from file
+    private long diskReadCapacity = 400 * 1024; //in Byte/s
+    private long diskWriteCapacity = 400 * 1024; //in Byte/s
+    private long currentDiskReadRate = 0;
+    private long currentDiskWriteRate = 0;
+
+    // Unix timestamp while reading the CPU time (ms)
+    private float cpuUsage = TaskTrackerStatus.UNAVAILABLE;
+    private long sampleTime = TaskTrackerStatus.UNAVAILABLE;
+    private long lastSampleTime = TaskTrackerStatus.UNAVAILABLE;
 
     private float bandwidthUsage = TaskTrackerStatus.UNAVAILABLE;
     private long networkSampleTime = TaskTrackerStatus.UNAVAILABLE;
     private long networkLastSampleTime = TaskTrackerStatus.UNAVAILABLE;
 
-  boolean readMemInfoFile = false;
-  boolean readCpuInfoFile = false;
-  
-  /**
-   * Get current time
-   * @return Unix time stamp in millisecond
-   */
-  long getCurrentTime() {
-    return System.currentTimeMillis();
-  }
-  
-  public LinuxResourceCalculatorPlugin() {
-    procfsMemFile = PROCFS_MEMFILE;
-    procfsCpuFile = PROCFS_CPUINFO;
-    procfsStatFile = PROCFS_STAT;
-      procfsNetDevFile = PROCFS_NET_DEV;
-    jiffyLengthInMillis = ProcfsBasedProcessTree.JIFFY_LENGTH_IN_MILLIS;
-    
-  }
-  
-  /**
-   * Constructor which allows assigning the /proc/ directories. This will be
-   * used only in unit tests
-   * @param procfsMemFile fake file for /proc/meminfo
-   * @param procfsCpuFile fake file for /proc/cpuinfo
-   * @param procfsStatFile fake file for /proc/stat
-   * @param procfsNetDevFile
-   * @param jiffyLengthInMillis fake jiffy length value
-   */
-  public LinuxResourceCalculatorPlugin(String procfsMemFile,
-                                       String procfsCpuFile,
-                                       String procfsStatFile,
-                                       String procfsNetDevFile,
-                                       long jiffyLengthInMillis) {
-    this.procfsMemFile = procfsMemFile;
-    this.procfsCpuFile = procfsCpuFile;
-    this.procfsStatFile = procfsStatFile;
-    this.procfsNetDevFile = procfsNetDevFile;
-    this.jiffyLengthInMillis = jiffyLengthInMillis;
-  }
+    private long diskSampleTime = TaskTrackerStatus.UNAVAILABLE;
+    private long diskLastSampleTime = TaskTrackerStatus.UNAVAILABLE;
 
-  /**
-   * Read /proc/meminfo, parse and compute memory information only once
-   */
-  private void readProcMemInfoFile() {
-    readProcMemInfoFile(false);
-  }
+    boolean readMemInfoFile = false;
+    boolean readCpuInfoFile = false;
 
-  /**
-   * Read /proc/meminfo, parse and compute memory information
-   * @param readAgain if false, read only on the first time
-   */
-  private void readProcMemInfoFile(boolean readAgain) {
-
-    if (readMemInfoFile && !readAgain) {
-      return;
+    /**
+     * Get current time
+     * @return Unix time stamp in millisecond
+     */
+    long getCurrentTime() {
+        return System.currentTimeMillis();
     }
 
-    // Read "/proc/memInfo" file
-    BufferedReader in = null;
-    FileReader fReader = null;
-    try {
-      fReader = new FileReader(procfsMemFile);
-      in = new BufferedReader(fReader);
-    } catch (FileNotFoundException f) {
-      // shouldn't happen....
-      return;
+    public LinuxResourceCalculatorPlugin() {
+        procfsMemFile = PROCFS_MEMFILE;
+        procfsCpuFile = PROCFS_CPUINFO;
+        procfsStatFile = PROCFS_STAT;
+        procfsNetDevFile = PROCFS_NET_DEV;
+        jiffyLengthInMillis = ProcfsBasedProcessTree.JIFFY_LENGTH_IN_MILLIS;
+        MINIMUM_UPDATE_INTERVAL = 10 * jiffyLengthInMillis;
     }
 
-    Matcher mat = null;
+    /**
+     * Constructor which allows assigning the /proc/ directories. This will be
+     * used only in unit tests
+     * @param procfsMemFile fake file for /proc/meminfo
+     * @param procfsCpuFile fake file for /proc/cpuinfo
+     * @param procfsStatFile fake file for /proc/stat
+     * @param procfsNetDevFile
+     * @param jiffyLengthInMillis fake jiffy length value
+     */
+    public LinuxResourceCalculatorPlugin(String procfsMemFile,
+                                         String procfsCpuFile,
+                                         String procfsStatFile,
+                                         String procfsNetDevFile,
+                                         long jiffyLengthInMillis) {
+        this.procfsMemFile = procfsMemFile;
+        this.procfsCpuFile = procfsCpuFile;
+        this.procfsStatFile = procfsStatFile;
+        this.procfsNetDevFile = procfsNetDevFile;
+        this.jiffyLengthInMillis = jiffyLengthInMillis;
+        this.MINIMUM_UPDATE_INTERVAL = 10 * jiffyLengthInMillis;
+    }
 
-    try {
-      String str = in.readLine();
-      while (str != null) {
-        mat = PROCFS_MEMFILE_FORMAT.matcher(str);
-        if (mat.find()) {
-          if (mat.group(1).equals(MEMTOTAL_STRING)) {
-            ramSize = Long.parseLong(mat.group(2));
-          } else if (mat.group(1).equals(SWAPTOTAL_STRING)) {
-            swapSize = Long.parseLong(mat.group(2));
-          } else if (mat.group(1).equals(MEMFREE_STRING)) {
-            ramSizeFree = Long.parseLong(mat.group(2));
-          } else if (mat.group(1).equals(SWAPFREE_STRING)) {
-            swapSizeFree = Long.parseLong(mat.group(2));
-          } else if (mat.group(1).equals(INACTIVE_STRING)) {
-            inactiveSize = Long.parseLong(mat.group(2));
-          }
+    /**
+     * Read /proc/meminfo, parse and compute memory information only once
+     */
+    private void readProcMemInfoFile() {
+        readProcMemInfoFile(false);
+    }
+
+    /**
+     * Read /proc/meminfo, parse and compute memory information
+     * @param readAgain if false, read only on the first time
+     */
+    private void readProcMemInfoFile(boolean readAgain) {
+
+        if (readMemInfoFile && !readAgain) {
+            return;
         }
-        str = in.readLine();
-      }
-    } catch (IOException io) {
-      LOG.warn("Error reading the stream " + io);
-    } finally {
-      // Close the streams
-      try {
-        fReader.close();
+
+        // Read "/proc/memInfo" file
+        BufferedReader in = null;
+        FileReader fReader = null;
         try {
-          in.close();
-        } catch (IOException i) {
-          LOG.warn("Error closing the stream " + in);
+            fReader = new FileReader(procfsMemFile);
+            in = new BufferedReader(fReader);
+        } catch (FileNotFoundException f) {
+            // shouldn't happen....
+            return;
         }
-      } catch (IOException i) {
-        LOG.warn("Error closing the stream " + fReader);
-      }
-    }
 
-    readMemInfoFile = true;
-  }
+        Matcher mat = null;
 
-  /**
-   * Read /proc/cpuinfo, parse and calculate CPU information
-   */
-  private void readProcCpuInfoFile() {
-    // This directory needs to be read only once
-    if (readCpuInfoFile) {
-      return;
-    }
-    // Read "/proc/cpuinfo" file
-    BufferedReader in = null;
-    FileReader fReader = null;
-    try {
-      fReader = new FileReader(procfsCpuFile);
-      in = new BufferedReader(fReader);
-    } catch (FileNotFoundException f) {
-      // shouldn't happen....
-      return;
-    }
-    Matcher mat = null;
-    try {
-      numProcessors = 0;
-      String str = in.readLine();
-      while (str != null) {
-        mat = PROCESSOR_FORMAT.matcher(str);
-        if (mat.find()) {
-          numProcessors++;
-        }
-        mat = FREQUENCY_FORMAT.matcher(str);
-        if (mat.find()) {
-          cpuFrequency = (long)(Double.parseDouble(mat.group(1)) * 1000); // kHz
-        }
-        str = in.readLine();
-      }
-    } catch (IOException io) {
-      LOG.warn("Error reading the stream " + io);
-    } finally {
-      // Close the streams
-      try {
-        fReader.close();
         try {
-          in.close();
-        } catch (IOException i) {
-          LOG.warn("Error closing the stream " + in);
+            String str = in.readLine();
+            while (str != null) {
+                mat = PROCFS_MEMFILE_FORMAT.matcher(str);
+                if (mat.find()) {
+                    if (mat.group(1).equals(MEMTOTAL_STRING)) {
+                        ramSize = Long.parseLong(mat.group(2));
+                    } else if (mat.group(1).equals(SWAPTOTAL_STRING)) {
+                        swapSize = Long.parseLong(mat.group(2));
+                    } else if (mat.group(1).equals(MEMFREE_STRING)) {
+                        ramSizeFree = Long.parseLong(mat.group(2));
+                    } else if (mat.group(1).equals(SWAPFREE_STRING)) {
+                        swapSizeFree = Long.parseLong(mat.group(2));
+                    } else if (mat.group(1).equals(INACTIVE_STRING)) {
+                        inactiveSize = Long.parseLong(mat.group(2));
+                    }
+                }
+                str = in.readLine();
+            }
+        } catch (IOException io) {
+            LOG.warn("Error reading the stream " + io);
+        } finally {
+            // Close the streams
+            try {
+                fReader.close();
+                try {
+                    in.close();
+                } catch (IOException i) {
+                    LOG.warn("Error closing the stream " + in);
+                }
+            } catch (IOException i) {
+                LOG.warn("Error closing the stream " + fReader);
+            }
         }
-      } catch (IOException i) {
-        LOG.warn("Error closing the stream " + fReader);
-      }
-    }
-    readCpuInfoFile = true;
-  }
 
-  /**
-   * Read /proc/stat file, parse and calculate cumulative CPU
-   */
-  private void readProcStatFile() {
-    // Read "/proc/stat" file
-    BufferedReader in = null;
-    FileReader fReader = null;
-    try {
-      fReader = new FileReader(procfsStatFile);
-      in = new BufferedReader(fReader);
-    } catch (FileNotFoundException f) {
-      // shouldn't happen....
-      return;
+        readMemInfoFile = true;
     }
 
-    Matcher mat = null;
-    try {
-      String str = in.readLine();
-      while (str != null) {
-        mat = CPU_TIME_FORMAT.matcher(str);
-        if (mat.find()) {
-          long uTime = Long.parseLong(mat.group(1));
-          long nTime = Long.parseLong(mat.group(2));
-          long sTime = Long.parseLong(mat.group(3));
-          cumulativeCpuTime = uTime + nTime + sTime; // milliseconds
-          break;
+    /**
+     * Read /proc/cpuinfo, parse and calculate CPU information
+     */
+    private void readProcCpuInfoFile() {
+        // This directory needs to be read only once
+        if (readCpuInfoFile) {
+            return;
         }
-        str = in.readLine();
-      }
-      cumulativeCpuTime *= jiffyLengthInMillis;
-    } catch (IOException io) {
-      LOG.warn("Error reading the stream " + io);
-    } finally {
-      // Close the streams
-      try {
-        fReader.close();
+        // Read "/proc/cpuinfo" file
+        BufferedReader in = null;
+        FileReader fReader = null;
         try {
-          in.close();
-        } catch (IOException i) {
-          LOG.warn("Error closing the stream " + in);
+            fReader = new FileReader(procfsCpuFile);
+            in = new BufferedReader(fReader);
+        } catch (FileNotFoundException f) {
+            // shouldn't happen....
+            return;
         }
-      } catch (IOException i) {
-        LOG.warn("Error closing the stream " + fReader);
-      }
-    }
-  }
-
-  /**
-   * Read /proc/net/dev file, parse and calculate network IO info
-   */
-  private void readProcNetDevFile() {
-    BufferedReader in = null;
-    FileReader fReader = null;
-    try {
-      fReader = new FileReader(procfsNetDevFile);
-      in = new BufferedReader(fReader);
-    } catch (FileNotFoundException f) {
-      // shouldn't happen....
-      return;
-    }
-
-    Matcher mat = null;
-    try {
-      String str = in.readLine();
-      while (str != null) {
-        mat = ETH0_IO_FORMAT.matcher(str);
-        if (mat.find()) {
-          cumulativeIncomingTraffic = Long.parseLong(mat.group(1));
-          cumulativeOutgoingTraffic = Long.parseLong(mat.group(9));
-          break;
-        }
-        str = in.readLine();
-      }
-    } catch (IOException io) {
-      LOG.warn("Error reading the stream " + io);
-    } finally {
-      // Close the streams
-      try {
-        fReader.close();
+        Matcher mat = null;
         try {
-          in.close();
-        } catch (IOException i) {
-          LOG.warn("Error closing the stream " + in);
+            numProcessors = 0;
+            String str = in.readLine();
+            while (str != null) {
+                mat = PROCESSOR_FORMAT.matcher(str);
+                if (mat.find()) {
+                    numProcessors++;
+                }
+                mat = FREQUENCY_FORMAT.matcher(str);
+                if (mat.find()) {
+                    cpuFrequency = (long)(Double.parseDouble(mat.group(1)) * 1000); // kHz
+                }
+                str = in.readLine();
+            }
+        } catch (IOException io) {
+            LOG.warn("Error reading the stream " + io);
+        } finally {
+            // Close the streams
+            try {
+                fReader.close();
+                try {
+                    in.close();
+                } catch (IOException i) {
+                    LOG.warn("Error closing the stream " + in);
+                }
+            } catch (IOException i) {
+                LOG.warn("Error closing the stream " + fReader);
+            }
         }
-      } catch (IOException i) {
-        LOG.warn("Error closing the stream " + fReader);
-      }
+        readCpuInfoFile = true;
     }
-  }
 
-  /** {@inheritDoc} */
-  @Override
-  public long getPhysicalMemorySize() {
-    readProcMemInfoFile();
-    return ramSize * 1024;
-  }
+    /**
+     * Read /proc/stat file, parse and calculate cumulative CPU
+     */
+    private void readProcStatFile() {
+        // Read "/proc/stat" file
+        BufferedReader in = null;
+        FileReader fReader = null;
+        try {
+            fReader = new FileReader(procfsStatFile);
+            in = new BufferedReader(fReader);
+        } catch (FileNotFoundException f) {
+            // shouldn't happen....
+            return;
+        }
 
-  /** {@inheritDoc} */
-  @Override
-  public long getVirtualMemorySize() {
-    readProcMemInfoFile();
-    return (ramSize + swapSize) * 1024;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public long getAvailablePhysicalMemorySize() {
-    readProcMemInfoFile(true);
-    return (ramSizeFree + inactiveSize) * 1024;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public long getAvailableVirtualMemorySize() {
-    readProcMemInfoFile(true);
-    return (ramSizeFree + swapSizeFree + inactiveSize) * 1024;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public int getNumProcessors() {
-    readProcCpuInfoFile();
-    return numProcessors;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public long getCpuFrequency() {
-    readProcCpuInfoFile();
-    return cpuFrequency;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public long getCumulativeCpuTime() {
-    readProcStatFile();
-    return cumulativeCpuTime;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public float getCpuUsage() {
-    readProcStatFile();
-    sampleTime = getCurrentTime();
-    if (lastSampleTime == TaskTrackerStatus.UNAVAILABLE ||
-        lastSampleTime > sampleTime) {
-      // lastSampleTime > sampleTime may happen when the system time is changed
-      lastSampleTime = sampleTime;
-      lastCumulativeCpuTime = cumulativeCpuTime;
-      return cpuUsage;
+        Matcher mat = null;
+        try {
+            String str = in.readLine();
+            while (str != null) {
+                mat = CPU_TIME_FORMAT.matcher(str);
+                if (mat.find()) {
+                    long uTime = Long.parseLong(mat.group(1));
+                    long nTime = Long.parseLong(mat.group(2));
+                    long sTime = Long.parseLong(mat.group(3));
+                    cumulativeCpuTime = uTime + nTime + sTime; // milliseconds
+                    break;
+                }
+                str = in.readLine();
+            }
+            cumulativeCpuTime *= jiffyLengthInMillis;
+        } catch (IOException io) {
+            LOG.warn("Error reading the stream " + io);
+        } finally {
+            // Close the streams
+            try {
+                fReader.close();
+                try {
+                    in.close();
+                } catch (IOException i) {
+                    LOG.warn("Error closing the stream " + in);
+                }
+            } catch (IOException i) {
+                LOG.warn("Error closing the stream " + fReader);
+            }
+        }
     }
-    // When lastSampleTime is sufficiently old, update cpuUsage.
-    // Also take a sample of the current time and cumulative CPU time for the
-    // use of the next calculation.
-    final long MINIMUM_UPDATE_INTERVAL = 10 * jiffyLengthInMillis;
-    if (sampleTime > lastSampleTime + MINIMUM_UPDATE_INTERVAL) {
-	    cpuUsage = (float)(cumulativeCpuTime - lastCumulativeCpuTime) * 100F /
-	               ((float)(sampleTime - lastSampleTime) * getNumProcessors());
-	    lastSampleTime = sampleTime;
-      lastCumulativeCpuTime = cumulativeCpuTime;
+
+    /**
+     * Read /proc/net/dev file, parse and calculate network IO info
+     */
+    private void readProcNetDevFile() {
+        BufferedReader in = null;
+        FileReader fReader = null;
+        try {
+            fReader = new FileReader(procfsNetDevFile);
+            in = new BufferedReader(fReader);
+        } catch (FileNotFoundException f) {
+            // shouldn't happen....
+            return;
+        }
+
+        Matcher mat = null;
+        try {
+            String str = in.readLine();
+            while (str != null) {
+                mat = ETH0_IO_FORMAT.matcher(str);
+                if (mat.find()) {
+                    cumulativeIncomingTraffic = Long.parseLong(mat.group(1));
+                    cumulativeOutgoingTraffic = Long.parseLong(mat.group(9));
+                    break;
+                }
+                str = in.readLine();
+            }
+        } catch (IOException io) {
+            LOG.warn("Error reading the stream " + io);
+        } finally {
+            // Close the streams
+            try {
+                fReader.close();
+                try {
+                    in.close();
+                } catch (IOException i) {
+                    LOG.warn("Error closing the stream " + in);
+                }
+            } catch (IOException i) {
+                LOG.warn("Error closing the stream " + fReader);
+            }
+        }
     }
-    return cpuUsage;
-  }
+
+    private void readDiskStats(){
+        diskSampleTime = getCurrentTime();
+        if (diskLastSampleTime == TaskTrackerStatus.UNAVAILABLE
+                || diskLastSampleTime > diskSampleTime
+                || diskSampleTime > diskLastSampleTime + MINIMUM_UPDATE_INTERVAL) {
+
+            Runtime rt = Runtime.getRuntime();
+            Process p = null;
+            try
+            {
+                p = rt.exec( "iostat -d -k" );
+            }
+            catch ( IOException ioe )
+            {
+                LOG.warn( "Error executing iostat command" );
+            }
+            if(p == null)
+                return;
+            InputStream outputStream = p.getInputStream();
+            Scanner sc = new Scanner(outputStream);
+            Scanner info = null;
+            while(sc.hasNext()){
+                String line = sc.nextLine();
+                        if(line.contains("sda")){
+                                info = new Scanner(line);
+                                break;
+                        }
+                }
+
+            info.next();  //skip sda
+            info.next();  //skip tps
+
+            diskLastSampleTime = diskSampleTime;
+            currentDiskReadRate = (long)(Float.valueOf(info.next()) * 1024);
+            currentDiskWriteRate = (long)(Float.valueOf(info.next()) * 1024);
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public long getPhysicalMemorySize() {
+        readProcMemInfoFile();
+        return ramSize * 1024;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public long getVirtualMemorySize() {
+        readProcMemInfoFile();
+        return (ramSize + swapSize) * 1024;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public long getAvailablePhysicalMemorySize() {
+        readProcMemInfoFile(true);
+        return (ramSizeFree + inactiveSize) * 1024;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public long getAvailableVirtualMemorySize() {
+        readProcMemInfoFile(true);
+        return (ramSizeFree + swapSizeFree + inactiveSize) * 1024;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getNumProcessors() {
+        readProcCpuInfoFile();
+        return numProcessors;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public long getCpuFrequency() {
+        readProcCpuInfoFile();
+        return cpuFrequency;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public long getCumulativeCpuTime() {
+        readProcStatFile();
+        return cumulativeCpuTime;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public float getCpuUsage() {
+        readProcStatFile();
+        sampleTime = getCurrentTime();
+        if (lastSampleTime == TaskTrackerStatus.UNAVAILABLE ||
+                lastSampleTime > sampleTime) {
+            // lastSampleTime > sampleTime may happen when the system time is changed
+            lastSampleTime = sampleTime;
+            lastCumulativeCpuTime = cumulativeCpuTime;
+            return cpuUsage;
+        }
+        // When lastSampleTime is sufficiently old, update cpuUsage.
+        // Also take a sample of the current time and cumulative CPU time for the
+        // use of the next calculation.
+        if (sampleTime > lastSampleTime + MINIMUM_UPDATE_INTERVAL) {
+            cpuUsage = (float)(cumulativeCpuTime - lastCumulativeCpuTime) * 100F /
+                    ((float)(sampleTime - lastSampleTime) * getNumProcessors());
+            lastSampleTime = sampleTime;
+            lastCumulativeCpuTime = cumulativeCpuTime;
+        }
+        return cpuUsage;
+    }
 
     public long getBandwidthCapacity(){
         return totalBandwidth;
@@ -459,12 +507,11 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
             return totalBandwidth;
         }
         // When lastSampleTime is sufficiently old, update
-        final long MINIMUM_UPDATE_INTERVAL = 10 * jiffyLengthInMillis;
         if (networkSampleTime > networkLastSampleTime + MINIMUM_UPDATE_INTERVAL) {
             currentBandwidth =
                     (long)((float)(cumulativeIncomingTraffic + cumulativeOutgoingTraffic
                             - lastCumulativeIncomingTraffic - lastCumulativeOutgoingTraffic)/
-                    ((float)(networkSampleTime - networkLastSampleTime)/1000));
+                            ((float)(networkSampleTime - networkLastSampleTime)/1000));
             networkLastSampleTime = networkSampleTime;
             lastCumulativeIncomingTraffic = cumulativeIncomingTraffic;
             lastCumulativeOutgoingTraffic = cumulativeOutgoingTraffic;
@@ -477,31 +524,83 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
         return 100f*getCurrentBandwidth()/totalBandwidth;
     }
 
-    /**
-   * Test the {@link LinuxResourceCalculatorPlugin}
-   *
-   * @param args
-   */
-  public static void main(String[] args) {
-    LinuxResourceCalculatorPlugin plugin = new LinuxResourceCalculatorPlugin();
-    System.out.println("Physical memory Size (bytes) : "
-        + plugin.getPhysicalMemorySize());
-    System.out.println("Total Virtual memory Size (bytes) : "
-        + plugin.getVirtualMemorySize());
-    System.out.println("Available Physical memory Size (bytes) : "
-        + plugin.getAvailablePhysicalMemorySize());
-    System.out.println("Total Available Virtual memory Size (bytes) : "
-        + plugin.getAvailableVirtualMemorySize());
-    System.out.println("Number of Processors : " + plugin.getNumProcessors());
-    System.out.println("CPU frequency (kHz) : " + plugin.getCpuFrequency());
-    System.out.println("Cumulative CPU time (ms) : " +
-            plugin.getCumulativeCpuTime());
-    try {
-      // Sleep so we can compute the CPU usage
-      Thread.sleep(500L);
-    } catch (InterruptedException e) {
-      // do nothing
+    public long getNetworkScore(){
+        long score = getBandwidthCapacity() - getCurrentBandwidth();
+        return getSafeScore(score);
     }
-    System.out.println("CPU usage % : " + plugin.getCpuUsage());
-  }
+
+    public float getCurrentDiskReadRate() {
+        readDiskStats();
+        return currentDiskReadRate;
+    }
+
+    private long getSafeScore(long score){
+        return score<0?DEFAULT_SCORE:score;
+    }
+
+    public void setCurrentDiskReadRate(long currentDiskReadRate) {
+        this.currentDiskReadRate = currentDiskReadRate;
+    }
+
+    public float getCurrentDiskWriteRate() {
+        readDiskStats();
+        return currentDiskWriteRate;
+    }
+
+    public void setCurrentDiskWriteRate(long currentDiskWriteRate) {
+        this.currentDiskWriteRate = currentDiskWriteRate;
+    }
+
+    public long getDiskReadCapacity() {
+        return diskReadCapacity;
+    }
+
+    public void setDiskReadCapacity(long diskReadCapacity) {
+        this.diskReadCapacity = diskReadCapacity;
+    }
+
+    public long getDiskWriteCapacity() {
+        return diskWriteCapacity;
+    }
+
+    public void setDiskWriteCapacity(long diskWriteCapacity) {
+        this.diskWriteCapacity = diskWriteCapacity;
+    }
+
+    public long getDiskScore(){
+        long score = TaskTrackerStatus.UNAVAILABLE;
+        if(currentDiskReadRate != TaskTrackerStatus.UNAVAILABLE
+                && currentDiskWriteRate != TaskTrackerStatus.UNAVAILABLE )
+            score = (long)(getDiskReadCapacity() - getCurrentDiskReadRate()
+                    + getDiskWriteCapacity() - getCurrentDiskWriteRate());
+        return getSafeScore(score);
+    }
+
+    /**
+     * Test the {@link LinuxResourceCalculatorPlugin}
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        LinuxResourceCalculatorPlugin plugin = new LinuxResourceCalculatorPlugin();
+        System.out.println("Physical memory Size (bytes) : "
+                + plugin.getPhysicalMemorySize());
+        System.out.println("Total Virtual memory Size (bytes) : "
+                + plugin.getVirtualMemorySize());
+        System.out.println("Available Physical memory Size (bytes) : "
+                + plugin.getAvailablePhysicalMemorySize());
+        System.out.println("Total Available Virtual memory Size (bytes) : "
+                + plugin.getAvailableVirtualMemorySize());
+        System.out.println("Number of Processors : " + plugin.getNumProcessors());
+        System.out.println("CPU frequency (kHz) : " + plugin.getCpuFrequency());
+        System.out.println("Cumulative CPU time (ms) : " +
+                plugin.getCumulativeCpuTime());
+        try {
+            // Sleep so we can compute the CPU usage
+            Thread.sleep(500L);
+        } catch (InterruptedException e) {
+            // do nothing
+        }
+        System.out.println("CPU usage % : " + plugin.getCpuUsage());
+    }
 }

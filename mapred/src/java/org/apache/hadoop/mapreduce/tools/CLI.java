@@ -35,7 +35,6 @@ import org.apache.hadoop.mapreduce.Counters;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.JobID;
 import org.apache.hadoop.mapreduce.JobPriority;
-import org.apache.hadoop.mapreduce.JobStatus;
 import org.apache.hadoop.mapreduce.TaskAttemptID;
 import org.apache.hadoop.mapreduce.TaskCompletionEvent;
 import org.apache.hadoop.mapreduce.TaskReport;
@@ -94,6 +93,7 @@ public class CLI extends Configured implements Tool {
     boolean killTask = false;
     boolean failTask = false;
     boolean setJobPriority = false;
+    boolean tasksOnly = false;
 
     if ("-submit".equals(cmd)) {
       if (argv.length != 2) {
@@ -148,7 +148,7 @@ public class CLI extends Configured implements Tool {
       nEvents = Integer.parseInt(argv[3]);
       listEvents = true;
     } else if ("-history".equals(cmd)) {
-      if (argv.length != 2 && !(argv.length == 3 && "all".equals(argv[1]))) {
+      if (argv.length != 2 && argv.length != 3) {
          displayUsage(cmd);
          return exitCode;
       }
@@ -156,7 +156,12 @@ public class CLI extends Configured implements Tool {
       if (argv.length == 3 && "all".equals(argv[1])) {
         viewAllHistory = true;
         historyFile = argv[2];
-      } else {
+      }
+      else if (argv.length == 3 && "tasksonly".equals(argv[1])) {
+        tasksOnly = true;
+        historyFile = argv[2];
+      }
+      else {
         historyFile = argv[1];
       }
     } else if ("-list".equals(cmd)) {
@@ -269,7 +274,7 @@ public class CLI extends Configured implements Tool {
           exitCode = 0;
         } 
       } else if (viewHistory) {
-        viewHistory(historyFile, viewAllHistory);
+        viewHistory(historyFile, viewAllHistory, tasksOnly);
         exitCode = 0;
       } else if (listEvents) {
         listEvents(cluster.getJob(JobID.forName(jobid)), fromEvent, nEvents);
@@ -402,10 +407,10 @@ public class CLI extends Configured implements Tool {
     }
   }
     
-  private void viewHistory(String historyFile, boolean all) 
+  private void viewHistory(String historyFile, boolean all, boolean tasksOnly)
     throws IOException {
     HistoryViewer historyViewer = new HistoryViewer(historyFile,
-                                        getConf(), all);
+                                        getConf(), all, tasksOnly);
     historyViewer.print();
   }
 

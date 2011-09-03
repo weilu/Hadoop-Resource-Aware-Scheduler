@@ -39,10 +39,10 @@ class ResourceSchedulingAlgorithms {
         public int compare(ResourceJobQueueListener.JobSchedulingInfo o1,
                            ResourceJobQueueListener.JobSchedulingInfo o2) {
             int res = o1.sampleState().compareTo(o2.sampleState());
-            LOG.debug("[compare:sampleState] - o1: " + o1.getJobID() + o1.sampleState() + ", o2: " + o2.getJobID() + o2.sampleState() + ", res: " + res);
+            LOG.info("[compare:sampleState] - o1: " + o1.getJobID() + o1.sampleState() + ", o2: " + o2.getJobID() + o2.sampleState() + ", res: " + res);
             if(res == 0 ){
                 res = o1.getPriority().compareTo(o2.getPriority());
-                LOG.debug("[compare:priority] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+                LOG.info("[compare:priority] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
             }
             if (res == 0) {
                 if (o1.getStartTime() < o2.getStartTime()) {
@@ -50,21 +50,46 @@ class ResourceSchedulingAlgorithms {
                 } else {
                     res = (o1.getStartTime() == o2.getStartTime() ? 0 : 1);
                 }
-                LOG.debug("[compare:startTime] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+                LOG.info("[compare:startTime] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
             }
             if (res == 0) {
                 res = o1.getJobID().compareTo(o2.getJobID());
-                LOG.debug("[compare:jobID] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+                LOG.info("[compare:jobID] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
             }
             return res;
         }
     }
 
-//    public static class FastestTaskFirstComparator implements Comparator<Schedulable> {
-//        public int compare(Schedulable s1, Schedulable s2) {
-//            int res = 0;
-//            return res;
-//        }
-//    }
+    public static class FastestTaskFirstComparator implements Comparator<ResourceScheduler.JobSchedulingInfo> {
+        public int compare(ResourceScheduler.JobSchedulingInfo o1,
+                           ResourceScheduler.JobSchedulingInfo o2) {
+            int res = o1.getPriority().compareTo(o2.getPriority());
+            LOG.info("[compare:priority] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+            if(res == 0 ){
+                if((o2.getTimeEstimated()<0 && 0<o1.getTimeEstimated())
+                        || (0<o1.getTimeEstimated() && o1.getTimeEstimated() < o2.getTimeEstimated()))
+                    res = -1;
+                else
+                    res = (o1.getTimeEstimated() == o2.getTimeEstimated() ? 0 : 1);
+                LOG.info("[compare:timeEstimated] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+            }
+            if (res == 0) {
+                if (o1.getStartTime() < o2.getStartTime()) {
+                    res = -1;
+                } else {
+                    res = (o1.getStartTime() == o2.getStartTime() ? 0 : 1);
+                }
+                LOG.info("[compare:startTime] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+            }
+            if (res == 0) {
+                res = o1.getJobID().compareTo(o2.getJobID());
+                LOG.info("[compare:jobID] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+            }
+            return res;
+        }
+    }
 
+//    private void logDebugInfo(String compared){
+//        LOG.info("[compare:priority] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+//    }
 }

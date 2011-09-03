@@ -154,6 +154,7 @@ class ShuffleScheduler<K,V> {
       reduceShuffleBytes.increment(bytes);
       lastProgressTime = System.currentTimeMillis();
       LOG.debug("map " + mapId + " done " + statusString);
+        LOG.debug(mapId + ", " + millis + ", map output copy time");
 
         SampleTaskStatus sampleStatus = status.getSampleStatus();
         if(mapId.equals(sampleStatus.getSampleMapTaskId())

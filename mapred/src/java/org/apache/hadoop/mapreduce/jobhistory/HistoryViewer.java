@@ -60,18 +60,21 @@ public class HistoryViewer {
   private JobInfo job;
   private String jobId;
   private boolean printAll;
+  private boolean printTasksOnly;
 
 /**
  * Constructs the HistoryViewer object
  * @param historyFile The fully qualified Path of the History File
  * @param conf The Configuration file
  * @param printAll Toggle to print all status to only killed/failed status
+ * @param printTasksOnly
  * @throws IOException
  */
-  public HistoryViewer(String historyFile, 
+  public HistoryViewer(String historyFile,
                        Configuration conf,
-                       boolean printAll) throws IOException {
+                       boolean printAll, boolean printTasksOnly) throws IOException {
     this.printAll = printAll;
+    this.printTasksOnly = printTasksOnly;
     String errorMsg = "Unable to initialize History Viewer";
     try {
       Path jobFile = new Path(historyFile);
@@ -91,42 +94,49 @@ public class HistoryViewer {
     }
   }
 
-  /**
-   * Print the job/task/attempt summary information
-   * @throws IOException
-   */
-  public void print() throws IOException{
-    printJobDetails();
-    printTaskSummary();
-    printJobAnalysis();
-    printTasks(TaskType.JOB_SETUP, TaskStatus.State.FAILED.toString());
-    printTasks(TaskType.JOB_SETUP, TaskStatus.State.KILLED.toString());
-    printTasks(TaskType.MAP, TaskStatus.State.FAILED.toString());
-    printTasks(TaskType.MAP, TaskStatus.State.KILLED.toString());
-    printTasks(TaskType.REDUCE, TaskStatus.State.FAILED.toString());
-    printTasks(TaskType.REDUCE, TaskStatus.State.KILLED.toString());
-    printTasks(TaskType.JOB_CLEANUP, TaskStatus.State.FAILED.toString());
-    printTasks(TaskType.JOB_CLEANUP, 
-        JobStatus.getJobRunState(JobStatus.KILLED));
-    if (printAll) {
-      printTasks(TaskType.JOB_SETUP, TaskStatus.State.SUCCEEDED.toString());
-      printTasks(TaskType.MAP, TaskStatus.State.SUCCEEDED.toString());
-      printTasks(TaskType.REDUCE, TaskStatus.State.SUCCEEDED.toString());
-      printTasks(TaskType.JOB_CLEANUP, TaskStatus.State.SUCCEEDED.toString());
-      printAllTaskAttempts(TaskType.JOB_SETUP);
-      printAllTaskAttempts(TaskType.MAP);
-      printAllTaskAttempts(TaskType.REDUCE);
-      printAllTaskAttempts(TaskType.JOB_CLEANUP);
+    /**
+     * Print the job/task/attempt summary information
+     * @throws IOException
+     */
+    public void print() throws IOException{
+
+        if(printTasksOnly){
+            printTaskAttemptsOnlyTime(TaskType.MAP);
+        }
+        else{
+
+            printJobDetails();
+            printTaskSummary();
+            printJobAnalysis();
+            printTasks(TaskType.JOB_SETUP, TaskStatus.State.FAILED.toString());
+            printTasks(TaskType.JOB_SETUP, TaskStatus.State.KILLED.toString());
+            printTasks(TaskType.MAP, TaskStatus.State.FAILED.toString());
+            printTasks(TaskType.MAP, TaskStatus.State.KILLED.toString());
+            printTasks(TaskType.REDUCE, TaskStatus.State.FAILED.toString());
+            printTasks(TaskType.REDUCE, TaskStatus.State.KILLED.toString());
+            printTasks(TaskType.JOB_CLEANUP, TaskStatus.State.FAILED.toString());
+            printTasks(TaskType.JOB_CLEANUP,
+                    JobStatus.getJobRunState(JobStatus.KILLED));
+            if (printAll) {
+                printTasks(TaskType.JOB_SETUP, TaskStatus.State.SUCCEEDED.toString());
+                printTasks(TaskType.MAP, TaskStatus.State.SUCCEEDED.toString());
+                printTasks(TaskType.REDUCE, TaskStatus.State.SUCCEEDED.toString());
+                printTasks(TaskType.JOB_CLEANUP, TaskStatus.State.SUCCEEDED.toString());
+                printAllTaskAttempts(TaskType.JOB_SETUP);
+                printAllTaskAttempts(TaskType.MAP);
+                printAllTaskAttempts(TaskType.REDUCE);
+                printAllTaskAttempts(TaskType.JOB_CLEANUP);
+            }
+
+            FilteredJob filter = new FilteredJob(job,
+                    TaskStatus.State.FAILED.toString());
+            printFailedAttempts(filter);
+
+            filter = new FilteredJob(job,
+                    TaskStatus.State.KILLED.toString());
+            printFailedAttempts(filter);
+        }
     }
-    
-    FilteredJob filter = new FilteredJob(job, 
-        TaskStatus.State.FAILED.toString());
-    printFailedAttempts(filter);
-    
-    filter = new FilteredJob(job,
-        TaskStatus.State.KILLED.toString());
-    printFailedAttempts(filter);
-  }
  
   private void printJobDetails() {
     StringBuffer jobDetails = new StringBuffer();
@@ -193,6 +203,22 @@ public class HistoryViewer {
                    totalGroup.getDisplayName(),
                    counter.getDisplayName(),
                    mapValue, reduceValue, totalValue));
+      }
+    }
+  }
+
+  private void printTaskAttemptsOnlyTime(TaskType taskType) {
+    Map<TaskID, TaskInfo> tasks = job.getAllTasks();
+    StringBuffer taskList = new StringBuffer();
+    for (JobHistoryParser.TaskInfo task : tasks.values()) {
+      for (JobHistoryParser.TaskAttemptInfo attempt :
+        task.getAllTaskAttempts().values()) {
+        if (taskType.equals(task.getTaskType())){
+          taskList.setLength(0);
+          taskList.append(attempt.getAttemptId()).append("\t");
+          taskList.append(attempt.getFinishTime()-attempt.getStartTime());
+          System.out.println(taskList.toString());
+        }
       }
     }
   }
