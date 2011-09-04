@@ -43,7 +43,7 @@ public class SampleTaskStatus implements Writable, Cloneable {
     private long readInputDoneTime;
     private long writeOutputStartTime;
     private long writeOutputDoneTime;
-    private long networkSampleMapCopyDurationMilliSec;
+    private long networkSampleMapCopyDurationMilliSec = -1;
 
     private long additionalSpillDurationMilliSec;
     private long additionalSpillSize;

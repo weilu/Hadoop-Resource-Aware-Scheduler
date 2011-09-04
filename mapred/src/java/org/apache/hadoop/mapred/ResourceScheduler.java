@@ -175,6 +175,8 @@ class ResourceScheduler extends TaskScheduler {
         }
 
         int numLocalMaps = 0;
+        int numRackLocalMaps = 0;
+        int numRackOrMachineLocalMaps = 0;
         int numNonLocalMaps = 0;
         scheduleMaps:
         for (int i=0; i < availableMapSlots; ++i) {
@@ -201,7 +203,11 @@ class ResourceScheduler extends TaskScheduler {
                             }
 
                             assignedTasks.add(t);
-                            ++numLocalMaps;
+                            ++numRackOrMachineLocalMaps;
+                            if(myJob.local)
+                                ++numLocalMaps;
+                            else
+                                ++numRackLocalMaps;
 
 
                             // Don't assign map tasks to the hilt!
@@ -224,7 +230,7 @@ class ResourceScheduler extends TaskScheduler {
                                         taskTrackerManager.getNumberOfUniqueHosts());
                         if (t != null) {
                             assignedTasks.add(t);
-                            ++numLocalMaps;
+                            ++numRackOrMachineLocalMaps;
 
 
                             // Don't assign map tasks to the hilt!
@@ -255,6 +261,7 @@ class ResourceScheduler extends TaskScheduler {
                         }
                     }
                 }
+                LOG.debug("Remaining map slots: " + (availableMapSlots-i));
             }
         }
         int assignedMaps = assignedTasks.size();

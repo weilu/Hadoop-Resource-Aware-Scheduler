@@ -15,10 +15,10 @@ public class MapSampleReportLogger {
     HashMap<String, MapSampleReport> sampleReports = new HashMap<String, MapSampleReport>();
 
     public void logNetworkCopyDurationAndReduceTracker (String jobId, long duration, String reduceTracker){
-        if(duration==0)
+        if(duration<0)
             return;
         MapSampleReport report = sampleReports.get(jobId);
-        if(report.getNetworkWriteDurationMilliSec()>0 || report.getTrackerName().equals(reduceTracker))
+        if(!(report.getNetworkWriteDurationMilliSec()<0) || report.getTrackerName().equals(reduceTracker))
             return;
         
         report.setReduceTrackerName(reduceTracker);

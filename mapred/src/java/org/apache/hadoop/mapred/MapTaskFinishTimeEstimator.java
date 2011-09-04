@@ -107,8 +107,12 @@ public class MapTaskFinishTimeEstimator {
     }
 
     public void estimate(){
-        if (!ready() || !sampleReport.ready())
+
+        if (!ready() || !sampleReport.ready()){
+            LOG.info(sampleReport.getSampleMapTaskId()  + " | estimator ready: " + ready() + "; report ready: "+ sampleReport.ready());
+            LOG.info(this.toString());
             return;
+        }
 
         estimateCPUTime();
         estimateDiskWriteSize();  //important: needs to be before the rest of the estimations
@@ -116,7 +120,6 @@ public class MapTaskFinishTimeEstimator {
         estimateNetworkWriteSize();
         estimateNetworkTime();
         sumEstimatedTime();
-        LOG.info(this.toString());
     }
 
     private boolean ready(){

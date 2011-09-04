@@ -202,7 +202,7 @@ public class JobInProgress {
   private static final double MAX_ALLOWED_FETCH_FAILURES_PERCENT = 0.5;
   
   // No. of tasktrackers in the cluster
-  private volatile int clusterSize = 0;
+  public volatile int clusterSize = 0;
   
   // The no. of tasktrackers where >= conf.getMaxTaskFailuresPerTracker()
   // tasks have failed
@@ -1249,7 +1249,7 @@ public class JobInProgress {
     return counters;
   }
 
-    private void markSampleScheduled(TaskInProgress tip, TaskAttemptID taskId) {
+    public void markSampleScheduled(TaskInProgress tip, TaskAttemptID taskId) {
         //update the listeners that the job sampling has been scheduled. trigger job reordering
         JobStatus prevStatus = (JobStatus)status.clone();
         if(prevStatus.getSampleState() == JobSampleState.WAITING) {
@@ -2018,7 +2018,7 @@ public class JobInProgress {
    * @param numUniqueHosts number of unique hosts that run trask trackers
    * @param removeFailedTip whether to remove the failed tips
    */
-  private synchronized TaskInProgress findTaskFromList(
+  public synchronized TaskInProgress findTaskFromList(
       Collection<TaskInProgress> tips, TaskTrackerStatus ttStatus,
       int numUniqueHosts,
       boolean removeFailedTip) {
@@ -2285,7 +2285,7 @@ public class JobInProgress {
    return -1;
   }
 
-  private synchronized TaskInProgress getSpeculativeMap(String taskTrackerName, 
+  public synchronized TaskInProgress getSpeculativeMap(String taskTrackerName,
       String taskTrackerHost) {
 
     //////// Populate allTips with all TaskInProgress
@@ -2546,7 +2546,7 @@ public class JobInProgress {
     
   }
   
-  private boolean shouldRunOnTaskTracker(String taskTracker) {
+  public boolean shouldRunOnTaskTracker(String taskTracker) {
     //
     // Check if too many tasks of this job have failed on this
     // tasktracker prior to assigning it a new one.
