@@ -1195,7 +1195,7 @@ public class JobInProgress {
       } else {
         this.status.setReduceProgress((float) (this.status.reduceProgress() + 
                                            (progressDelta / reduces.length)));
-        jobtracker.mapLogger.logNetworkCopyDurationAndReduceTracker(jobId.toString(), 
+        jobtracker.mapLogger.logNetworkCopyDurationAndReduceTracker(jobId.toString(),
                 status.getSampleStatus().getNetworkSampleMapCopyDurationMilliSec(), status.getTaskTracker());
       }
     }

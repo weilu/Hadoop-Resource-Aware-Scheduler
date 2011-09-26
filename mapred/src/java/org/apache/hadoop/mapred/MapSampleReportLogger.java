@@ -32,7 +32,8 @@ public class MapSampleReportLogger {
         MapSampleReport report = getReport(tip, null);
         report.localReducesPercentage = localReducesPercentage;
 
-        long estimatedNetworkWriteBites = (long)((1-report.localReducesPercentage)*report.getDiskWriteBytes());
+//        long estimatedNetworkWriteBites = (long)((1-report.localReducesPercentage)*report.getDiskWriteBytes());
+        long estimatedNetworkWriteBites = (long)(1.0*report.getDiskWriteBytes()/tip.getJob().numReduceTasks); //divided by total number of partitions
         report.setNetworkWriteBytes(estimatedNetworkWriteBites);
     }
 

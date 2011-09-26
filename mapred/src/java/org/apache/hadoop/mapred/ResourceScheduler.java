@@ -196,10 +196,14 @@ class ResourceScheduler extends TaskScheduler {
                         t = myJob.obtainNewMapTask(taskTrackerStatus, numTaskTrackers,
                                 taskTrackerManager.getNumberOfUniqueHosts());
                         if (t != null) {
-                            Long estimatedTime = myJobToTimeEstimated.get(myJob);
+                            MapTaskFinishTimeEstimator estimator = myJobToTimeEstimated.get(myJob);
+                            Long estimatedTime = estimator.estimatedFinishTime;
                             if(estimatedTime != null){
                                 taskIdToTimeEstimated.put(t.getTaskID().toString(), estimatedTime);
                                 LOG.debug(t.getTaskID() + ", " + estimatedTime + ", estimated time");
+                                LOG.debug(t.getTaskID() + ", " + estimator.estimatedCpuTime + ", estimated cpu time");
+                                LOG.debug(t.getTaskID() + ", " + estimator.estimatedDiskTime + ", estimated disk time");
+                                LOG.debug(t.getTaskID() + ", " + estimator.estimatedNetworkTime + ", estimated network time");
                             }
 
                             assignedTasks.add(t);
@@ -277,10 +281,23 @@ class ResourceScheduler extends TaskScheduler {
                 Math.min((trackerCurrentReduceCapacity - trackerRunningReduces), 1);
         boolean exceededReducePadding = false;
         if (availableReduceSlots > 0) {
+            //avoid schedule reduce task on the machine where sample task is scheduled
             exceededReducePadding = exceededPadding(false, clusterStatus,
                     trackerReduceCapacity);
             synchronized (sampledJobs) {
                 for (JobInProgress job : sampledJobs) {
+//                    boolean isSampleMapMachine = false;
+//                    if(taskTrackerManager instanceof JobTracker){
+//                        JobTracker jobtracker = (JobTracker)taskTrackerManager;
+//                        MapSampleReport report = jobtracker.mapLogger.sampleReports.get(job.getJobID().toString());
+//                        if(report != null){
+//                           isSampleMapMachine = report.getTrackerName().equals(taskTracker.getTrackerName());
+//                        }
+//                    }
+//
+//                    if(isSampleMapMachine)
+//                        continue;
+
                     if (job.getStatus().getRunState() != JobStatus.RUNNING ||
                             job.numReduceTasks == 0) {
                         continue;
@@ -376,6 +393,7 @@ class ResourceScheduler extends TaskScheduler {
         private long timeEstimated;
         private long startTime;
         private JobID id;
+        private MapTaskFinishTimeEstimator estimator;
 
         public JobSchedulingInfo(MyJobInProgress myJob, TaskTrackerStatus trackerStatus,
                                  MapSampleReport sampleReport) {
@@ -385,7 +403,7 @@ class ResourceScheduler extends TaskScheduler {
             startTime = status.getStartTime();
             id = status.getJobID();
 
-            MapTaskFinishTimeEstimator estimator = new MapTaskFinishTimeEstimator(sampleReport);
+            estimator = new MapTaskFinishTimeEstimator(sampleReport);
             estimator.setCurrentTrackerResourceScores(trackerStatus.getResourceStatus());
             estimator.setLocalReducePercent(jip.getLocalReduceRateForTaskTracker(trackerStatus.getTrackerName()));
 
@@ -401,9 +419,14 @@ class ResourceScheduler extends TaskScheduler {
         long getTimeEstimated() {return timeEstimated;}
         long getStartTime() {return startTime;}
         JobID getJobID() {return id;}
+
+        public MapTaskFinishTimeEstimator getEstimator() {
+            return estimator;
+        }
     }
 
-    private HashMap<MyJobInProgress, Long> myJobToTimeEstimated = new HashMap<MyJobInProgress, Long>();
+    private HashMap<MyJobInProgress, MapTaskFinishTimeEstimator> myJobToTimeEstimated
+            = new HashMap<MyJobInProgress, MapTaskFinishTimeEstimator>();
 
     private ArrayList<MyJobInProgress> parseJobInProgress(ArrayList<JobInProgress> jobs,
                                                           boolean reorder, TaskTrackerStatus trackerStatus){
@@ -427,12 +450,12 @@ class ResourceScheduler extends TaskScheduler {
                 MyJobInProgress j1 = new MyJobInProgress(job, true);
                 JobSchedulingInfo info1 = new JobSchedulingInfo(j1, trackerStatus, sampleReport);
                 infoToJob.put(info1, j1);
-                myJobToTimeEstimated.put(j1, info1.getTimeEstimated());
+                myJobToTimeEstimated.put(j1, info1.getEstimator());
 
                 MyJobInProgress j2 = new MyJobInProgress(job, false);
                 JobSchedulingInfo info2 = new JobSchedulingInfo(j2, trackerStatus, sampleReport);
                 infoToJob.put(info2, j2);
-                myJobToTimeEstimated.put(j2, info2.getTimeEstimated());
+                myJobToTimeEstimated.put(j2, info2.getEstimator());
             }
 
             myJobs.addAll(infoToJob.values());
@@ -441,7 +464,4 @@ class ResourceScheduler extends TaskScheduler {
         return myJobs;
     }
 
-    public HashMap<String, Long> getTaskIdToTimeEstimated() {
-        return taskIdToTimeEstimated;
-    }
 }

@@ -71,6 +71,11 @@ public class MapTaskFinishTimeEstimator {
                 + sampleReport.getAdditionalSpillDurationMilliSec();
         long sampleIOSize = sampleReport.getDiskReadBytes() + sampleReport.getDiskWriteBytes();
         long currentIOSize = currentDiskReadSize + currentDiskWriteSize;
+
+        //TEST if this is the cause for inaccurate estimate of disk time
+        if(currentDiskReadSize == 0)
+            currentIOSize += currentNetworkReadSize;
+
         estimatedDiskTime = (long) (sampleIOTime * (1.0 * currentIOSize/sampleIOSize)
                 * (1.0 * sampleReport.getTrackerDiskIOScore()/currentTrackerDiskScore));
         LOG.info(sampleReport.getSampleMapTaskId() + "[Disk] sample: " + sampleIOTime + "; estimated: " + estimatedDiskTime);
@@ -81,7 +86,8 @@ public class MapTaskFinishTimeEstimator {
         if(currentDiskWriteSize == UNAVAILABLE)
             estimateDiskWriteSize();
 
-        currentNetworkWriteSize = (long)((1-localReducePercent) * currentDiskWriteSize);
+//        currentNetworkWriteSize = (long)((1-localReducePercent) * currentDiskWriteSize);
+         currentNetworkWriteSize = (long)(currentDiskWriteSize/(1.0*sampleReport.getDiskWriteBytes()/sampleReport.getNetworkWriteBytes())); //currentDW-size/partitions
     }
 
     private void estimateNetworkTime(){
