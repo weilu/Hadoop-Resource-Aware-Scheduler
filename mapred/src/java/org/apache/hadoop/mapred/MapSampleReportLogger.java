@@ -66,7 +66,8 @@ public class MapSampleReportLogger {
         LOG.info(resourceStatus.toString());
 
         report.setTrackerCPUScore(resourceStatus.calculateCPUScore());
-        report.setTrackerDiskIOScore(resourceStatus.getDiskScore());
+        report.setTrackerDiskReadScore(resourceStatus.getDiskReadScore());
+        report.setTrackerDiskWriteScore(resourceStatus.getDiskWriteScore());
         report.setTrackerNetworkIOScore(resourceStatus.getNetworkScore());
     }
 

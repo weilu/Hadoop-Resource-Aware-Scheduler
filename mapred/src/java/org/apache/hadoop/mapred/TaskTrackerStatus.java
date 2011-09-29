@@ -76,7 +76,8 @@ public class TaskTrackerStatus implements Writable {
     private float cpuUsage = UNAVAILABLE; // in %
 
       private long networkScore = UNAVAILABLE;
-      private long diskScore = UNAVAILABLE;
+      private long diskReadScore = UNAVAILABLE;
+      private long diskWriteScore = UNAVAILABLE;
 
       private long DEFAULT_SCORE = 1;
 
@@ -328,7 +329,8 @@ public class TaskTrackerStatus implements Writable {
       out.writeFloat(getCpuUsage());
 
       WritableUtils.writeVLong(out, networkScore);
-      WritableUtils.writeVLong(out, diskScore);
+      WritableUtils.writeVLong(out, diskReadScore);
+      WritableUtils.writeVLong(out, diskWriteScore);
     }
     
     public void readFields(DataInput in) throws IOException {
@@ -345,7 +347,8 @@ public class TaskTrackerStatus implements Writable {
       setCpuUsage(in.readFloat());
 
         networkScore = WritableUtils.readVLong(in);
-        diskScore = WritableUtils.readVLong(in);
+        diskReadScore = WritableUtils.readVLong(in);
+        diskWriteScore = WritableUtils.readVLong(in);
     }
 
       @Override
@@ -356,7 +359,8 @@ public class TaskTrackerStatus implements Writable {
                   ", cpuFrequency=" + cpuFrequency +
                   ", cpuUsage=" + cpuUsage +
                   ", networkScore=" + networkScore +
-                  ", diskScore=" + diskScore +
+                  ", diskReadScore=" + diskReadScore +
+                  ", diskWriteScore=" + diskWriteScore +
                   '}';
       }
 
@@ -365,8 +369,12 @@ public class TaskTrackerStatus implements Writable {
           return getSafeScore(score);
       }
 
-      public long getDiskScore(){
-          return diskScore;
+      public long getDiskReadScore(){
+          return diskReadScore;
+      }
+
+      public long getDiskWriteScore(){
+          return diskWriteScore;
       }
 
       public long getNetworkScore(){
@@ -377,8 +385,12 @@ public class TaskTrackerStatus implements Writable {
           this.networkScore = networkScore;
       }
 
-      public void setDiskScore(long diskScore) {
-          this.diskScore = diskScore;
+      public void setDiskReadScore(long diskScore) {
+          this.diskReadScore = diskScore;
+      }
+
+      public void setDiskWriteScore(long diskScore) {
+          this.diskWriteScore = diskScore;
       }
 
       private long getSafeScore(long score){

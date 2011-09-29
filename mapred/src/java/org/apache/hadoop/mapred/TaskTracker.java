@@ -1569,7 +1569,8 @@ public class TaskTracker
       int numCpu = getNumProcessorsOnTT();
       float cpuUsage = getCpuUsageOnTT();
       long networkScore = getNetworkScoreOnTT();
-      long diskScore = getDiskScoreOnTT();
+      long diskReadScore = getDiskReadScoreOnTT();
+      long diskWriteScore = getDiskWriteScoreOnTT();
 
       status.getResourceStatus().setAvailableSpace(freeDiskSpace);
       status.getResourceStatus().setTotalVirtualMemory(totVmem);
@@ -1586,7 +1587,8 @@ public class TaskTracker
       status.getResourceStatus().setCpuUsage(cpuUsage);
 
       status.getResourceStatus().setNetworkScore(networkScore);
-      status.getResourceStatus().setDiskScore(diskScore);
+      status.getResourceStatus().setDiskReadScore(diskReadScore);
+      status.getResourceStatus().setDiskWriteScore(diskWriteScore);
     }
     //add node health information
     
@@ -1745,10 +1747,18 @@ public class TaskTracker
     return networkScore;
   }
 
-  long getDiskScoreOnTT() {
+  long getDiskReadScoreOnTT() {
     long diskScore = 1;
     if (resourceCalculatorPlugin != null) {
-      diskScore = resourceCalculatorPlugin.getDiskScore();
+      diskScore = resourceCalculatorPlugin.getDiskReadScore();
+    }
+    return diskScore;
+  }
+
+  long getDiskWriteScoreOnTT() {
+    long diskScore = 1;
+    if (resourceCalculatorPlugin != null) {
+      diskScore = resourceCalculatorPlugin.getDiskWriteScore();
     }
     return diskScore;
   }

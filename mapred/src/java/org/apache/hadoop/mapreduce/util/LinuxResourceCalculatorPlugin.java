@@ -567,12 +567,17 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
         this.diskWriteCapacity = diskWriteCapacity;
     }
 
-    public long getDiskScore(){
+    public long getDiskReadScore(){
         long score = TaskTrackerStatus.UNAVAILABLE;
-        if(currentDiskReadRate != TaskTrackerStatus.UNAVAILABLE
-                && currentDiskWriteRate != TaskTrackerStatus.UNAVAILABLE )
-            score = (long)(getDiskReadCapacity() - getCurrentDiskReadRate()
-                    + getDiskWriteCapacity() - getCurrentDiskWriteRate());
+        if(currentDiskReadRate != TaskTrackerStatus.UNAVAILABLE)
+            score = (long)(getDiskReadCapacity() - getCurrentDiskReadRate());
+        return getSafeScore(score);
+    }
+
+    public long getDiskWriteScore(){
+        long score = TaskTrackerStatus.UNAVAILABLE;
+        if(currentDiskWriteRate != TaskTrackerStatus.UNAVAILABLE )
+            score = (long)(getDiskWriteCapacity() - getCurrentDiskWriteRate());
         return getSafeScore(score);
     }
 

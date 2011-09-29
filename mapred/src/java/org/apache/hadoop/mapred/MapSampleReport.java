@@ -15,7 +15,8 @@ public class MapSampleReport{
     private TaskAttemptID sampleMapTaskId;
     private String trackerName;
     private String reduceTrackerName;
-    private long trackerDiskIOScore = UNAVAILABLE;
+    private long trackerDiskReadScore = UNAVAILABLE;
+    private long trackerDiskWriteScore = UNAVAILABLE;
     private long trackerNetworkIOScore = UNAVAILABLE;
     private long trackerCPUScore = UNAVAILABLE;
 
@@ -51,12 +52,20 @@ public class MapSampleReport{
         this.trackerName = trackerName;
     }
 
-    public long getTrackerDiskIOScore() {
-        return trackerDiskIOScore;
+    public long getTrackerDiskReadScore() {
+        return trackerDiskReadScore;
     }
 
-    public void setTrackerDiskIOScore(long trackerDiskIOScore) {
-        this.trackerDiskIOScore = trackerDiskIOScore;
+    public void setTrackerDiskReadScore(long trackerDiskIOScore) {
+        this.trackerDiskReadScore = trackerDiskIOScore;
+    }
+
+    public long getTrackerDiskWriteScore() {
+        return trackerDiskWriteScore;
+    }
+
+    public void setTrackerDiskWriteScore(long trackerDiskIOScore) {
+        this.trackerDiskWriteScore = trackerDiskIOScore;
     }
 
     public long getTrackerNetworkIOScore() {
@@ -207,7 +216,8 @@ public class MapSampleReport{
                 "sampleMapTaskId=" + sampleMapTaskId +
                 ", trackerName='" + trackerName + '\'' +
                 ", reduceTrackerName='" + reduceTrackerName + '\'' +
-                ", trackerDiskIOScore=" + trackerDiskIOScore +
+                ", trackerDiskReadScore=" + trackerDiskReadScore +
+                ", trackerDiskWriteScore=" + trackerDiskWriteScore +
                 ", trackerNetworkIOScore=" + trackerNetworkIOScore +
                 ", trackerCPUScore=" + trackerCPUScore +
                 ", diskReadBytes=" + diskReadBytes +

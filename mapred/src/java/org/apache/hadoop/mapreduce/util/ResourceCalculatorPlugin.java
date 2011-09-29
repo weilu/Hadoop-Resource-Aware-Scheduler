@@ -91,7 +91,8 @@ public abstract class ResourceCalculatorPlugin extends Configured {
   public abstract float getCpuUsage();
 
     public abstract long getNetworkScore();
-    public abstract long getDiskScore();
+    public abstract long getDiskReadScore();
+    public abstract long getDiskWriteScore();
 
   /**
    * Get the ResourceCalculatorPlugin from the class name and configure it. If

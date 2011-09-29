@@ -19,7 +19,8 @@ public class MapTaskFinishTimeEstimator {
     long estimatedFinishTime = UNAVAILABLE;
 
     long currentTrackerCpuScore = UNAVAILABLE;
-    long currentTrackerDiskScore = UNAVAILABLE;
+    long currentTrackerDiskReadScore = UNAVAILABLE;
+    long currentTrackerDiskWriteScore = UNAVAILABLE;
     long currentTrackerNetworkScore = UNAVAILABLE;
 
     long currentDiskReadSize = UNAVAILABLE;
@@ -33,12 +34,14 @@ public class MapTaskFinishTimeEstimator {
     //task info
     public MapTaskFinishTimeEstimator(MapSampleReport sampleReport) {
         this.sampleReport = sampleReport;
+
     }
 
     //tracker info
     public void setCurrentTrackerResourceScores(TaskTrackerStatus.ResourceStatus resourceStatus) {
         currentTrackerCpuScore = resourceStatus.calculateCPUScore();
-        currentTrackerDiskScore = resourceStatus.getDiskScore();
+        currentTrackerDiskReadScore = resourceStatus.getDiskReadScore();
+        currentTrackerDiskWriteScore = resourceStatus.getDiskWriteScore();
         currentTrackerNetworkScore = resourceStatus.getNetworkScore();
     }
 
@@ -69,16 +72,38 @@ public class MapTaskFinishTimeEstimator {
     private void estimateDiskTime(){
         long sampleIOTime = sampleReport.getDiskReadDurationMilliSec() + sampleReport.getDiskWriteDurationMilliSec()
                 + sampleReport.getAdditionalSpillDurationMilliSec();
-        long sampleIOSize = sampleReport.getDiskReadBytes() + sampleReport.getDiskWriteBytes();
-        long currentIOSize = currentDiskReadSize + currentDiskWriteSize;
 
-        //TEST if this is the cause for inaccurate estimate of disk time
-        if(currentDiskReadSize == 0)
-            currentIOSize += currentNetworkReadSize;
-
-        estimatedDiskTime = (long) (sampleIOTime * (1.0 * currentIOSize/sampleIOSize)
-                * (1.0 * sampleReport.getTrackerDiskIOScore()/currentTrackerDiskScore));
+        estimatedDiskTime = estimateDiskReadTime() + estimateDiskWriteTime();
         LOG.info(sampleReport.getSampleMapTaskId() + "[Disk] sample: " + sampleIOTime + "; estimated: " + estimatedDiskTime);
+    }
+
+    private long estimateDiskReadTime(){
+        long sampleReadTime = sampleReport.getDiskReadDurationMilliSec();
+        long sampleReadSize = sampleReport.getDiskReadBytes();
+        long currentReadSize = currentDiskReadSize;
+
+        if(currentReadSize == 0 || sampleReadSize == 0)
+            return 0;
+
+        long estimated = (long) (sampleReadTime * (1.0 * currentReadSize/sampleReadSize)
+                * (1.0 * sampleReport.getTrackerDiskReadScore()/currentTrackerDiskReadScore));
+        LOG.info(sampleReport.getSampleMapTaskId() + "[Disk] sample read: " + sampleReadTime + "; estimated read: " + estimated);
+        return estimated;
+    }
+
+    private long estimateDiskWriteTime(){
+        long sampleWriteTime = sampleReport.getDiskWriteDurationMilliSec()
+                + sampleReport.getAdditionalSpillDurationMilliSec();
+        long sampleWriteSize = sampleReport.getDiskWriteBytes();
+        long currentWriteSize = currentDiskWriteSize;
+
+        if(currentWriteSize == 0 || sampleWriteSize == 0)
+            return 0;
+
+        long estimated = (long) (sampleWriteTime * (1.0 * currentWriteSize/sampleWriteSize)
+                * (1.0 * sampleReport.getTrackerDiskWriteScore()/currentTrackerDiskWriteScore));
+        LOG.info(sampleReport.getSampleMapTaskId() + "[Disk] sample write: " + sampleWriteTime + "; estimated write: " + estimated);
+        return estimated;
     }
 
     //network IO estimation
@@ -103,6 +128,7 @@ public class MapTaskFinishTimeEstimator {
     private void estimateCPUTime(){
         long sampleCPUTime = sampleReport.getMapDurationMilliSec()
                 - sampleReport.getDiskReadDurationMilliSec() - sampleReport.getDiskWriteDurationMilliSec()
+                - sampleReport.getAdditionalSpillDurationMilliSec()
                 - sampleReport.getNetworkReadDurationMilliSec() - sampleReport.getNetworkWriteDurationMilliSec();
         estimatedCpuTime = (long)((sampleCPUTime<0?0:sampleCPUTime) * (1.0 * sampleReport.getTrackerCPUScore()/currentTrackerCpuScore));
         LOG.info(sampleReport.getSampleMapTaskId() + "[CPU] sample: " + sampleCPUTime + "; estimated: " + estimatedCpuTime);
@@ -130,7 +156,8 @@ public class MapTaskFinishTimeEstimator {
 
     private boolean ready(){
         boolean notReady = (localReducePercent==UNAVAILABLE || currentDiskReadSize==UNAVAILABLE || currentNetworkReadSize==UNAVAILABLE
-                || currentTrackerCpuScore==UNAVAILABLE || currentTrackerDiskScore==UNAVAILABLE || currentTrackerNetworkScore==UNAVAILABLE);
+                || currentTrackerCpuScore==UNAVAILABLE || currentTrackerDiskReadScore==UNAVAILABLE || currentTrackerDiskWriteScore==UNAVAILABLE
+                || currentTrackerNetworkScore==UNAVAILABLE);
         return !notReady;
     }
 
@@ -138,7 +165,8 @@ public class MapTaskFinishTimeEstimator {
     public String toString() {
         return "MapTaskFinishTimeEstimator{" +
                 ", currentTrackerCpuScore=" + currentTrackerCpuScore +
-                ", currentTrackerDiskScore=" + currentTrackerDiskScore +
+                ", currentTrackerDiskReadScore=" + currentTrackerDiskReadScore +
+                ", currentTrackerDiskWriteScore=" + currentTrackerDiskWriteScore +
                 ", currentTrackerNetworkScore=" + currentTrackerNetworkScore +
                 ", currentDiskReadSize=" + currentDiskReadSize +
                 ", currentDiskWriteSize=" + currentDiskWriteSize +
