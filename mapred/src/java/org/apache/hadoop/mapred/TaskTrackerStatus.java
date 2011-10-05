@@ -79,8 +79,6 @@ public class TaskTrackerStatus implements Writable {
       private long diskReadScore = UNAVAILABLE;
       private long diskWriteScore = UNAVAILABLE;
 
-      private long DEFAULT_SCORE = 1;
-
     ResourceStatus() {
       totalVirtualMemory = JobConf.DISABLED_MEMORY_LIMIT;
       totalPhysicalMemory = JobConf.DISABLED_MEMORY_LIMIT;
@@ -394,7 +392,7 @@ public class TaskTrackerStatus implements Writable {
       }
 
       private long getSafeScore(long score){
-          return score<0?DEFAULT_SCORE:score;
+          return (score<0||score==1)?-1:score;
       }
   }
   

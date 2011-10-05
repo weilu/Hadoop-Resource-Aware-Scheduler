@@ -2722,7 +2722,7 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
             + " networkScore: " + trackerStatus.getResourceStatus().getNetworkScore()
             + " ;diskReadScore: " + trackerStatus.getResourceStatus().getDiskReadScore()
             + " ;diskWriteScore: " + trackerStatus.getResourceStatus().getDiskWriteScore());
-                                                                                                
+
     updateTaskStatuses(trackerStatus);
     updateNodeHealthStatus(trackerStatus);
     

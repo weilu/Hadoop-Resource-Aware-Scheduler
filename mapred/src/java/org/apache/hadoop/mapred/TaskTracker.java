@@ -1447,6 +1447,7 @@ public class TaskTracker
             
         // resetting heartbeat interval from the response.
         heartbeatInterval = heartbeatResponse.getHeartbeatInterval();
+          LOG.debug("heartbeat interval: " + heartbeatInterval);
         justStarted = false;
         justInited = false;
         if (actions != null){ 
@@ -1537,7 +1538,21 @@ public class TaskTracker
                                          sendCounters), 
                                        failures, 
                                        maxMapSlots,
-                                       maxReduceSlots); 
+                                       maxReduceSlots);
+      long cpuFreq = getCpuFrequencyOnTT();
+      int numCpu = getNumProcessorsOnTT();
+      float cpuUsage = getCpuUsageOnTT();
+      long networkScore = getNetworkScoreOnTT();
+      long diskReadScore = getDiskReadScoreOnTT();
+      long diskWriteScore = getDiskWriteScoreOnTT();
+
+      status.getResourceStatus().setCpuFrequency(cpuFreq);
+      status.getResourceStatus().setNumProcessors(numCpu);
+      status.getResourceStatus().setCpuUsage(cpuUsage);
+
+      status.getResourceStatus().setNetworkScore(networkScore);
+      status.getResourceStatus().setDiskReadScore(diskReadScore);
+      status.getResourceStatus().setDiskWriteScore(diskWriteScore);
       }
     } else {
       LOG.info("Resending 'status' to '" + jobTrackAddr.getHostName() +
@@ -1565,12 +1580,6 @@ public class TaskTracker
       long availableVmem = getAvailableVirtualMemoryOnTT();
       long availablePmem = getAvailablePhysicalMemoryOnTT();
       long cumuCpuTime = getCumulativeCpuTimeOnTT();
-      long cpuFreq = getCpuFrequencyOnTT();
-      int numCpu = getNumProcessorsOnTT();
-      float cpuUsage = getCpuUsageOnTT();
-      long networkScore = getNetworkScoreOnTT();
-      long diskReadScore = getDiskReadScoreOnTT();
-      long diskWriteScore = getDiskWriteScoreOnTT();
 
       status.getResourceStatus().setAvailableSpace(freeDiskSpace);
       status.getResourceStatus().setTotalVirtualMemory(totVmem);
@@ -1582,13 +1591,7 @@ public class TaskTracker
       status.getResourceStatus().setAvailableVirtualMemory(availableVmem); 
       status.getResourceStatus().setAvailablePhysicalMemory(availablePmem);
       status.getResourceStatus().setCumulativeCpuTime(cumuCpuTime);
-      status.getResourceStatus().setCpuFrequency(cpuFreq);
-      status.getResourceStatus().setNumProcessors(numCpu);
-      status.getResourceStatus().setCpuUsage(cpuUsage);
 
-      status.getResourceStatus().setNetworkScore(networkScore);
-      status.getResourceStatus().setDiskReadScore(diskReadScore);
-      status.getResourceStatus().setDiskWriteScore(diskWriteScore);
     }
     //add node health information
     
@@ -1739,28 +1742,98 @@ public class TaskTracker
     return cpuUsage;
   }
 
+      final private static int RECENT = 10;
+      private long recentNetworkScores[] = new long[RECENT];
+      private long recentDiskReadScores[] = new long[RECENT];
+      private long recentDiskWriteScores[] = new long[RECENT];
+      private long recentCpuScores[] = new long[RECENT];
+
+      {
+        for(int i=0; i<RECENT; i++){
+            recentNetworkScores[i] = Long.MAX_VALUE;
+            recentDiskWriteScores[i] = Long.MAX_VALUE;
+            recentDiskReadScores[i] = Long.MAX_VALUE;
+            recentCpuScores[i] = Long.MAX_VALUE;
+        }
+      }
+
+      private int currentNetworkIndex = 0;
+      private int currentDiskReadIndex = 0;
+      private int currentDiskWriteIndex = 0;
+      private int currentCpuIndex = 0;
+
+      final private static long DEFAULT_SCORE = -1;    //UNAVAILABLE
+
+      private int setScore(final long score, long[] scores, final int index){
+          scores[index] = score;
+          int newIndex = index+1;
+          if(newIndex==RECENT)
+            newIndex=0;
+
+          return newIndex;
+      }
+
+      private long getMin(long[] scores){
+        if(scores.length==0)
+          return DEFAULT_SCORE;
+
+         LOG.debug("getMin: " + arrayToString(scores));
+        long min = scores[0];
+          for(int i=1; i<scores.length; i++){
+              min=Math.min(scores[i], min);
+          }
+        return min;
+      }
+
+      private long getAverage(long[] scores){
+        if(scores.length==0)
+          return DEFAULT_SCORE;
+
+         LOG.debug("getAverage: " + arrayToString(scores));
+        long total = scores[0];
+          for(int i=1; i<scores.length; i++){
+              total += scores[i];
+          }
+        return total/RECENT;
+      }
+
+      private String arrayToString(long[] scores){
+          String res = "";
+          for(int i=0; i<scores.length; i++){
+            res += scores[i] + ", ";
+          }
+          return res;
+      }
+
+      private long getSafeScore(long score){
+          return (score<0||score==Long.MAX_VALUE)?DEFAULT_SCORE:score;
+      }
+
   long getNetworkScoreOnTT() {
-    long networkScore = 1;
+    long networkScore = DEFAULT_SCORE;
     if (resourceCalculatorPlugin != null) {
-      networkScore = resourceCalculatorPlugin.getNetworkScore();
+        currentNetworkIndex = setScore(resourceCalculatorPlugin.getNetworkScore(), recentNetworkScores, currentNetworkIndex);
+        networkScore = getMin(recentNetworkScores);
     }
-    return networkScore;
+    return getSafeScore(networkScore);
   }
 
   long getDiskReadScoreOnTT() {
-    long diskScore = 1;
+    long diskScore = DEFAULT_SCORE;
     if (resourceCalculatorPlugin != null) {
-      diskScore = resourceCalculatorPlugin.getDiskReadScore();
+        currentDiskReadIndex = setScore(resourceCalculatorPlugin.getDiskReadScore(), recentDiskReadScores, currentDiskReadIndex);
+        diskScore = getMin(recentDiskReadScores);
     }
-    return diskScore;
+    return getSafeScore(diskScore);
   }
 
   long getDiskWriteScoreOnTT() {
-    long diskScore = 1;
+    long diskScore = DEFAULT_SCORE;
     if (resourceCalculatorPlugin != null) {
-      diskScore = resourceCalculatorPlugin.getDiskWriteScore();
+        currentDiskWriteIndex = setScore(resourceCalculatorPlugin.getDiskWriteScore(), recentDiskWriteScores, currentDiskWriteIndex);
+        diskScore = getMin(recentDiskWriteScores);
     }
-    return diskScore;
+    return getSafeScore(diskScore);
   }
   
   long getTotalMemoryAllottedForTasksOnTT() {

@@ -37,8 +37,9 @@ import org.apache.hadoop.mapred.TaskTrackerStatus;
 public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     private static final Log LOG =
             LogFactory.getLog(LinuxResourceCalculatorPlugin.class);
-    private long DEFAULT_SCORE = 1;
+    private long DEFAULT_SCORE = -1;
     final long MINIMUM_UPDATE_INTERVAL;
+    final static long IO_MINIMUM_UPDATE_INTERVAL = 999;   //in milisec - to update every sec
 
     /**
      * proc's meminfo virtual file has keys-values in the format
@@ -97,7 +98,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     private long cumulativeCpuTime = 0L; // CPU used time since system is on (ms)
     private long lastCumulativeCpuTime = 0L; // CPU used time read last time (ms)
     //TODO: make it read from file
-    private long totalBandwidth = 1000/8 * 1024 * 1024; //in byte per second
+    private long totalBandwidth = 1000/8 * 1024; //in KB per second
     private long cumulativeIncomingTraffic = 0;
     private long cumulativeOutgoingTraffic = 0;
     private long lastCumulativeIncomingTraffic = 0;
@@ -105,8 +106,12 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     private long currentBandwidth = 0;
 
     //TODO: make it read from file
-    private long diskReadCapacity = 400 * 1024; //in Byte/s
-    private long diskWriteCapacity = 400 * 1024; //in Byte/s
+    private long diskReadCapacity = 150 * 1024; //in KB/s
+    private long diskWriteCapacity = 150 * 1024; //in KB/s
+    private long cumulativeDiskReadKiloBytes = 0;
+    private long cumulativeDiskWriteKiloBytes = 0;
+    private long lastCumulativeDiskReadKiloBytes = 0;
+    private long lastCumulativeDiskWriteKiloBytes = 0;
     private long currentDiskReadRate = 0;
     private long currentDiskWriteRate = 0;
 
@@ -377,7 +382,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
         diskSampleTime = getCurrentTime();
         if (diskLastSampleTime == TaskTrackerStatus.UNAVAILABLE
                 || diskLastSampleTime > diskSampleTime
-                || diskSampleTime > diskLastSampleTime + MINIMUM_UPDATE_INTERVAL) {
+                || diskSampleTime > diskLastSampleTime + IO_MINIMUM_UPDATE_INTERVAL) {   //update every sec
 
             Runtime rt = Runtime.getRuntime();
             Process p = null;
@@ -396,18 +401,31 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
             Scanner info = null;
             while(sc.hasNext()){
                 String line = sc.nextLine();
-                        if(line.contains("sda")){
+                        if(line.contains("sda")){     //TODO: take the partition that hadoop is actually running on
                                 info = new Scanner(line);
                                 break;
                         }
                 }
 
-            info.next();  //skip sda
-            info.next();  //skip tps
+            for(int i=0; i<4; i++)
+                info.next();  //skip device, tps, kb_read/s, kb_wrtn/s
+
+            cumulativeDiskReadKiloBytes = Long.valueOf(info.next());
+            cumulativeDiskWriteKiloBytes = Long.valueOf(info.next());
+
+            LOG.debug("cumulative d read: " + cumulativeDiskReadKiloBytes);
+            LOG.debug("cumulative d write: " + cumulativeDiskWriteKiloBytes);
+
+            if(lastCumulativeDiskReadKiloBytes !=0 && lastCumulativeDiskWriteKiloBytes !=0){
+                currentDiskReadRate = (long)(1000.0*(cumulativeDiskReadKiloBytes - lastCumulativeDiskReadKiloBytes)
+                        /(diskSampleTime-diskLastSampleTime));
+                currentDiskWriteRate = (long)(1000.0*(cumulativeDiskWriteKiloBytes - lastCumulativeDiskWriteKiloBytes)
+                        /(diskSampleTime-diskLastSampleTime));
+            }
 
             diskLastSampleTime = diskSampleTime;
-            currentDiskReadRate = (long)(Float.valueOf(info.next()) * 1024);
-            currentDiskWriteRate = (long)(Float.valueOf(info.next()) * 1024);
+            lastCumulativeDiskReadKiloBytes = cumulativeDiskReadKiloBytes;
+            lastCumulativeDiskWriteKiloBytes = cumulativeDiskWriteKiloBytes;
         }
     }
 
@@ -507,11 +525,11 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
             return totalBandwidth;
         }
         // When lastSampleTime is sufficiently old, update
-        if (networkSampleTime > networkLastSampleTime + MINIMUM_UPDATE_INTERVAL) {
+        if (networkSampleTime > networkLastSampleTime + IO_MINIMUM_UPDATE_INTERVAL) {
             currentBandwidth =
                     (long)((float)(cumulativeIncomingTraffic + cumulativeOutgoingTraffic
                             - lastCumulativeIncomingTraffic - lastCumulativeOutgoingTraffic)/
-                            ((float)(networkSampleTime - networkLastSampleTime)/1000));
+                            ((float)(networkSampleTime - networkLastSampleTime)/1000)/1024);     //convert to sec, and KB
             networkLastSampleTime = networkSampleTime;
             lastCumulativeIncomingTraffic = cumulativeIncomingTraffic;
             lastCumulativeOutgoingTraffic = cumulativeOutgoingTraffic;
@@ -571,6 +589,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
         long score = TaskTrackerStatus.UNAVAILABLE;
         if(currentDiskReadRate != TaskTrackerStatus.UNAVAILABLE)
             score = (long)(getDiskReadCapacity() - getCurrentDiskReadRate());
+        LOG.debug("d read score: " + score);
         return getSafeScore(score);
     }
 
@@ -578,6 +597,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
         long score = TaskTrackerStatus.UNAVAILABLE;
         if(currentDiskWriteRate != TaskTrackerStatus.UNAVAILABLE )
             score = (long)(getDiskWriteCapacity() - getCurrentDiskWriteRate());
+        LOG.debug("d write score: " + score);
         return getSafeScore(score);
     }
 

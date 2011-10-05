@@ -292,6 +292,7 @@ public class TeraSort extends Configured implements Tool {
     job.setOutputValueClass(Text.class);
     job.setInputFormatClass(TeraInputFormat.class);
     job.setOutputFormatClass(TeraOutputFormat.class);
+      job.setNumReduceTasks(Integer.getInteger(args[2]));
     if (useSimplePartitioner) {
       job.setPartitionerClass(SimplePartitioner.class);
     } else {
