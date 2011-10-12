@@ -60,6 +60,29 @@ class ResourceSchedulingAlgorithms {
         }
     }
 
+    public static class FifoComparator
+            implements Comparator<ResourceFifoScheduler.JobSchedulingInfo> {
+        public int compare(ResourceFifoScheduler.JobSchedulingInfo o1,
+                           ResourceFifoScheduler.JobSchedulingInfo o2) {
+            int res = o1.getPriority().compareTo(o2.getPriority());
+            LOG.info("[compare:priority] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+
+            if (res == 0) {
+                if (o1.getStartTime() < o2.getStartTime()) {
+                    res = -1;
+                } else {
+                    res = (o1.getStartTime() == o2.getStartTime() ? 0 : 1);
+                }
+                LOG.info("[compare:startTime] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+            }
+            if (res == 0) {
+                res = o1.getJobID().compareTo(o2.getJobID());
+                LOG.info("[compare:jobID] - o1: " + o1.getJobID() + ", o2: " + o2.getJobID() + ", res: " + res);
+            }
+            return res;
+        }
+    }
+
     public static class FastestTaskFirstComparator implements Comparator<ResourceScheduler.JobSchedulingInfo> {
         public int compare(ResourceScheduler.JobSchedulingInfo o1,
                            ResourceScheduler.JobSchedulingInfo o2) {

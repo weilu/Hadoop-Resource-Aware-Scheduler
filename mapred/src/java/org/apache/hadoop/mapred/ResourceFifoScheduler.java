@@ -28,13 +28,13 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * A {@link org.apache.hadoop.mapred.TaskScheduler} that keeps jobs in a queue in priority order (FIFO
+ * A {@link TaskScheduler} that keeps jobs in a queue in priority order (FIFO
  * by default).
  */
-class ResourceScheduler extends TaskScheduler {
+class ResourceFifoScheduler extends TaskScheduler {
 
     private static final int MIN_CLUSTER_SIZE_FOR_PADDING = 3;
-    public static final Log LOG = LogFactory.getLog(ResourceScheduler.class);
+    public static final Log LOG = LogFactory.getLog(ResourceFifoScheduler.class);
 
     protected EagerTaskInitializationListener eagerTaskInitializationListener;
     protected ResourceJobQueueListener resourceJobQueueListener;
@@ -42,7 +42,7 @@ class ResourceScheduler extends TaskScheduler {
 
     private HashMap<String, Long> taskIdToTimeEstimated = new HashMap<String, Long>();
 
-    public ResourceScheduler() {
+    public ResourceFifoScheduler() {
         this.resourceJobQueueListener = new ResourceJobQueueListener();
     }
 
@@ -190,79 +190,50 @@ class ResourceScheduler extends TaskScheduler {
                     }
 
                     Task t = null;
+                    // Try to schedule a node-local or rack-local Map task
+                    t = myJob.obtainNewLocalMapTask(taskTrackerStatus, numTaskTrackers,
+                            taskTrackerManager.getNumberOfUniqueHosts());
+                    if (t != null) {
+                        assignedTasks.add(t);
+                        ++numRackOrMachineLocalMaps;
 
-                    //sampled
-                    if(myJob.getLocal() != null){
-                        t = myJob.obtainNewMapTask(taskTrackerStatus, numTaskTrackers,
-                                taskTrackerManager.getNumberOfUniqueHosts());
-                        if (t != null) {
-                            MapTaskFinishTimeEstimator estimator = myJobToTimeEstimated.get(myJob);
+                        MapTaskFinishTimeEstimator estimator = myJobToTimeEstimated.get(myJob);
+                        if(estimator!=null){
                             Long estimatedTime = estimator.estimatedFinishTime;
                             if(estimatedTime != null){
                                 taskIdToTimeEstimated.put(t.getTaskID().toString(), estimatedTime);
-                                LOG.debug(t.getTaskID() + ", " + estimatedTime + ", estimated time " + myJob.getLocal());
+                                LOG.debug(t.getTaskID() + ", " + estimatedTime + ", estimated time");
                                 LOG.debug(t.getTaskID() + ", " + estimator.estimatedCpuTime + ", estimated cpu time");
                                 LOG.debug(t.getTaskID() + ", " + estimator.estimatedDiskTime + ", estimated disk time");
                                 LOG.debug(t.getTaskID() + ", " + estimator.estimatedNetworkTime + ", estimated network time");
                             }
-
-                            assignedTasks.add(t);
-                            ++numRackOrMachineLocalMaps;
-                            if(myJob.local)
-                                ++numLocalMaps;
-                            else
-                                ++numRackLocalMaps;
-
-
-                            // Don't assign map tasks to the hilt!
-                            // Leave some free slots in the cluster for future task-failures,
-                            // speculative tasks etc. beyond the highest priority job
-                            if (exceededMapPadding) {
-                                break scheduleMaps;
-                            }
-
-                            // Try all jobs again for the next Map task
-                            break;
-                        }
-                    }
-                    //unsampled & sample scheduled
-                    else{
-
-                        // Try to schedule a node-local or rack-local Map task
-                        t =
-                                job.obtainNewLocalMapTask(taskTrackerStatus, numTaskTrackers,
-                                        taskTrackerManager.getNumberOfUniqueHosts());
-                        if (t != null) {
-                            assignedTasks.add(t);
-                            ++numRackOrMachineLocalMaps;
-
-
-                            // Don't assign map tasks to the hilt!
-                            // Leave some free slots in the cluster for future task-failures,
-                            // speculative tasks etc. beyond the highest priority job
-                            if (exceededMapPadding) {
-                                break scheduleMaps;
-                            }
-
-                            // Try all jobs again for the next Map task
-                            break;
                         }
 
-                        // Try to schedule a node-local or rack-local Map task
-                        t =
-                                job.obtainNewNonLocalMapTask(taskTrackerStatus, numTaskTrackers,
-                                        taskTrackerManager.getNumberOfUniqueHosts());
-
-                        if (t != null) {
-                            assignedTasks.add(t);
-                            ++numNonLocalMaps;
-
-
-                            // We assign at most 1 off-switch or speculative task
-                            // This is to prevent TaskTrackers from stealing local-tasks
-                            // from other TaskTrackers.
+                        // Don't assign map tasks to the hilt!
+                        // Leave some free slots in the cluster for future task-failures,
+                        // speculative tasks etc. beyond the highest priority job
+                        if (exceededMapPadding) {
                             break scheduleMaps;
                         }
+
+                        // Try all jobs again for the next Map task
+                        break;
+                    }
+
+                    // Try to schedule a rack-local Map task
+                    t = myJob.obtainNewRackLocalMapTask(taskTrackerStatus, numTaskTrackers,
+                            taskTrackerManager.getNumberOfUniqueHosts());
+
+                    if (t != null) {
+                        assignedTasks.add(t);
+                        ++numNonLocalMaps;
+                        LOG.debug(t.getTaskID() + " none local task scheduled on: " +  taskTracker.getTrackerName());
+
+
+                        // We assign at most 1 off-switch or speculative task
+                        // This is to prevent TaskTrackers from stealing local-tasks
+                        // from other TaskTrackers.
+                        break scheduleMaps;
                     }
                 }
                 LOG.debug("Remaining map slots: " + (availableMapSlots-i));
@@ -281,22 +252,11 @@ class ResourceScheduler extends TaskScheduler {
                 Math.min((trackerCurrentReduceCapacity - trackerRunningReduces), 1);
         boolean exceededReducePadding = false;
         if (availableReduceSlots > 0) {
+            //avoid schedule reduce task on the machine where sample task is scheduled
             exceededReducePadding = exceededPadding(false, clusterStatus,
                     trackerReduceCapacity);
-            synchronized (myJobs) {
-                for (MyJobInProgress myJob : myJobs) {
-                    JobInProgress job = myJob.getJip();
-//                    boolean isSampleMapMachine = false;
-//                    if(taskTrackerManager instanceof JobTracker){
-//                        JobTracker jobtracker = (JobTracker)taskTrackerManager;
-//                        MapSampleReport report = jobtracker.mapLogger.sampleReports.get(job.getJobID().toString());
-//                        if(report != null){
-//                           isSampleMapMachine = report.getTrackerName().equals(taskTracker.getTrackerName());
-//                        }
-//                    }
-//
-//                    if(isSampleMapMachine)
-//                        continue;
+            synchronized (sampledJobs) {
+                for (JobInProgress job : sampledJobs) {
 
                     if (job.getStatus().getRunState() != JobStatus.RUNNING ||
                             job.numReduceTasks == 0) {
@@ -441,7 +401,7 @@ class ResourceScheduler extends TaskScheduler {
             JobTracker jobtracker = (JobTracker)taskTrackerManager;
 
             final Comparator<JobSchedulingInfo> FASTEST_TASK_FIRST_COMPARATOR
-                    = new ResourceSchedulingAlgorithms.FastestTaskFirstComparator();
+                    = new ResourceSchedulingAlgorithms.FifoComparator();
             TreeMap<JobSchedulingInfo, MyJobInProgress> infoToJob
                     = new TreeMap<JobSchedulingInfo, MyJobInProgress>(FASTEST_TASK_FIRST_COMPARATOR);
 
@@ -449,17 +409,13 @@ class ResourceScheduler extends TaskScheduler {
                 MapSampleReport sampleReport = jobtracker.mapLogger.sampleReports.get(job.getJobID().toString());
                 MyJobInProgress j1 = new MyJobInProgress(job, true);
                 JobSchedulingInfo info1 = new JobSchedulingInfo(j1, trackerStatus, sampleReport);
-                if(info1.getTimeEstimated()!=-1){
-                    infoToJob.put(info1, j1);
-                    myJobToTimeEstimated.put(j1, info1.getEstimator());
-                }
+                infoToJob.put(info1, j1);
+                myJobToTimeEstimated.put(j1, info1.getEstimator());
 
                 MyJobInProgress j2 = new MyJobInProgress(job, false);
                 JobSchedulingInfo info2 = new JobSchedulingInfo(j2, trackerStatus, sampleReport);
-                if(info2.getTimeEstimated()!=-1){
-                    infoToJob.put(info2, j2);
-                    myJobToTimeEstimated.put(j2, info2.getEstimator());
-                }
+                infoToJob.put(info2, j2);
+                myJobToTimeEstimated.put(j2, info2.getEstimator());
             }
 
             myJobs.addAll(infoToJob.values());

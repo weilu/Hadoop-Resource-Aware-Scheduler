@@ -14,12 +14,18 @@ public class MapSampleReportLogger {
 
     HashMap<String, MapSampleReport> sampleReports = new HashMap<String, MapSampleReport>();
 
-    public void logNetworkCopyDurationAndReduceTracker (String jobId, long duration, String reduceTracker){
+    public boolean logNetworkCopyDurationForTheFirstTime(String jobId, long duration, String reduceTracker){
         if(duration<0)
-            return;
+            return false;
         MapSampleReport report = sampleReports.get(jobId);
         if(!(report.getNetworkWriteDurationMilliSec()<0) || report.getTrackerName().equals(reduceTracker))
-            return;
+            return false;
+
+        return true;
+    }
+
+    public void logNetworkCopyDurationAndReduceTracker (String jobId, long duration, String reduceTracker){
+        MapSampleReport report = sampleReports.get(jobId);
         
         report.setReduceTrackerName(reduceTracker);
         report.setNetworkWriteDurationMilliSec(duration);

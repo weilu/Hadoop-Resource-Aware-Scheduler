@@ -15,14 +15,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="ad1553bb-5843-41f6-8746-19af3b22bc4c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceFifoScheduler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceSchedulingAlgorithms.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceSchedulingAlgorithms.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hadoop-0.21.0.iws" afterPath="$PROJECT_DIR$/hadoop-0.21.0.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTaskFinishTimeEstimator.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTaskFinishTimeEstimator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/examples/org/apache/hadoop/examples/terasort/TeraSort.java" afterPath="$PROJECT_DIR$/mapred/src/examples/org/apache/hadoop/examples/terasort/TeraSort.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MRConstants.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MRConstants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" afterPath="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" />
     </list>
     <ignored path="$USER_HOME_GRIFFON$/" />
     <ignored path="$USER_HOME_GRAILS$/" />
@@ -284,39 +282,28 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JobTracker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java">
+      <file leaf-file-name="MapTask.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2725" column="38" selection-start="99122" selection-end="99122" vertical-scroll-proportion="-9.730769">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TaskTrackerStatus.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="364" column="35" selection-start="12005" selection-end="12013" vertical-scroll-proportion="-13.153846">
+            <state line="619" column="20" selection-start="21797" selection-end="21801" vertical-scroll-proportion="3.1923077">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskTracker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java">
+      <file leaf-file-name="ResourceFifoScheduler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceFifoScheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1816" column="41" selection-start="64020" selection-end="64020" vertical-scroll-proportion="-9.923077">
+            <state line="397" column="72" selection-start="17387" selection-end="17387" vertical-scroll-proportion="-6.6153846">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JobQueueTaskScheduler.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobQueueTaskScheduler.java">
+      <file leaf-file-name="ResourceScheduler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="27" selection-start="1319" selection-end="1340" vertical-scroll-proportion="0.432">
+            <state line="287" column="55" selection-start="12787" selection-end="12787" vertical-scroll-proportion="-9.076923">
               <folding />
             </state>
           </provider>
@@ -325,52 +312,61 @@
       <file leaf-file-name="CLI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/tools/CLI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="411" column="45" selection-start="14221" selection-end="14221" vertical-scroll-proportion="0.0">
+            <state line="139" column="59" selection-start="4466" selection-end="4466" vertical-scroll-proportion="-3.5769231">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HistoryViewer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/jobhistory/HistoryViewer.java">
+      <file leaf-file-name="JobQueueTaskScheduler.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobQueueTaskScheduler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="9" selection-start="2672" selection-end="2672" vertical-scroll-proportion="0.0">
+            <state line="43" column="39" selection-start="1728" selection-end="1728" vertical-scroll-proportion="0.864">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TeraSort.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/examples/org/apache/hadoop/examples/terasort/TeraSort.java">
+      <file leaf-file-name="JobSampleState.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/JobSampleState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="291" column="34" selection-start="9780" selection-end="9780" vertical-scroll-proportion="-9.192307">
+            <state line="29" column="18" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapTaskFinishTimeEstimator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTaskFinishTimeEstimator.java">
+      <file leaf-file-name="MapSampleReportLogger.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="167" column="42" selection-start="7230" selection-end="7256" vertical-scroll-proportion="0.0">
+            <state line="27" column="58" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MRConstants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MRConstants.java">
+      <file leaf-file-name="MyJobInProgress.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MyJobInProgress.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="48" selection-start="1022" selection-end="1044" vertical-scroll-proportion="0.0">
+            <state line="49" column="81" selection-start="1269" selection-end="1269" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LinuxResourceCalculatorPlugin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java">
+      <file leaf-file-name="JobInProgress.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="293" column="17" selection-start="11167" selection-end="11167" vertical-scroll-proportion="0.0">
+            <state line="1206" column="47" selection-start="43367" selection-end="43367" vertical-scroll-proportion="-9.846154">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskInProgress.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskInProgress.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="138" column="26" selection-start="5224" selection-end="5224" vertical-scroll-proportion="-12.230769">
               <folding />
             </state>
           </provider>
@@ -390,13 +386,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/jobhistory/MapOutputCopyFinishedEvent.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MyJobInProgress.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/SampleTaskStatus.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskStatus.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java" />
-        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReport.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTaskFinishTimeEstimator.java" />
@@ -406,6 +397,11 @@
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java" />
         <option value="$PROJECT_DIR$/mapred/src/examples/org/apache/hadoop/examples/terasort/TeraSort.java" />
         <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceSchedulingAlgorithms.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceFifoScheduler.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java" />
+        <option value="$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java" />
       </list>
     </option>
   </component>
@@ -499,34 +495,50 @@
         </subPane>
       </pane>
       <pane id="Favorites" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.proportion" value="0.15" />
     <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="options.searchVisible" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="889" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="78" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="95" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="99" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="dynamic.classpath" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="90" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="options.lastSelected" value="reference.projectsettings.compiler.javacompiler" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.last.edited" value="Facets" />
+    <property name="options.searchVisible" value="true" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="120" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="893" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="124" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.apache.hadoop.mapreduce.jobhistory" />
       <recent name="org.apache.hadoop.mapred" />
+      <recent name="org.apache.hadoop.mapreduce.jobhistory" />
       <recent name="org.apache.hadoop.fs" />
       <recent name="org.apache.hadoop.mapreduce" />
     </key>
@@ -875,7 +887,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="- attempt 2 to improve disk io estimation: separate disk read and write estimation&#10;- fix sample cpu time overestimation: now spill time deducted from sample cpu time &#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="- fix disk iostat profiling + multiple sampling points estimation + two sampling method: min or average&#10;- make estimator slightly more efficient&#10;- set heartbeat interval to 1sec instead of 3 secs&#10;- make TT report resource scores at every heartbeat&#10;- allow set number of reducers for tera sort&#10;" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -892,6 +904,7 @@
     <MESSAGE value="- differenciate local and rack local tasks&#10;- move obtainNewTask to MyJobInProcess from JobInProcess&#10;- allow logging 0 as network map output copy time (happens if map output is tiny)" />
     <MESSAGE value="- fix network estimation: no more use of localReducePercentage and allow network time to be 0&#10;- log cpu/disk/network time separately&#10;- attempt 1 to improve disk io estimation" />
     <MESSAGE value="- attempt 2 to improve disk io estimation: separate disk read and write estimation&#10;- fix sample cpu time overestimation: now spill time deducted from sample cpu time &#10;" />
+    <MESSAGE value="- fix disk iostat profiling + multiple sampling points estimation + two sampling method: min or average&#10;- make estimator slightly more efficient&#10;- set heartbeat interval to 1sec instead of 3 secs&#10;- make TT report resource scores at every heartbeat&#10;- allow set number of reducers for tera sort&#10;" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -943,116 +956,114 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/ResourceCalculatorPlugin.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/Task.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="22" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0">
+        <state line="73" column="0" selection-start="2850" selection-end="2850" vertical-scroll-proportion="-4.076923">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/HeartbeatResponse.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="48" selection-start="1592" selection-end="1592" vertical-scroll-proportion="-7.730769">
+        <state line="619" column="20" selection-start="21797" selection-end="21801" vertical-scroll-proportion="3.1923077">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/HeartbeatResponse.class">
+    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/MyJobInProgress.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="15" selection-start="1220" selection-end="1220" vertical-scroll-proportion="0.61538464">
+        <state line="24" column="54" selection-start="1143" selection-end="1143" vertical-scroll-proportion="0.50549453">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/TaskTrackerManager.class">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MyJobInProgress.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="8" selection-start="687" selection-end="687" vertical-scroll-proportion="0.3956044">
+        <state line="49" column="81" selection-start="1269" selection-end="1269" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/MRConstants.class">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceFifoScheduler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="8" selection-start="189" selection-end="189" vertical-scroll-proportion="0.10695187">
+        <state line="397" column="72" selection-start="17387" selection-end="17387" vertical-scroll-proportion="-6.6153846">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobTracker.java">
+    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapreduce/JobStatus.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2725" column="38" selection-start="99122" selection-end="99122" vertical-scroll-proportion="-9.730769">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/TaskTrackerStatus.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="62" selection-start="2498" selection-end="2498" vertical-scroll-proportion="0.33333334">
+        <state line="101" column="67" selection-start="5023" selection-end="5023" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTrackerStatus.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobStatus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="364" column="35" selection-start="12005" selection-end="12013" vertical-scroll-proportion="-13.153846">
+        <state line="34" column="13" selection-start="1402" selection-end="1402" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/examples/org/apache/hadoop/examples/terasort/TeraSort.java">
+    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/JobInProgress.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="291" column="34" selection-start="9780" selection-end="9780" vertical-scroll-proportion="-9.192307">
+        <state line="147" column="46" selection-start="8090" selection-end="8090" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/util/LinuxResourceCalculatorPlugin.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/JobSampleState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="293" column="17" selection-start="11167" selection-end="11167" vertical-scroll-proportion="0.0">
+        <state line="29" column="18" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MRConstants.java">
+    <entry file="jar://$PROJECT_DIR$/mapred/build/hadoop-mapred-0.21.1-SNAPSHOT.jar!/org/apache/hadoop/mapred/TaskInProgress.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="48" selection-start="1022" selection-end="1044" vertical-scroll-proportion="0.0">
+        <state line="219" column="32" selection-start="10735" selection-end="10735" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskTracker.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/TaskInProgress.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1816" column="41" selection-start="64020" selection-end="64020" vertical-scroll-proportion="-9.923077">
+        <state line="138" column="26" selection-start="5224" selection-end="5224" vertical-scroll-proportion="-12.230769">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/jobhistory/HistoryViewer.java">
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapSampleReportLogger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="9" selection-start="2672" selection-end="2672" vertical-scroll-proportion="0.0">
+        <state line="27" column="58" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobInProgress.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1206" column="47" selection-start="43367" selection-end="43367" vertical-scroll-proportion="-9.846154">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/ResourceScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="287" column="55" selection-start="12787" selection-end="12787" vertical-scroll-proportion="-9.076923">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapreduce/tools/CLI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="411" column="45" selection-start="14221" selection-end="14221" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/MapTaskFinishTimeEstimator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="42" selection-start="7230" selection-end="7256" vertical-scroll-proportion="0.0">
+        <state line="139" column="59" selection-start="4466" selection-end="4466" vertical-scroll-proportion="-3.5769231">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mapred/src/java/org/apache/hadoop/mapred/JobQueueTaskScheduler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="27" selection-start="1319" selection-end="1340" vertical-scroll-proportion="0.432">
+        <state line="43" column="39" selection-start="1728" selection-end="1728" vertical-scroll-proportion="0.864">
           <folding />
         </state>
       </provider>

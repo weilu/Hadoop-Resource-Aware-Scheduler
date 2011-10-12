@@ -1186,19 +1186,23 @@ public class JobInProgress {
       LOG.debug("Taking progress for " + tip.getTIPId() + " from " + 
                  oldProgress + " to " + tip.getProgress());
     }
-    
-    if (!tip.isJobCleanupTask() && !tip.isJobSetupTask()) {
-      double progressDelta = tip.getProgress() - oldProgress;
-      if (tip.isMapTask()) {
-          this.status.setMapProgress((float) (this.status.mapProgress() +
-                                              progressDelta / maps.length));
-      } else {
-        this.status.setReduceProgress((float) (this.status.reduceProgress() + 
-                                           (progressDelta / reduces.length)));
-        jobtracker.mapLogger.logNetworkCopyDurationAndReduceTracker(jobId.toString(),
-                status.getSampleStatus().getNetworkSampleMapCopyDurationMilliSec(), status.getTaskTracker());
+
+      if (!tip.isJobCleanupTask() && !tip.isJobSetupTask()) {
+          double progressDelta = tip.getProgress() - oldProgress;
+          if (tip.isMapTask()) {
+              this.status.setMapProgress((float) (this.status.mapProgress() +
+                      progressDelta / maps.length));
+          } else {
+              this.status.setReduceProgress((float) (this.status.reduceProgress() +
+                      (progressDelta / reduces.length)));
+              if(jobtracker.mapLogger.logNetworkCopyDurationForTheFirstTime(jobId.toString(),
+                      status.getSampleStatus().getNetworkSampleMapCopyDurationMilliSec(), status.getTaskTracker())){
+                  jobtracker.mapLogger.logNetworkCopyDurationAndReduceTracker(jobId.toString(),
+                          status.getSampleStatus().getNetworkSampleMapCopyDurationMilliSec(), status.getTaskTracker());
+                  jobSampleDone();
+              }
+          }
       }
-    }
   }
 
   /**
@@ -2693,8 +2697,9 @@ public class JobInProgress {
         updateTaskTrackerStats(tip,ttStatus,trackerMapStats,mapTaskStats);
       }
 
-      if(tip.getIsSample(taskid))
-        jobSampleDone();
+//shouldn't mark here as network copy is part of reduce and it's part of sampling
+//      if(tip.getIsSample(taskid))
+//        jobSampleDone();
 
       // remove the completed map from the resp running caches
       retireMap(tip);
