@@ -137,6 +137,8 @@ public class SampleTaskStatus implements Writable, Cloneable {
     // Writable
     //////////////////////////////////////////////
     public void write(DataOutput out) throws IOException {
+        if(sampleMapTaskId==null)
+            sampleMapTaskId = new TaskAttemptID();
         sampleMapTaskId.write(out);
         out.writeUTF(sampleMapTracker);
         out.writeLong(readInputStartTime);

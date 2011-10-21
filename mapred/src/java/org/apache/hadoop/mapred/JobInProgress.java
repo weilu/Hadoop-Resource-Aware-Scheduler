@@ -1167,7 +1167,7 @@ public class JobInProgress {
         }
         if (state == TaskStatus.State.SUCCEEDED) {
           completedTask(tip, status);
-          if(tip.getIsSample(taskid)){
+          if (this.status.getSampleState() == JobSampleState.SCHEDULED && tip.getIsSample(taskid)){
             jobtracker.mapLogger.logStatsUponMapSampleTaskComplete(tip);
             float localReducePercentage = getLocalReduceRateForTaskTracker(status.getTaskTracker());
             jobtracker.mapLogger.logLocalReducesPercentage(tip, localReducePercentage);
@@ -1255,15 +1255,9 @@ public class JobInProgress {
 
     public void markSampleScheduled(TaskInProgress tip, TaskAttemptID taskId) {
         //update the listeners that the job sampling has been scheduled. trigger job reordering
-        JobStatus prevStatus = (JobStatus)status.clone();
-        if(prevStatus.getSampleState() == JobSampleState.WAITING) {
+        if(this.status.getSampleState() == JobSampleState.WAITING) {
             jobSampleScheduled();
             tip.setSampleTaskId(taskId);
-            JobStatus newStatus = (JobStatus)status.clone();
-            JobStatusChangeEvent event =
-                    new JobStatusChangeEvent(this, JobStatusChangeEvent.EventType.SAMPLE_STATE_CHANGED, prevStatus, newStatus);
-
-            jobtracker.updateJobInProgressListeners(event);
         }
     }
 
@@ -2816,16 +2810,30 @@ public class JobInProgress {
         }
     }
 
-  private void changeSampleStateTo(JobSampleState newState) {
-    JobSampleState oldState = this.status.getSampleState();
-    if (oldState == newState) {
-      return; //old and new states are same
+    public void jobSampleToReschedule() {
+        if(this.status.getSampleState() == JobSampleState.DONE){
+            changeSampleStateTo(JobSampleState.WAITING);
+            jobtracker.mapLogger.resetSampleReportForJob(getJobID().toString());
+        }
     }
-    LOG.info("Job " + this.status.getJobID() +
-               " has changed SampleState: " + oldState + " -> " + newState);
-    this.status.setSampleState(newState);
 
-  }
+    private void changeSampleStateTo(JobSampleState newState) {
+        JobStatus prevStatus = (JobStatus)status.clone();
+
+        JobSampleState oldState = this.status.getSampleState();
+        if (oldState == newState) {
+            return; //old and new states are same
+        }
+        LOG.info("Job " + this.status.getJobID() +
+                " has changed SampleState: " + oldState + " -> " + newState);
+        this.status.setSampleState(newState);
+
+        JobStatus newStatus = (JobStatus)status.clone();
+        JobStatusChangeEvent event =
+                new JobStatusChangeEvent(this, JobStatusChangeEvent.EventType.SAMPLE_STATE_CHANGED, prevStatus, newStatus);
+
+        jobtracker.updateJobInProgressListeners(event);
+    }
 
   /**
    * The job is done since all it's component tasks are either

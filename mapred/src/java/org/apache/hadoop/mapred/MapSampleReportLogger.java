@@ -14,18 +14,32 @@ public class MapSampleReportLogger {
 
     HashMap<String, MapSampleReport> sampleReports = new HashMap<String, MapSampleReport>();
 
+    public void resetSampleReportForJob(String jobId){
+        sampleReports.put(jobId, null);
+        LOG.info("0. SampleReport cleared: " + jobId);
+    }
+
     public boolean logNetworkCopyDurationForTheFirstTime(String jobId, long duration, String reduceTracker){
         if(duration<0)
             return false;
         MapSampleReport report = sampleReports.get(jobId);
-        if(!(report.getNetworkWriteDurationMilliSec()<0) || report.getTrackerName().equals(reduceTracker))
+        if(report==null || !(report.getNetworkWriteDurationMilliSec()<0) || report.getTrackerName().equals(reduceTracker))
+            return false;
+        if(report.getNetworkWriteBytes()<0)
             return false;
 
         return true;
     }
 
     public void logNetworkCopyDurationAndReduceTracker (String jobId, long duration, String reduceTracker){
+        LOG.info("5. logNetworkCopyDurationAndReduceTracker" + jobId);
+
         MapSampleReport report = sampleReports.get(jobId);
+
+        if(report.getNetworkWriteBytes()<0){
+            LOG.error("logNetworkCopyDurationAndReduceTracker invoked before logLocalReducesPercentage!");
+            return;
+        }
         
         report.setReduceTrackerName(reduceTracker);
         report.setNetworkWriteDurationMilliSec(duration);
@@ -35,7 +49,13 @@ public class MapSampleReportLogger {
     }
 
     public void logLocalReducesPercentage(TaskInProgress tip, float localReducesPercentage){
+        LOG.info("4. logLocalReducesPercentage: " + tip.getJob().getJobID().toString());
+
         MapSampleReport report = getReport(tip, null);
+        if(report.getDiskWriteBytes()<0){
+            LOG.error("logLocalReducesPercentage invoked before logStatsUponMapSampleTaskComplete!");
+            return;
+        }
         report.localReducesPercentage = localReducesPercentage;
 
 //        long estimatedNetworkWriteBites = (long)((1-report.localReducesPercentage)*report.getDiskWriteBytes());
@@ -44,6 +64,7 @@ public class MapSampleReportLogger {
     }
 
     public void logStatsUponMapSampleTaskComplete(TaskInProgress tip){
+        LOG.info("3. logStatsUponMapSampleTaskComplete:" + tip.getJob().getJobID().toString());
 
         TaskStatus taskStatus = tip.getTaskStatus(tip.getSampleTaskId());
         SampleTaskStatus sampleStatus = taskStatus.getSampleStatus();
@@ -67,6 +88,8 @@ public class MapSampleReportLogger {
     }
 
     public void logTrackerStatus(TaskInProgress tip, TaskTrackerStatus trackerStatus){
+        LOG.info("2. logTrackerStatus:" + tip.getJob().getJobID().toString());
+
         MapSampleReport report = getReport(tip, null);
         TaskTrackerStatus.ResourceStatus resourceStatus = trackerStatus.getResourceStatus();
         LOG.info(resourceStatus.toString());
@@ -78,6 +101,8 @@ public class MapSampleReportLogger {
     }
 
     public void logDataLocality(TaskInProgress tip, boolean dataLocal, String taskTracker){
+        LOG.info("1. logDataLocality:" + tip.getJob().getJobID().toString());
+
         String jobId = tip.getJob().getJobID().toString();
         MapSampleReport report = getReport(tip, taskTracker);
         report.dataLocal = dataLocal;

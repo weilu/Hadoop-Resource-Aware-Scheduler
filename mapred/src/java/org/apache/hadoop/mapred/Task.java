@@ -285,10 +285,13 @@ abstract public class Task implements Writable, Configurable {
     }
 
     protected synchronized void incrementSpillStats(long timeMilliSec, long size){
+
         SampleTaskStatus sampleStatus = taskStatus.getSampleStatus();
+        LOG.debug("about to increment spill stats... write start time: " + getWriteStartTime());
         if(isSample() && getWriteStartTime() == 0){  //only increment if spill happens during map not output 
             sampleStatus.setAdditionalSpillDurationMilliSec(sampleStatus.getAdditionalSpillDurationMilliSec() + timeMilliSec);
             sampleStatus.setAdditionalSpillSize(sampleStatus.getAdditionalSpillSize() + size);
+            LOG.debug("incremented spill stats... additional size | duration: " + sampleStatus.getAdditionalSpillSize() + " | " + sampleStatus.getAdditionalSpillDurationMilliSec());
         }
     }
 
@@ -301,7 +304,8 @@ abstract public class Task implements Writable, Configurable {
     }
 
     protected boolean isSample(){
-        return taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId());
+        return true;
+//        return taskId.equals(taskStatus.getSampleStatus().getSampleMapTaskId());
     }
   
   /**

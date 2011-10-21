@@ -112,8 +112,8 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     private long cumulativeDiskWriteKiloBytes = 0;
     private long lastCumulativeDiskReadKiloBytes = 0;
     private long lastCumulativeDiskWriteKiloBytes = 0;
-    private long currentDiskReadRate = 0;
-    private long currentDiskWriteRate = 0;
+    private long currentDiskReadRate = 0;    //in KB/s
+    private long currentDiskWriteRate = 0;   //in KB/s
 
     // Unix timestamp while reading the CPU time (ms)
     private float cpuUsage = TaskTrackerStatus.UNAVAILABLE;

@@ -41,6 +41,7 @@ class ResourceScheduler extends TaskScheduler {
     private float padFraction;
 
     private HashMap<String, Long> taskIdToTimeEstimated = new HashMap<String, Long>();
+    private HashMap<JobInProgress, Integer> jobIdToSkipCount = new HashMap<JobInProgress, Integer>();
 
     public ResourceScheduler() {
         this.resourceJobQueueListener = new ResourceJobQueueListener();
@@ -108,6 +109,7 @@ class ResourceScheduler extends TaskScheduler {
         //
         // 1. Compute (running + pending) map and reduce task numbers across pool
         // 2. partition the queue based on sample state
+        // 3. initialize jobIdToSkipCount for new jobs
         //
         int remainingReduceLoad = 0;
         int remainingMapLoad = 0;
@@ -128,6 +130,9 @@ class ResourceScheduler extends TaskScheduler {
                     sampledJobs.add(job);
                 else
                     sampleScheduledJobs.add(job);
+
+                if(jobIdToSkipCount.get(job)==null)
+                    jobIdToSkipCount.put(job, 0);
             }
         }
 
@@ -178,6 +183,7 @@ class ResourceScheduler extends TaskScheduler {
         int numRackLocalMaps = 0;
         int numRackOrMachineLocalMaps = 0;
         int numNonLocalMaps = 0;
+
         scheduleMaps:
         for (int i=0; i < availableMapSlots; ++i) {
             synchronized (myJobs) {
@@ -213,6 +219,25 @@ class ResourceScheduler extends TaskScheduler {
                             else
                                 ++numRackLocalMaps;
 
+                            String scheduledJobId = myJob.getJip().getJobID().toString();
+                            Iterator<Map.Entry<JobInProgress, Integer>> it = jobIdToSkipCount.entrySet().iterator();
+                            while(it.hasNext()){
+                                Map.Entry<JobInProgress, Integer> entry = it.next();
+                                JobInProgress jobId = entry.getKey();
+//                                if(scheduledJobId.equals(jobId.getJobID().toString())){  //reset for just scheduled task
+//                                    entry.setValue(0);
+//                                }else{
+                                    int skipCount = entry.getValue()+1;
+                                    if(skipCount<10)    //increase skip counts if skipped less than 10 times
+                                        entry.setValue(skipCount);
+                                    else{               //set the job to be re-sampled and reset skipCount
+                                        jobId.jobSampleToReschedule();
+                                        entry.setValue(0);
+                                    }
+//                                }
+                            }
+                            LOG.debug("[JobToSkipCount] job scheduled:" + scheduledJobId);
+                            LOG.debug(printJobToSkipCount());
 
                             // Don't assign map tasks to the hilt!
                             // Leave some free slots in the cluster for future task-failures,
@@ -286,17 +311,6 @@ class ResourceScheduler extends TaskScheduler {
             synchronized (myJobs) {
                 for (MyJobInProgress myJob : myJobs) {
                     JobInProgress job = myJob.getJip();
-//                    boolean isSampleMapMachine = false;
-//                    if(taskTrackerManager instanceof JobTracker){
-//                        JobTracker jobtracker = (JobTracker)taskTrackerManager;
-//                        MapSampleReport report = jobtracker.mapLogger.sampleReports.get(job.getJobID().toString());
-//                        if(report != null){
-//                           isSampleMapMachine = report.getTrackerName().equals(taskTracker.getTrackerName());
-//                        }
-//                    }
-//
-//                    if(isSampleMapMachine)
-//                        continue;
 
                     if (job.getStatus().getRunState() != JobStatus.RUNNING ||
                             job.numReduceTasks == 0) {
@@ -327,7 +341,7 @@ class ResourceScheduler extends TaskScheduler {
                     "[" + mapLoadFactor + ", " + trackerMapCapacity + ", " +
                     trackerCurrentMapCapacity + ", " + trackerRunningMaps + "] -> [" +
                     (trackerCurrentMapCapacity - trackerRunningMaps) + ", " +
-                    assignedMaps + " (" + numLocalMaps + ", " + numNonLocalMaps +
+                    assignedMaps + " (" + numLocalMaps + ", " + numRackLocalMaps + ", " + numNonLocalMaps +
                     ")] [" + reduceLoadFactor + ", " + trackerReduceCapacity + ", " +
                     trackerCurrentReduceCapacity + "," + trackerRunningReduces +
                     "] -> [" + (trackerCurrentReduceCapacity - trackerRunningReduces) +
@@ -468,4 +482,11 @@ class ResourceScheduler extends TaskScheduler {
         return myJobs;
     }
 
+    private String printJobToSkipCount(){
+        String res = "[JobToSkipCount]: ";
+        for(JobInProgress j : jobIdToSkipCount.keySet()){
+            res += "[" + j.getJobID() + ": " + jobIdToSkipCount.get(j) + "] \n";
+        }
+        return res;
+    }
 }
