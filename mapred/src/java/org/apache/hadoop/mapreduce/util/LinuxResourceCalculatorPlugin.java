@@ -396,36 +396,51 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
             }
             if(p == null)
                 return;
+
             InputStream outputStream = p.getInputStream();
             Scanner sc = new Scanner(outputStream);
             Scanner info = null;
-            while(sc.hasNext()){
-                String line = sc.nextLine();
-                        if(line.contains("sda")){     //TODO: take the partition that hadoop is actually running on
-                                info = new Scanner(line);
-                                break;
-                        }
+            try{
+
+                while(sc.hasNext()){
+                    String line = sc.nextLine();
+                    if(line.contains("sda")){     //TODO: take the partition that hadoop is actually running on
+                        info = new Scanner(line);
+                        break;
+                    }
                 }
 
-            for(int i=0; i<4; i++)
-                info.next();  //skip device, tps, kb_read/s, kb_wrtn/s
+                for(int i=0; i<4; i++)
+                    info.next();  //skip device, tps, kb_read/s, kb_wrtn/s
 
-            cumulativeDiskReadKiloBytes = Long.valueOf(info.next());
-            cumulativeDiskWriteKiloBytes = Long.valueOf(info.next());
+                cumulativeDiskReadKiloBytes = Long.valueOf(info.next());
+                cumulativeDiskWriteKiloBytes = Long.valueOf(info.next());
 
-            LOG.debug("cumulative d read: " + cumulativeDiskReadKiloBytes);
-            LOG.debug("cumulative d write: " + cumulativeDiskWriteKiloBytes);
+                LOG.debug("cumulative d read: " + cumulativeDiskReadKiloBytes);
+                LOG.debug("cumulative d write: " + cumulativeDiskWriteKiloBytes);
 
-            if(lastCumulativeDiskReadKiloBytes !=0 && lastCumulativeDiskWriteKiloBytes !=0){
-                currentDiskReadRate = (long)(1000.0*(cumulativeDiskReadKiloBytes - lastCumulativeDiskReadKiloBytes)
-                        /(diskSampleTime-diskLastSampleTime));
-                currentDiskWriteRate = (long)(1000.0*(cumulativeDiskWriteKiloBytes - lastCumulativeDiskWriteKiloBytes)
-                        /(diskSampleTime-diskLastSampleTime));
+                if(lastCumulativeDiskReadKiloBytes !=0 && lastCumulativeDiskWriteKiloBytes !=0){
+                    currentDiskReadRate = (long)(1000.0*(cumulativeDiskReadKiloBytes - lastCumulativeDiskReadKiloBytes)
+                            /(diskSampleTime-diskLastSampleTime));
+                    currentDiskWriteRate = (long)(1000.0*(cumulativeDiskWriteKiloBytes - lastCumulativeDiskWriteKiloBytes)
+                            /(diskSampleTime-diskLastSampleTime));
+                }
+
+                diskLastSampleTime = diskSampleTime;
+                lastCumulativeDiskReadKiloBytes = cumulativeDiskReadKiloBytes;
+                lastCumulativeDiskWriteKiloBytes = cumulativeDiskWriteKiloBytes;
+            }catch(Exception io) {
+                LOG.warn("Error reading the stream " + io);
+            }finally{
+                // Close the streams
+                try {
+                    outputStream.close();
+                    sc.close();
+                    info.close();
+                } catch (IOException i) {
+                    LOG.warn("Error closing the stream " + outputStream);
+                }
             }
-
-            diskLastSampleTime = diskSampleTime;
-            lastCumulativeDiskReadKiloBytes = cumulativeDiskReadKiloBytes;
-            lastCumulativeDiskWriteKiloBytes = cumulativeDiskWriteKiloBytes;
         }
     }
 
@@ -499,6 +514,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
             lastSampleTime = sampleTime;
             lastCumulativeCpuTime = cumulativeCpuTime;
         }
+        LOG.debug("cpu usage: " + cpuUsage);
         return cpuUsage;
     }
 

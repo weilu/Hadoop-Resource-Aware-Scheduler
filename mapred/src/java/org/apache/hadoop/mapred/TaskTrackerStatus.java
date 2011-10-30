@@ -363,7 +363,8 @@ public class TaskTrackerStatus implements Writable {
       }
 
       public long calculateCPUScore(){
-          long score = (long)(getCpuFrequency() * getNumProcessors() * (1-getCpuUsage()/100));
+          float cpuUsage = getCpuUsage()>99.9f?99.9f:getCpuUsage();
+          long score = (long)(getCpuFrequency() * getNumProcessors() * (1-cpuUsage/100));
           return getSafeScore(score);
       }
 
@@ -392,7 +393,9 @@ public class TaskTrackerStatus implements Writable {
       }
 
       private long getSafeScore(long score){
-          return (score<0||score==1)?-1:score;
+          boolean unsafe = score<0||score==1;
+          LOG.debug((unsafe?"unsafe" :"safe") + " | usage: " + getCpuUsage() + " | score: " + score + " | numOfProcessors: " + getNumProcessors() + " | cpuFrequency: " + getCpuFrequency());
+          return unsafe?-1:score;
       }
   }
   
