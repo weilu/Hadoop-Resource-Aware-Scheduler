@@ -1204,6 +1204,8 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
   Map<JobID, JobInProgress> jobs = new TreeMap<JobID, JobInProgress>();
 
   MapSampleReportLogger mapLogger = new MapSampleReportLogger();
+  Map<String, TaskTrackerStatus.ResourceStatus> trackerToResourceStatus =
+    new HashMap<String, TaskTrackerStatus.ResourceStatus>();
 
   // (trackerID --> list of jobs to cleanup)
   Map<String, Set<JobID>> trackerToJobsToCleanup = 
@@ -2387,6 +2389,9 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
       isBlacklisted = 
         faultyTrackers.shouldAssignTasksToTracker(status.getHost(), now);
     }
+
+    //record tracker resource status
+    trackerToResourceStatus.put(trackerName, status.getResourceStatus());
     
     HeartbeatResponse prevHeartbeatResponse =
       trackerToHeartbeatResponseMap.get(trackerName);
@@ -4672,4 +4677,13 @@ public class JobTracker implements MRConstants, InterTrackerProtocol,
   JobACLsManager getJobACLsManager() {
     return jobACLsManager;
   }
+
+    public long getClusterTrackerAverageDiskIOScore(){
+        long totalScore = 0;
+        for(TaskTrackerStatus.ResourceStatus resourceStatus : trackerToResourceStatus.values()){
+            long score = resourceStatus.getDiskReadScore() + resourceStatus.getDiskWriteScore();
+            totalScore += score;
+        }
+        return totalScore/trackerToResourceStatus.size();
+    }
 }

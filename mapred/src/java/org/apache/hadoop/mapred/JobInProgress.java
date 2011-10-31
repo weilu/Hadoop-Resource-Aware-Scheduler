@@ -307,6 +307,8 @@ public class JobInProgress {
   private Map<TaskTracker, FallowSlotInfo> trackersReservedForReduces = 
     new HashMap<TaskTracker, FallowSlotInfo>();
   private Path jobSubmitDir = null;
+
+    boolean doneSampleCpuAndDisk = false;
   
   /**
    * Create an almost empty JobInProgress, which can be used only for tests
@@ -1171,6 +1173,7 @@ public class JobInProgress {
             jobtracker.mapLogger.logStatsUponMapSampleTaskComplete(tip);
             float localReducePercentage = getLocalReduceRateForTaskTracker(status.getTaskTracker());
             jobtracker.mapLogger.logLocalReducesPercentage(tip, localReducePercentage);
+            this.doneSampleCpuAndDisk = true;
           }
           if(ttStat != null) {
             ttStat.incrSucceededTasks();
@@ -1511,7 +1514,9 @@ public class JobInProgress {
   }
   
   public synchronized boolean scheduleReduces() {
-    return finishedMapTasks >= completedMapsForReduceSlowstart;
+    if(!(jobtracker.getScheduler() instanceof ResourceScheduler))
+        doneSampleCpuAndDisk = true;
+    return doneSampleCpuAndDisk && finishedMapTasks >= completedMapsForReduceSlowstart ;
   }
   
   /**

@@ -317,6 +317,17 @@ class ResourceScheduler extends TaskScheduler {
                         continue;
                     }
 
+                    JobTracker jobtracker = (JobTracker)taskTrackerManager;
+                    if (Boolean.TRUE.equals(jobtracker.mapLogger.isNaiveIOIntensive(job.getJobID().toString()))){
+
+                        long trackerIOScore = taskTrackerStatus.getResourceStatus().getDiskReadScore()
+                        + taskTrackerStatus.getResourceStatus().getDiskWriteScore();
+
+                        if(trackerIOScore<jobtracker.getClusterTrackerAverageDiskIOScore() && remainingReduceLoad>1){
+                            continue;    
+                        }
+                    }
+
                     Task t =
                             job.obtainNewReduceTask(taskTrackerStatus, numTaskTrackers,
                                     taskTrackerManager.getNumberOfUniqueHosts()
@@ -336,17 +347,17 @@ class ResourceScheduler extends TaskScheduler {
             }
         }
 
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("Task assignments for " + taskTrackerStatus.getTrackerName() + " --> " +
-                    "[" + mapLoadFactor + ", " + trackerMapCapacity + ", " +
-                    trackerCurrentMapCapacity + ", " + trackerRunningMaps + "] -> [" +
-                    (trackerCurrentMapCapacity - trackerRunningMaps) + ", " +
-                    assignedMaps + " (" + numLocalMaps + ", " + numRackLocalMaps + ", " + numNonLocalMaps +
-                    ")] [" + reduceLoadFactor + ", " + trackerReduceCapacity + ", " +
-                    trackerCurrentReduceCapacity + "," + trackerRunningReduces +
-                    "] -> [" + (trackerCurrentReduceCapacity - trackerRunningReduces) +
-                    ", " + (assignedTasks.size()-assignedMaps) + "]");
-        }
+//        if (LOG.isDebugEnabled()) {
+//            LOG.debug("Task assignments for " + taskTrackerStatus.getTrackerName() + " --> " +
+//                    "[" + mapLoadFactor + ", " + trackerMapCapacity + ", " +
+//                    trackerCurrentMapCapacity + ", " + trackerRunningMaps + "] -> [" +
+//                    (trackerCurrentMapCapacity - trackerRunningMaps) + ", " +
+//                    assignedMaps + " (" + numLocalMaps + ", " + numRackLocalMaps + ", " + numNonLocalMaps +
+//                    ")] [" + reduceLoadFactor + ", " + trackerReduceCapacity + ", " +
+//                    trackerCurrentReduceCapacity + "," + trackerRunningReduces +
+//                    "] -> [" + (trackerCurrentReduceCapacity - trackerRunningReduces) +
+//                    ", " + (assignedTasks.size()-assignedMaps) + "]");
+//        }
 
         return assignedTasks;
     }

@@ -174,4 +174,19 @@ public class MapSampleReportLogger {
 
         return (long)(bytesPerMillSec/1.024);  //convert to kB/s
     }
+
+    public Boolean isNaiveIOIntensive(String jobId){
+        MapSampleReport report = sampleReports.get(jobId);
+        if(report == null || report.getDiskWriteDurationMilliSec()==MapSampleReport.UNAVAILABLE
+                || report.getMapDurationMilliSec()==MapSampleReport.UNAVAILABLE)
+            return null;
+
+        long diskTime = report.getDiskReadDurationMilliSec() + report.getDiskWriteDurationMilliSec();
+        long cpuTime = report.getMapDurationMilliSec()-diskTime;
+        
+        if(diskTime<0 || cpuTime<0)
+            return null;
+
+        return diskTime > cpuTime;
+    }
 }

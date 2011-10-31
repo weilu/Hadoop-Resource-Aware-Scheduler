@@ -48,7 +48,7 @@ public class MapTaskFinishTimeEstimator {
                 + sampleReport.getAdditionalSpillDurationMilliSec();
         sampleNetworkIOTime = sampleReport.getNetworkReadDurationMilliSec() + sampleReport.getNetworkWriteDurationMilliSec();
         sampleNetworkIOSize = sampleReport.getNetworkReadBytes() + sampleReport.getNetworkWriteBytes();
-        sampleCPUTime = sampleReport.getMapDurationMilliSec() - sampleDiskIOTime - sampleNetworkIOTime;
+        sampleCPUTime = sampleReport.getMapDurationMilliSec() - sampleDiskIOTime;
     }
 
     //tracker info
